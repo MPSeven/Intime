@@ -14,9 +14,6 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="3stwx8pka5" />
-        <meta-data
-            android:name="com.google.android.nearby.messages.API_KEY"
-            android:value="AIzaSyAyb8JoAPst_A_aeodXOLq_7-djF5LwMQE" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
