@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragment.SosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SOS"
-        android:textSize="40sp" />
+    <!--app:title="@string/sos_page"
+    app:titleMarginBottom="19dp"
+    app:titleMarginStart="191dp"
+    app:titleMarginTop="18dp"
+    app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+    app:titleTextColor="@color/black"-->
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/sos_gps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginRight="108dp"
+        android:text="geocoding-현재주소불러올곳" />
+</LinearLayout>
