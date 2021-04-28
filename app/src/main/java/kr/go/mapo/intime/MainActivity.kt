@@ -17,34 +17,6 @@ import kr.go.mapo.intime.fragment.MapFragment
 import kr.go.mapo.intime.fragment.SosFragment
 
 class MainActivity : AppCompatActivity() {
-
-    private val onNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.menu_sos -> {
-                    println("SOS")
-                    replaceFragment(SosFragment())
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.menu_map -> {
-                    println("MAP")
-                    replaceFragment(MapFragment())
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.menu_info -> {
-                    println("INFO")
-                    replaceFragment(InfoFragment())
-                    return@OnNavigationItemSelectedListener true
-                }
-            }
-            false
-        }
-
-    private val bottomNavigationView: BottomNavigationView by lazy {
-        findViewById(R.id.bottomNavigationView)
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -55,13 +27,42 @@ class MainActivity : AppCompatActivity() {
 
 
         replaceFragment(MapFragment())
+        setSupportActionBar(findViewById(R.id.basic_toolbar))
 
     }
 
+    private val onNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.menu_sos -> {
+                    this.setTitle(R.string.fragment_sos_tv)
+                    replaceFragment(SosFragment())
+//                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.menu_map -> {
+                    this.setTitle(R.string.fragment_map_tv)
+                    replaceFragment(MapFragment())
+//                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.menu_info -> {
+                    this.setTitle(R.string.fragment_info_tv)
+                    replaceFragment(InfoFragment())
+//                    return@OnNavigationItemSelectedListener true
+                }
+            }
+            true
+        }
+
+    private val bottomNavigationView: BottomNavigationView by lazy {
+        findViewById(R.id.bottomNavigationView)
+    }
+
     private fun replaceFragment(fragment: Fragment) {
-        val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frameLayout, fragment)
-        fragmentTransaction.commit()
+        if(fragment!=null){
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frameLayout, fragment)
+            fragmentTransaction.commit()
+        }
     }
 
 
