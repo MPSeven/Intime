@@ -108,7 +108,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             fetchAedLocation(
                 locationOverlay.position.latitude,
                 locationOverlay.position.longitude,
-                0.5F
+                0.6F
             )
         }
     }
