@@ -48,16 +48,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        replaceFragment(MapFragment())
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        bottomNavigationView.menu.getItem(1).isChecked = true
-    }
-
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
