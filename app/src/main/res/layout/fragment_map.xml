@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".fragment.MapFragment">
 
-    <fragment
-        android:id="@+id/map_fragment"
+<!--    <fragment-->
+<!--        android:id="@+id/map_fragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:name="com.naver.maps.map.MapFragment" />-->
+
+    <com.naver.maps.map.MapView
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.naver.maps.map.MapFragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
