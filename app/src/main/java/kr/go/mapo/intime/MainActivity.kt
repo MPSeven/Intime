@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "OnCreate!!!!!!!!!!!!!!!!!!!!!!")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -68,12 +66,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_map -> {
-                    println("MAP")
                     replaceFragment(MapFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_info -> {
-                    println("INFO")
                     replaceFragment(InfoFragment())
                     return@OnNavigationItemSelectedListener true
                 }
@@ -88,8 +84,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun replaceFragment(fragment: Fragment) {
 
-        Log.d(TAG, "replaceFragment!!!!!!!!!!!!!!!!!!!")
-
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
@@ -100,8 +94,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        Log.d(TAG, "onRequestPermissionResult!!!!!!!!!!!!!!!!!!!")
-
         if (locationSource.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
             if (!locationSource.isActivated) {
                 naverMap.locationTrackingMode = LocationTrackingMode.None
@@ -112,8 +104,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(naverMap: NaverMap) {
-        Log.d(TAG, "onMapReady")
-
         this.naverMap = naverMap
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
@@ -126,9 +116,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         uiSettings.isCompassEnabled = false
         uiSettings.isScrollGesturesEnabled = true
 
-        naverMap.addOnLocationChangeListener { location->
+        naverMap.addOnLocationChangeListener { location ->
             Log.d(TAG, "locationLat: ${location.latitude}, locationLon: ${location.longitude}")
-            fetchAedLocation(locationOverlay.position.latitude, locationOverlay.position.longitude, 0.5F)
+            fetchAedLocation(
+                locationOverlay.position.latitude,
+                locationOverlay.position.longitude,
+                0.5F
+            )
         }
     }
 
@@ -152,8 +146,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
 
                     response.body()?.let {
-                        Log.d(TAG, "OnResponse!!!!!!!!!!!!!!!!!!")
-                        Log.d(TAG, it.toString())
                         it.aeds.forEach { sortedAed ->
                             val marker = Marker()
                             marker.position = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
