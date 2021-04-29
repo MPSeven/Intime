@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!--app:title="@string/sos_page"
+    app:titleMarginBottom="19dp"
+    app:titleMarginStart="191dp"
+    app:titleMarginTop="18dp"
+    app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+    app:titleTextColor="@color/black"-->
+
     <TextView
         android:id="@+id/tv_info"
         android:layout_width="wrap_content"
