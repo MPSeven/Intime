@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_map -> {
-                    this.setTitle(R.string.fragment_map_tv)
+                    this.setTitle(R.string.app_name)
                     replaceFragment(MapFragment())
                     return@OnNavigationItemSelectedListener true
                 }

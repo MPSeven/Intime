@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Intime</string>
+    <string name="app_name">INTIME</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_info_tv">정보</string>
-    <string name="fragment_map_tv">지도</string>
+    <!--<string name="fragment_map_tv">지도</string>-->
     <string name="fragment_sos_tv">SOS</string>
     <string name="setting">설정</string>
 </resources>
