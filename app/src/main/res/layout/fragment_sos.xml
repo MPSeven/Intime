@@ -6,13 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SosFragment">
 
-    <!--app:title="@string/sos_page"
-    app:titleMarginBottom="19dp"
-    app:titleMarginStart="191dp"
-    app:titleMarginTop="18dp"
-    app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
-    app:titleTextColor="@color/black"-->
-
     <TextView
         android:id="@+id/tv_info"
         android:layout_width="wrap_content"

@@ -1,5 +1,6 @@
 package kr.go.mapo.intime.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
+import com.naver.maps.map.util.MarkerIcons
 import kr.go.mapo.intime.MainActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.api.AedService
@@ -21,6 +24,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 import java.security.Permissions
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -133,12 +137,29 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     }
 
                     response.body()?.let {
-                        it.aeds.forEach { sortedAed ->
-                            val marker = Marker()
-                            marker.position = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
-                            marker.map = naverMap
+                        context?.let { it1 ->
+                            it.aeds.forEach { sortedAed ->
+                                val marker = Marker()
+//                                val infoWindow = InfoWindow()
+//                                infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(it1){
+//                                    override fun getText(p0: InfoWindow): CharSequence {
+//                                        return sortedAed.aed.addressDetail
+//                                    }
+//
+//                                }
 
-                            markerList.add(marker)
+                                marker.width = Marker.SIZE_AUTO
+                                marker.height = Marker.SIZE_AUTO
+                                marker.position = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
+
+                                if(sortedAed.distance < 0.5) {
+                                    marker.icon = MarkerIcons.RED
+                                    marker.iconTintColor = Color.RED
+                                }
+                                marker.map = naverMap
+
+                                markerList.add(marker)
+                            }
                         }
                     }
                 }
@@ -152,6 +173,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MainActivity"
-        private const val BASE_URL = "http://172.30.1.53:8080"
+        private const val BASE_URL = "http://172.16.200.16:8080"
     }
 }

@@ -27,25 +27,26 @@ import kr.go.mapo.intime.fragment.MapFragment
 import kr.go.mapo.intime.fragment.SosFragment
 import kr.go.mapo.intime.model.AedDto
 import kr.go.mapo.intime.model.SortedAed
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 class MainActivity : AppCompatActivity() {
+
+    private val infoFragment = InfoFragment()
+    private val mapFragment = MapFragment()
+    private val sosFragment = SosFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         bottomNavigationView.menu.getItem(1).isChecked = true
 
+        replaceFragment(mapFragment)
 
-        replaceFragment(MapFragment())
         setSupportActionBar(findViewById(R.id.basic_toolbar))
-
     }
 
     private val onNavigationItemSelectedListener =
