@@ -1,7 +1,11 @@
 package kr.go.mapo.intime.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -23,17 +27,21 @@ import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
 import com.naver.maps.map.widget.LocationButtonView
+import kr.go.mapo.intime.AddressEvent
 import kr.go.mapo.intime.MainActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.api.AedService
 import kr.go.mapo.intime.model.AedDto
 import kr.go.mapo.intime.model.SortedAed
+import org.greenrobot.eventbus.EventBus
 import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
+import java.lang.RuntimeException
 
 import java.security.Permissions
 import kotlin.properties.Delegates
@@ -43,11 +51,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
     private var markerList: MutableList<Marker> = mutableListOf()
-    private val marker = Marker()
     private lateinit var infoWindow: InfoWindow
     private var isFirstLocation = true
     private lateinit var locationButtonView: LocationButtonView
-
+    private lateinit var geoCoder: Geocoder
+    private var myAddress: String = "init"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,29 +136,22 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         locationButtonView.map = naverMap
 
-        naverMap.addOnCameraChangeListener { i, b ->
-            Log.d(TAG, "i: ${i}, bool: $b")
-            if (i == -3) {
-                val latLng = naverMap.cameraPosition.target
-                //fetchAedLocation(latLng.latitude, latLng.longitude, 0.7F)
-            }
-
-        }
         naverMap.addOnCameraIdleListener {
             val latLng = naverMap.cameraPosition.target
             fetchAedLocation(latLng.latitude, latLng.longitude, 0.7F)
         }
 
         naverMap.setOnMapClickListener { _, _ ->
-            if(infoWindow.marker != null) {
+            if (infoWindow.marker != null) {
                 infoWindow.close()
             }
         }
 
         naverMap.addOnLocationChangeListener { location ->
-            if(isFirstLocation) {
-                val initializePosition: LatLng = LatLng(location.latitude, location.longitude)
-                val cameraUpdate: CameraUpdate = CameraUpdate.scrollTo(initializePosition).animate(CameraAnimation.Easing)
+            if (isFirstLocation) {
+                val initializePosition = LatLng(location.latitude, location.longitude)
+                val cameraUpdate: CameraUpdate =
+                    CameraUpdate.scrollTo(initializePosition).animate(CameraAnimation.Easing)
                 naverMap.moveCamera(cameraUpdate)
                 fetchAedLocation(location.latitude, location.longitude, 0.7F)
             }
@@ -190,6 +191,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val aedService = retrofit.create(AedService::class.java)
+        myAddress = setGeo(lat, lon)
+        EventBus.getDefault().post(AddressEvent(address = myAddress))
 
         aedService.getAedsByDistance(lat, lon, km)
             .enqueue(object : Callback<AedDto> {
@@ -216,7 +219,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
     private fun updateMapMarkers(result: AedDto) {
         resetMarkerList()
-        if(result.aeds.isNotEmpty()) {
+        if (result.aeds.isNotEmpty()) {
             for (sortedAed in result.aeds) {
                 val marker = Marker()
                 marker.tag = sortedAed
@@ -230,11 +233,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 marker.map = naverMap
                 marker.setOnClickListener { overlay ->
                     val marker: Marker = overlay as Marker
-                    if(marker.infoWindow != null) {
+                    if (marker.infoWindow != null) {
                         infoWindow.close()
-                    }else{
+                    } else {
                         infoWindow.open(marker)
                     }
+
                     true
                 }
                 markerList.add(marker)
@@ -251,9 +255,27 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         }
     }
 
+    private fun setGeo(lat: Double, lon: Double): String {
+        geoCoder = Geocoder(context)
+        var list: List<Address> = emptyList()
+
+        try {
+            list = geoCoder.getFromLocation(lat, lon, 10)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Log.d(TAG, "I/O ERROR!!")
+        }
+
+        if (list.isEmpty()) {
+            Log.d(TAG, "No Address!")
+        }
+
+        return list[0].getAddressLine(0).toString()
+    }
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MainActivity"
-        private const val BASE_URL = "http://172.30.1.53:8080"
+        private const val BASE_URL = "http://172.30.1.39:8080"
     }
 }
