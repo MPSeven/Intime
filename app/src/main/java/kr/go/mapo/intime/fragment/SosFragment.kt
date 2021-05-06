@@ -8,10 +8,12 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
+import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,15 +23,11 @@ import java.io.IOException
 import java.util.*
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SosFragment : Fragment() {
 
     val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
     val PERMISSIONS_REQUEST_CODE = 100
+    val SMS_SEND_PERMISSON = 1
 
     var lm: LocationManager? = null
 
@@ -43,23 +41,39 @@ class SosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        getLocation()
         // Inflate the layout for this fragment
-        var rootView = inflater.inflate(R.layout.fragment_sos, container, false)
+        var root = inflater.inflate(R.layout.fragment_sos, container, false)
+        var addressBox = root.findViewById<TextView>(R.id.gpsAddress)
+        var sendButton = root.findViewById<Button>(R.id.button)
 
-        return inflater.inflate(R.layout.fragment_sos, container, false)
+        addressBox.setText(getAddress())
+
+        checkSmsPermission()
+
+        sendButton.setOnClickListener{
+            var phoneNum = "119 112 fav 분기처리 해야함"
+            try {
+                val smsManager = SmsManager.getDefault()
+                smsManager.sendTextMessage(phoneNum, null, getAddress(), null, null)
+                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "전송실패", Toast.LENGTH_LONG).show()
+                e.printStackTrace()
+            }
+        }
+        return root
     }
 
 
-    private fun getLatLng(): Location{
-        var currentLatLng: Location? = null
-        var hasFineLocationPermission = ContextCompat.checkSelfPermission(requireContext(),
-            Manifest.permission.ACCESS_FINE_LOCATION)
-        var hasCoarseLocationPermission = ContextCompat.checkSelfPermission(requireContext(),
-            Manifest.permission.ACCESS_COARSE_LOCATION)
 
-        if(hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
-            hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED){
+    private fun getLatLng(): Location{
+
+        var currentLatLng: Location? = null
+
+        val hasFineLocationPermission = ContextCompat.checkSelfPermission(requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION)
+
+        if(hasFineLocationPermission == PackageManager.PERMISSION_GRANTED){
             val locatioNProvider = LocationManager.GPS_PROVIDER
             currentLatLng = lm?.getLastKnownLocation(locatioNProvider)
         }else{
@@ -75,26 +89,44 @@ class SosFragment : Fragment() {
     }
 
 
-    private fun getLocation() {
+    private fun getAddress(): String? {
 
         lm = activity!!.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var userLocation: Location = getLatLng()
+        var userAddress: String? = null
+
         if (userLocation != null) {
             var latitude = userLocation.latitude
             var longitude = userLocation.longitude
-            Log.d("check lat+lon", "lat: ${latitude}, lon: ${longitude}")
 
             var mGeoCoder = Geocoder(requireContext(), Locale.KOREAN)
-            var mResultList: List<Address>? = null
+            var currentAddress: List<Address>? = null
             try {
-                mResultList = mGeoCoder.getFromLocation(
+                currentAddress = mGeoCoder.getFromLocation(
                     latitude!!, longitude!!, 1
                 )
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-            if (mResultList != null) {
-                Log.d("check address", mResultList[0].getAddressLine(0))
+            if (currentAddress != null) {
+                userAddress = currentAddress[0].getAddressLine(0).substring(5)
+            }
+        }
+        return userAddress
+    }
+
+    fun checkSmsPermission() {
+
+        val hasSendSmsPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS)
+        if (hasSendSmsPermission == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(requireContext(), "SMS를 발신할 수 있습니다", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "SMS 발신권한이 없습니다", Toast.LENGTH_SHORT).show()
+            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.SEND_SMS)) {
+                Toast.makeText(requireContext(), "SMS 권한이 필요합니다", Toast.LENGTH_SHORT).show()
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS), SMS_SEND_PERMISSON)
+            } else {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS), SMS_SEND_PERMISSON)
             }
         }
     }
