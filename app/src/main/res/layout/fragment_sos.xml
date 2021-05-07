@@ -7,25 +7,134 @@
     tools:context=".fragment.SosFragment">
 
     <TextView
-        android:id="@+id/gpsAddress"
-        android:layout_width="250dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="184dp"
+        android:id="@+id/gps_address"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/img_sos_gps"
+        android:drawablePadding="8dp"
         android:fontFamily="@font/spoqahansansneo_regular"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textFontWeight="400"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="138dp"
-        android:layout_marginTop="73dp"
-        android:text="SMS"
-        android:textColor="#020202"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpsAddress" />
+        app:layout_constraintTop_toBottomOf="@id/gps_address">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txt_select_num"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginTop="44dp"
+                android:text="@string/txt_select_num"
+                android:textColor="@color/gray600"
+                android:textFontWeight="700"
+                android:fontFamily="@font/spoqahansansneo_bold"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_119"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/btn_sms_to_119"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_select_num" />
+
+            <ImageButton
+                android:id="@+id/btn_112"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/btn_sms_to_112"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_119" />
+
+            <ImageButton
+                android:id="@+id/btn_fav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/btn_sms_to_fav_an"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_112" />
+
+            <TextView
+                android:id="@+id/txt_sms_start"
+                android:layout_width="211dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="35dp"
+                android:drawableLeft="@drawable/img_sms"
+                android:drawablePadding="5dp"
+                android:text="@string/txt_sms"
+                android:fontFamily="@font/spoqahansansneo_regular"
+                android:textColor="@color/gray400"
+                android:textSize="13sp"
+                android:textFontWeight="400"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_fav" />
+
+            <ImageView
+                android:id="@+id/img_sms_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:src="@drawable/img_sms_ex"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_sms_start" />
+
+            <TextView
+                android:id="@+id/txt_amb"
+                android:layout_width="163dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="29dp"
+                android:text="@string/txt_amb"
+                android:textColor="@color/gray400"
+                android:textFontWeight="400"
+                android:fontFamily="@font/spoqahansansneo_regular"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_sms_guide" />
+
+            <ImageButton
+                android:id="@+id/btn_amb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:background="#00FFFFFF"
+                android:src="@drawable/btn_amb_num"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_amb" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@ import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -43,8 +43,8 @@ class SosFragment : Fragment() {
 
         // Inflate the layout for this fragment
         var root = inflater.inflate(R.layout.fragment_sos, container, false)
-        var addressBox = root.findViewById<TextView>(R.id.gpsAddress)
-        var sendButton = root.findViewById<Button>(R.id.button)
+        var addressBox = root.findViewById<TextView>(R.id.gps_address)
+        var sendButton = root.findViewById<ImageButton>(R.id.btn_fav)
 
         addressBox.setText(getAddress())
 

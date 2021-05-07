@@ -6,4 +6,12 @@
     <!--<string name="fragment_map_tv">지도</string>-->
     <string name="fragment_sos_tv">SOS</string>
     <string name="setting">설정</string>
+    <string name="info_message">예상치 못한 상황, \n인타임으로 미리 대비하세요</string>
+    <string name="how_to_aed">자동심장충격기사용법</string>
+    <string name="how_to_cpr">심폐소생술</string>
+    <string name="how_to_disaster">재난상황대처법</string>
+    <string name="how_to_checklist">체크리스트</string>
+    <string name="txt_select_num">긴급 문자를 전송할 번호를 선택해 주세요</string>
+    <string name="txt_sms">다음과 같이 긴급 문자를 보냅니다</string>
+    <string name="txt_amb">민간 구급차가 필요하신가요?</string>
 </resources>
