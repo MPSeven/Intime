@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="17dp"
         android:layout_marginTop="8dp"
-        android:drawableLeft="@drawable/img_sos_gps"
         android:drawablePadding="8dp"
         android:fontFamily="@font/spoqahansansneo_regular"
         android:textColor="@color/black"
@@ -19,7 +18,8 @@
         android:textFontWeight="400"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:drawableStartCompat="@drawable/img_sos_gps" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -41,10 +41,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="19dp"
                 android:layout_marginTop="44dp"
+                android:fontFamily="@font/spoqahansansneo_bold"
                 android:text="@string/txt_select_num"
                 android:textColor="@color/gray600"
                 android:textFontWeight="700"
-                android:fontFamily="@font/spoqahansansneo_bold"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -56,8 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:background="#00FFFFFF"
-                android:src="@drawable/btn_sms_to_119"
                 android:contentDescription="@string/btn_119"
+                android:src="@drawable/btn_sms_to_119"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_select_num" />
@@ -68,12 +68,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="#00FFFFFF"
-                android:src="@drawable/btn_sms_to_112"
                 android:contentDescription="@string/btn_112"
+                android:src="@drawable/btn_sms_to_112"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_119" />
 
+<!--
             <ImageButton
                 android:id="@+id/btn_fav"
                 android:layout_width="match_parent"
@@ -85,30 +86,45 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_112" />
+-->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_fav"
+                android:layout_width="363dp"
+                android:layout_height="79dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_sms_to_fav_an"
+                android:fontFamily="@font/spoqahansansneo_bold"
+                android:textColor="@color/gray600"
+                android:textFontWeight="700"
+                android:textSize="20sp"
+                android:contentDescription="@string/btn_fav"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_112" />
 
             <TextView
                 android:id="@+id/txt_sms_start"
                 android:layout_width="211dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="35dp"
-                android:drawableLeft="@drawable/img_sms"
                 android:drawablePadding="5dp"
-                android:text="@string/txt_sms"
                 android:fontFamily="@font/spoqahansansneo_regular"
+                android:text="@string/txt_sms"
                 android:textColor="@color/gray400"
-                android:textSize="13sp"
                 android:textFontWeight="400"
+                android:textSize="13sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_fav" />
+                app:layout_constraintTop_toBottomOf="@id/btn_fav"
+                app:drawableStartCompat="@drawable/img_sms" />
 
             <ImageView
                 android:id="@+id/img_sms_guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:src="@drawable/img_sms_ex"
                 android:contentDescription="@string/img_sms"
+                android:src="@drawable/img_sms_ex"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_sms_start" />
@@ -118,25 +134,26 @@
                 android:layout_width="255dp"
                 android:layout_height="71dp"
                 android:layout_marginTop="35dp"
-                android:layout_marginRight="90dp"
+                android:layout_marginRight="85dp"
+                android:fontFamily="@font/spoqahansansneo_regular"
                 android:gravity="left"
                 android:textColor="#1B6DB1"
-                android:textSize="14sp"
-                android:fontFamily="@font/spoqahansansneo_regular"
                 android:textFontWeight="700"
+                android:textSize="14sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_sms_start" />
+                app:layout_constraintTop_toBottomOf="@id/txt_sms_start"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/txt_amb"
                 android:layout_width="163dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="29dp"
+                android:fontFamily="@font/spoqahansansneo_regular"
                 android:text="@string/txt_amb"
                 android:textColor="@color/gray400"
                 android:textFontWeight="400"
-                android:fontFamily="@font/spoqahansansneo_regular"
                 android:textSize="13sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -148,11 +165,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:background="#00FFFFFF"
-                android:src="@drawable/btn_amb_num"
                 android:contentDescription="@string/btn_amb"
+                android:src="@drawable/btn_amb_num"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_amb"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_amb" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

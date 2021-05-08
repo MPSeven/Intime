@@ -1,11 +1,15 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="363dp"
-    android:height="79dp"
-    android:viewportWidth="363"
-    android:viewportHeight="79">
-  <path
-      android:strokeWidth="1"
-      android:pathData="M39.5,0.5L323.5,0.5A39,39 0,0 1,362.5 39.5L362.5,39.5A39,39 0,0 1,323.5 78.5L39.5,78.5A39,39 0,0 1,0.5 39.5L0.5,39.5A39,39 0,0 1,39.5 0.5z"
-      android:fillColor="#ffffff"
-      android:strokeColor="#979797"/>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<solid android:color="#fff" />
+
+<stroke
+    android:width="1dp"
+    android:color="#979797" /> //선색
+<corners
+    android:topLeftRadius="40dp"
+    android:topRightRadius="40dp"
+    android:bottomLeftRadius="40dp"
+    android:bottomRightRadius="40dp"  /> // 선 휘는각도
+
+</shape>

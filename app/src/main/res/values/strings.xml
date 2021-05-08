@@ -18,7 +18,7 @@
     <string name="txt_amb">민간 구급차가 필요하신가요?</string>
     <string name="btn_119">119</string>
     <string name="btn_112">112</string>
-    <string name="btn_fav">즐겨찾</string>
+    <string name="btn_fav">비상연락처</string>
     <string name="img_sms">긴급문자</string>
     <string name="btn_amb">민간구급차</string>
 </resources>
