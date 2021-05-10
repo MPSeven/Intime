@@ -57,8 +57,6 @@ class MainActivity : AppCompatActivity(){
 
         setSupportActionBar(findViewById(R.id.basic_toolbar))
 
-
-
     }
 
     override fun onStart() {
@@ -108,11 +106,9 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        if (fragment != null) {
-            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frameLayout, fragment)
-            fragmentTransaction.commit()
-        }
+        val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.commit()
     }
 
 }

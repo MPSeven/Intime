@@ -232,7 +232,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 }
                 marker.map = naverMap
                 marker.setOnClickListener { overlay ->
-                    val marker: Marker = overlay as Marker
+                    val marker = overlay as Marker
                     if (marker.infoWindow != null) {
                         infoWindow.close()
                     } else {
@@ -268,7 +268,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         if (list.isEmpty()) {
             Log.d(TAG, "No Address!")
+            return ""
         }
+        Log.d(TAG, "${list[0]}")
 
         return list[0].getAddressLine(0).toString()
     }
