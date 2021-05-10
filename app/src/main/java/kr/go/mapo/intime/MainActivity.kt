@@ -2,6 +2,7 @@ package kr.go.mapo.intime
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
@@ -9,6 +10,7 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.UiThread
 import androidx.fragment.app.Fragment
@@ -27,19 +29,26 @@ import kr.go.mapo.intime.fragment.MapFragment
 import kr.go.mapo.intime.fragment.SosFragment
 import kr.go.mapo.intime.model.AedDto
 import kr.go.mapo.intime.model.SortedAed
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private val infoFragment = InfoFragment()
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
+    private val textView: TextView by lazy {
+        findViewById(R.id.addressTextView)
+    }
+    private var mAddress: String = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         bottomNavigationView.menu.getItem(1).isChecked = true
@@ -47,7 +56,29 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(mapFragment)
 
         setSupportActionBar(findViewById(R.id.basic_toolbar))
+
     }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onAddressEvent(event: AddressEvent) {
+        if(event.address.isNotEmpty()) {
+            Log.d(TAG, "Event address: ${event.address}")
+            textView.text = event.address
+        } else {
+            Log.d(TAG, "Event is NULL")
+        }
+    }
+
 
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -75,11 +106,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        if (fragment != null) {
-            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frameLayout, fragment)
-            fragmentTransaction.commit()
-        }
+        val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.commit()
     }
 
 }
