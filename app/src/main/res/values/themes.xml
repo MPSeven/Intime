@@ -14,10 +14,6 @@
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-<<<<<<< HEAD
-
-=======
         <item name="fontFamily">@font/fonts</item>
->>>>>>> feature_aed_windowInfo
     </style>
 </resources>
