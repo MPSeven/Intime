@@ -12,55 +12,38 @@ import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.FragmentSosBinding
 import java.io.IOException
 import java.util.*
 
-
 class SosFragment : Fragment() {
 
+    private var _binding: FragmentSosBinding? = null
+    private val binding get() = _binding!!
+
     val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-    val PERMISSIONS_REQUEST_CODE = 100
     val SMS_SEND_PERMISSON = 1
+    val PERMISSIONS_REQUEST_CODE = 100
 
     var lm: LocationManager? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
-        var root = inflater.inflate(R.layout.fragment_sos, container, false)
-        var addressBox = root.findViewById<TextView>(R.id.gpsAddress)
-        var sendButton = root.findViewById<Button>(R.id.button)
-
-        addressBox.setText(getAddress())
+        _binding= FragmentSosBinding.inflate(inflater, container,false)
+        val root = binding.root
 
         checkSmsPermission()
 
-        sendButton.setOnClickListener{
-            var phoneNum = "119 112 fav 분기처리 해야함"
-            try {
-                val smsManager = SmsManager.getDefault()
-                smsManager.sendTextMessage(phoneNum, null, getAddress(), null, null)
-                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "전송실패", Toast.LENGTH_LONG).show()
-                e.printStackTrace()
-            }
-        }
+        binding.btnFav.setText(R.string.btn_fav)
+        binding.gpsAddress.setText(getAddress())
+
         return root
     }
 
@@ -115,7 +98,7 @@ class SosFragment : Fragment() {
         return userAddress
     }
 
-    fun checkSmsPermission() {
+    private fun checkSmsPermission() {
 
         val hasSendSmsPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS)
         if (hasSendSmsPermission == PackageManager.PERMISSION_GRANTED) {
@@ -129,5 +112,37 @@ class SosFragment : Fragment() {
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.SEND_SMS), SMS_SEND_PERMISSON)
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ getAddress()
+        binding.txtSms.setText(smsContents)
+        var phoneNum = "즐겨찾기"
+        val smsManager = SmsManager.getDefault()
+
+        try{
+            binding.btn119.setOnClickListener {
+                smsManager.sendTextMessage("119", null, smsContents, null, null)
+                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+            }
+            binding.btn112.setOnClickListener {
+                smsManager.sendTextMessage("112", null, smsContents, null, null)
+                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+            }
+            binding.btnFav.setOnClickListener{
+                smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
+                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception){
+            Toast.makeText(requireContext(), "전송실패", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
