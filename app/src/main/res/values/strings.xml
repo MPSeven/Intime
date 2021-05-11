@@ -12,6 +12,9 @@
     <string name="how_to_disaster">재난상황대처법</string>
     <string name="how_to_checklist">체크리스트</string>
 
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="pop_title">알림</string>
     <!--SOS-->
     <string name="txt_select_num">긴급 문자를 전송할 번호를 선택해 주세요</string>
     <string name="txt_sms">다음과 같이 긴급 문자를 보냅니다</string>
