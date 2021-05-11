@@ -19,6 +19,8 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
@@ -28,6 +30,7 @@ import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
 import com.naver.maps.map.widget.LocationButtonView
 import kr.go.mapo.intime.AddressEvent
+import kr.go.mapo.intime.AedListAdapter
 import kr.go.mapo.intime.MainActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.api.AedService
@@ -56,6 +59,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var locationButtonView: LocationButtonView
     private lateinit var geoCoder: Geocoder
     private var myAddress: String = "init"
+    private lateinit var addressTextView: TextView
+    private lateinit var recyclerView: RecyclerView
+    private val recyclerAdapter = AedListAdapter()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +77,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         var mapView = rootView.findViewById(R.id.map_view) as MapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        addressTextView = rootView.findViewById<TextView>(R.id.addressTextView)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
+
+        recyclerView.adapter = recyclerAdapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+
 
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
@@ -122,6 +136,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     @SuppressLint("ResourceType")
     override fun onMapReady(naverMap: NaverMap) {
         this.naverMap = naverMap
+
+        naverMap.maxZoom = 18.0
+
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
@@ -138,7 +155,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         naverMap.addOnCameraIdleListener {
             val latLng = naverMap.cameraPosition.target
-            fetchAedLocation(latLng.latitude, latLng.longitude, 0.7F)
+            fetchAedLocation(latLng.latitude, latLng.longitude, DISTANCE)
         }
 
         naverMap.setOnMapClickListener { _, _ ->
@@ -157,28 +174,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
             }
             isFirstLocation = false
         }
-
-        infoWindow = InfoWindow()
-        if (context != null) {
-            infoWindow.adapter = object : InfoWindow.DefaultViewAdapter(context!!) {
-                override fun getContentView(p0: InfoWindow): View {
-                    val marker: Marker? = infoWindow.marker
-                    val aed: SortedAed = marker?.tag as SortedAed
-
-                    val view: View = View.inflate(context, R.layout.view_info_window, null)
-                    view.findViewById<TextView>(R.id.address).text = aed.aed.address
-                    view.findViewById<TextView>(R.id.addressDetail).text = aed.aed.addressDetail
-                    view.findViewById<TextView>(R.id.tel).text = aed.aed.tel
-
-                    return view
-                }
-
-            }
-        }
     }
 
     override fun onClick(overlay: Overlay): Boolean {
-
         val marker: Marker = overlay as Marker
         infoWindow.open(marker)
         return false
@@ -186,13 +184,17 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
     private fun fetchAedLocation(lat: Double, lon: Double, km: Float) {
         Log.d(TAG, "fetchAEDLocation!!!!!!!")
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         val aedService = retrofit.create(AedService::class.java)
+
         myAddress = setGeo(lat, lon)
-        EventBus.getDefault().post(AddressEvent(address = myAddress))
+        addressTextView.text = myAddress
+//        EventBus.getDefault().post(AddressEvent(address = myAddress))
 
         aedService.getAedsByDistance(lat, lon, km)
             .enqueue(object : Callback<AedDto> {
@@ -207,12 +209,14 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                             return
                         } else {
                             updateMapMarkers(result)
+                            recyclerAdapter.submitList(result.aeds)
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<AedDto>, t: Throwable) {
                     Log.e(TAG, t.toString())
+                    // todo fail handling
                 }
             })
     }
@@ -232,12 +236,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 }
                 marker.map = naverMap
                 marker.setOnClickListener { overlay ->
-                    val marker = overlay as Marker
-                    if (marker.infoWindow != null) {
-                        infoWindow.close()
-                    } else {
-                        infoWindow.open(marker)
-                    }
+//                    val marker = overlay as Marker
+//                    if (marker.infoWindow != null) {
+//                        infoWindow.close()
+//                    } else {
+//                        infoWindow.open(marker)
+//                    }
 
                     true
                 }
@@ -270,7 +274,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
             Log.d(TAG, "No Address!")
             return ""
         }
-        Log.d(TAG, "${list[0]}")
 
         return list[0].getAddressLine(0).toString()
     }
@@ -278,6 +281,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MainActivity"
-        private const val BASE_URL = "http://172.30.1.39:8080"
+        private const val BASE_URL = "http://172.30.1.57:8080"
+        private const val DISTANCE = 1F
     }
 }
