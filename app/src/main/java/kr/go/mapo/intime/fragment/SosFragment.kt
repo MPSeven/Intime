@@ -46,7 +46,6 @@ class SosFragment : Fragment() {
     }
 
 
-
     private fun getLatLng(): Location{
 
         var currentLatLng: Location? = null
@@ -55,16 +54,19 @@ class SosFragment : Fragment() {
             Manifest.permission.ACCESS_FINE_LOCATION)
 
         if(hasFineLocationPermission == PackageManager.PERMISSION_GRANTED){
-            val locatioNProvider = LocationManager.GPS_PROVIDER
-            currentLatLng = lm?.getLastKnownLocation(locatioNProvider)
-        }else{
+            if(LocationManager.GPS_PROVIDER.isBlank()){
+                Toast.makeText(requireContext(), "1번", Toast.LENGTH_SHORT).show()
+            } else {
+                val locatioNProvider = LocationManager.GPS_PROVIDER
+                currentLatLng = lm?.getLastKnownLocation(locatioNProvider)
+            }
+        }else {
             if(ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), REQUIRED_PERMISSIONS[0])){
                 Toast.makeText(requireContext(), "SOS를 사용하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
                 ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE)
             }else{
                 ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE)
             }
-            currentLatLng = getLatLng()
         }
         return currentLatLng!!
     }
@@ -101,9 +103,7 @@ class SosFragment : Fragment() {
     private fun checkSmsPermission() {
 
         val hasSendSmsPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.SEND_SMS)
-        if (hasSendSmsPermission == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(requireContext(), "SMS를 발신할 수 있습니다", Toast.LENGTH_SHORT).show()
-        } else {
+        if (hasSendSmsPermission != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(requireContext(), "SMS 발신권한이 없습니다", Toast.LENGTH_SHORT).show()
             if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.SEND_SMS)) {
                 Toast.makeText(requireContext(), "SMS 권한이 필요합니다", Toast.LENGTH_SHORT).show()
@@ -122,8 +122,27 @@ class SosFragment : Fragment() {
         var phoneNum = "즐겨찾기"
         val smsManager = SmsManager.getDefault()
 
+        binding.btn119.setOnClickListener {
+            val dialog: SosDialogFragment = SosDialogFragment {
+                when (it) {
+                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                    1 -> {
+                        smsManager.sendTextMessage("119", null, smsContents, null, null)
+                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            dialog.show(getChildFragmentManager(), dialog.tag)
+        }
+/*
         try{
             binding.btn119.setOnClickListener {
+                val dialog = SosDialog()
+                getFragmentManager()?.let {
+                        it1 -> dialog.show(it1,"SosDialog")
+
+                }
+
                 smsManager.sendTextMessage("119", null, smsContents, null, null)
                 Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
             }
@@ -138,7 +157,7 @@ class SosFragment : Fragment() {
         } catch (e: Exception){
             Toast.makeText(requireContext(), "전송실패", Toast.LENGTH_LONG).show()
             e.printStackTrace()
-        }
+        }*/
     }
 
     override fun onDestroyView() {
