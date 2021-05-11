@@ -26,7 +26,7 @@ class AedListAdapter : ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(dif
             val tel = view.findViewById<TextView>(R.id.tel)
             val distance = view.findViewById<TextView>(R.id.distance)
 
-            addressTextView.text = sortedAed.aed.address
+            addressTextView.text = sortedAed.aed.org
             addressDetailTextView.text = sortedAed.aed.addressDetail
             tel.text = sortedAed.aed.tel
             distance.text = "${(sortedAed.distance * 1000).roundToInt()}m"

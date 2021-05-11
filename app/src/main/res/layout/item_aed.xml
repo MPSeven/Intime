@@ -89,7 +89,7 @@
                 android:id="@+id/bookmark"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:drawableLeft="@drawable/map_bookmark_unregister"
+                android:drawableLeft="@drawable/map_bookmark_off"
                 android:paddingLeft="12dp"
                 android:background="@drawable/map_aed_button" />
 
@@ -118,7 +118,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
-                android:drawableLeft="@drawable/map_find_path"
+                android:drawableLeft="@drawable/map_find_way"
                 android:paddingLeft="12dp"/>
 
             <TextView

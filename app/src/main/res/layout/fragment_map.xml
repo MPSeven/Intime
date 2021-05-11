@@ -20,11 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:drawableLeft="@drawable/ic_gps"
             android:drawablePadding="5dip"
             android:gravity="center"
             android:lines="1"
-            android:text="hello" />
+            android:text="hello"
+            app:drawableStartCompat="@drawable/map_navigation_arrow" />
 
     </LinearLayout>
 

@@ -8,6 +8,9 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +29,7 @@ import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
 import com.naver.maps.map.widget.LocationButtonView
@@ -54,7 +58,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
     private var markerList: MutableList<Marker> = mutableListOf()
-    private lateinit var infoWindow: InfoWindow
     private var isFirstLocation = true
     private lateinit var locationButtonView: LocationButtonView
     private lateinit var geoCoder: Geocoder
@@ -62,6 +65,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var addressTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private val recyclerAdapter = AedListAdapter()
+    private lateinit var aedNumberTextView: TextView
+    private lateinit var spannableString: SpannableString
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,6 +86,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         addressTextView = rootView.findViewById<TextView>(R.id.addressTextView)
         recyclerView = rootView.findViewById(R.id.recyclerView)
+        aedNumberTextView = rootView.findViewById(R.id.aedNumber)
+        locationButtonView = rootView.findViewById(R.id.location)
+
+
 
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -93,7 +103,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mapView = view.findViewById(R.id.map_view)
-        locationButtonView = view.findViewById(R.id.location)
         mapView.onCreate(savedInstanceState)
     }
 
@@ -139,6 +148,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         naverMap.maxZoom = 18.0
 
+
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
@@ -153,15 +163,21 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         locationButtonView.map = naverMap
 
-        naverMap.addOnCameraIdleListener {
-            val latLng = naverMap.cameraPosition.target
-            fetchAedLocation(latLng.latitude, latLng.longitude, DISTANCE)
-        }
+//        locationButtonView.setOnClickListener() {
+//            Log.d(TAG, "ClickClickClick!!!!!!!!!!!!!!!")
+//            val cameraPosition = naverMap.cameraPosition
+//            fetchAedLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 0.5F)
+//        }
+
+
+//        naverMap.addOnCameraIdleListener {
+//            val latLng = naverMap.cameraPosition.target
+//
+//            //fetchAedLocation(latLng.latitude, latLng.longitude, DISTANCE)
+//        }
 
         naverMap.setOnMapClickListener { _, _ ->
-            if (infoWindow.marker != null) {
-                infoWindow.close()
-            }
+
         }
 
         naverMap.addOnLocationChangeListener { location ->
@@ -170,6 +186,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 val cameraUpdate: CameraUpdate =
                     CameraUpdate.scrollTo(initializePosition).animate(CameraAnimation.Easing)
                 naverMap.moveCamera(cameraUpdate)
+
                 fetchAedLocation(location.latitude, location.longitude, 0.7F)
             }
             isFirstLocation = false
@@ -177,8 +194,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     }
 
     override fun onClick(overlay: Overlay): Boolean {
-        val marker: Marker = overlay as Marker
-        infoWindow.open(marker)
         return false
     }
 
@@ -210,6 +225,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                         } else {
                             updateMapMarkers(result)
                             recyclerAdapter.submitList(result.aeds)
+
+                            getCustomAedInfo(result.aeds.size)
                         }
                     }
                 }
@@ -230,19 +247,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 val latLng = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
                 marker.position = latLng
 
-                if (sortedAed.distance < 0.3) {
-                    marker.icon = MarkerIcons.RED
-                    marker.iconTintColor = Color.RED
-                }
+                marker.icon = OverlayImage.fromResource(R.drawable.map_aed_marker)
+                marker.width = 80
+                marker.height = 80
                 marker.map = naverMap
-                marker.setOnClickListener { overlay ->
-//                    val marker = overlay as Marker
-//                    if (marker.infoWindow != null) {
-//                        infoWindow.close()
-//                    } else {
-//                        infoWindow.open(marker)
-//                    }
-
+                marker.setOnClickListener {
                     true
                 }
                 markerList.add(marker)
@@ -278,10 +287,24 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         return list[0].getAddressLine(0).toString()
     }
 
+    private fun getCustomAedInfo(size: Int) {
+        val info = "나와 가장 가까운 심장충격기가 ${size}개 있습니다"
+
+        var word = size.toString()
+        val start = info.indexOf(word)
+        val end = start + word.length
+
+        spannableString = SpannableString(info)
+
+        spannableString.setSpan(ForegroundColorSpan(Color.parseColor("#FF6702")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        aedNumberTextView.text = spannableString
+    }
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MainActivity"
         private const val BASE_URL = "http://172.30.1.57:8080"
-        private const val DISTANCE = 1F
+        private const val DISTANCE = 0.5F
     }
 }

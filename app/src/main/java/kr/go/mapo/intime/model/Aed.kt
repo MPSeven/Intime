@@ -7,5 +7,6 @@ data class Aed(
     @SerializedName("wgs84lon") val lon: Double,
     @SerializedName("buildaddress") val address: String,
     @SerializedName("buildplace") val addressDetail: String,
-    @SerializedName("clerktel") val tel: String
+    @SerializedName("clerktel") val tel: String,
+    @SerializedName("org") val org: String
 )
