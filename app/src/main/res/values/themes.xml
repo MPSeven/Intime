@@ -16,4 +16,87 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/fonts</item>
     </style>
+
+     <!-- FONT STYLES -->
+    <style name="Head0" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">29sp</item>
+        <item name="android:gravity">top</item>
+    </style>
+    <style name="Head1" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">24sp</item>
+    </style>
+    <style name="Head2" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">17sp</item>
+    </style>
+    <style name="Head3" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">22sp</item>
+    </style>
+    <style name="Head4" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">22sp</item>
+    </style>
+    <style name="Body1" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">19sp</item>
+        <item name="android:gravity">top</item>
+    </style>
+    <style name="Body1_26" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">26sp</item>
+        <item name="android:gravity">top</item>
+        <item name="android:translationY">-3.2sp</item>
+    </style>
+    <style name="Body2" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">17sp</item>
+    </style>
+    <style name="Body3" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">17sp</item>
+    </style>
+    <style name="Caption1" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">14sp</item>
+    </style>
+    <style name="Caption2" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">12sp</item>
+    </style>
 </resources>
