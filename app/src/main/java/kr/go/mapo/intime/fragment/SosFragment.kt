@@ -16,7 +16,6 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import java.io.IOException
 import java.util.*
@@ -41,7 +40,6 @@ class SosFragment : Fragment() {
 
         checkSmsPermission()
 
-        binding.btnFav.setText(R.string.btn_fav)
         binding.gpsAddress.setText(getAddress())
 
         return root
@@ -94,6 +92,8 @@ class SosFragment : Fragment() {
             if (currentAddress != null) {
                 userAddress = currentAddress[0].getAddressLine(0).substring(5)
             }
+        } else {
+            userAddress = "gps 연결을 확인해주세요"
         }
         return userAddress
     }
