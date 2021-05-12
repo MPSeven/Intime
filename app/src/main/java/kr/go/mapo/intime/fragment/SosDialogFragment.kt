@@ -30,7 +30,7 @@ class SosDialogFragment(val clickItem: (Int) -> Unit) : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val text = "119에 긴급 문자를 보내시겟습니까?"
+        val text = "119에 긴급 문자를 보내시겠습니까?"
 
         binding.popAsk.text = text
 
