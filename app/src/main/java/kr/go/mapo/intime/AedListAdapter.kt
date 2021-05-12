@@ -21,15 +21,15 @@ class AedListAdapter : ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(dif
     inner class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(sortedAed: SortedAed) {
+            val orgTextView = view.findViewById<TextView>(R.id.org)
             val addressTextView = view.findViewById<TextView>(R.id.address)
             val addressDetailTextView = view.findViewById<TextView>(R.id.addressDetail)
-            val tel = view.findViewById<TextView>(R.id.tel)
-            val distance = view.findViewById<TextView>(R.id.distance)
+            val distanceTextView = view.findViewById<TextView>(R.id.distance)
 
-            addressTextView.text = sortedAed.aed.org
+            orgTextView.text = sortedAed.aed.org
+            addressTextView.text = sortedAed.aed.address
             addressDetailTextView.text = sortedAed.aed.addressDetail
-            tel.text = sortedAed.aed.tel
-            distance.text = "${(sortedAed.distance * 1000).roundToInt()}m"
+            distanceTextView.text = "${(sortedAed.distance * 1000).roundToInt()}m"
 
             view.setOnClickListener {
                 Log.d("View setOnClickListener", "${getItem(adapterPosition)}")

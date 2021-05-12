@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:paddingStart="20dp">
+    android:layout_margin="10dp"
+    android:background="@drawable/map_recyclerview_border"
+    android:padding="8dp">
 
     <LinearLayout
+        app:layout_constraintHorizontal_weight="2"
         android:id="@+id/aedInfoText"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -17,15 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            tools:text="공덕역" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,16 +26,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tel"
+                android:id="@+id/org"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="010-0000-0000" />
+                android:textColor="@color/black"
+                android:textFontWeight="900"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="공덕역" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10sp"
-                tools:text="|" />
+                android:text="|" />
 
             <TextView
                 android:id="@+id/distance"
@@ -53,17 +51,28 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/addressDetail"
+            android:id="@+id/address"
+            android:layout_marginVertical="5dp"
             android:layout_width="wrap_content"
+            android:maxLines="2"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="13sp"
             android:textStyle="bold"
-            tools:text="마포중앙도서관 1층 로비" />
+            tools:text="서울특별시 마포구 성산로 128" />
+
+        <TextView
+            android:id="@+id/addressDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            tools:text="5층 로비" />
+
 
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintHorizontal_weight="1"
         android:id="@+id/aedInfoButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -74,31 +83,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_marginLeft="30dp"
             android:id="@+id/aedInfoButton1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/aedInfoButton2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/aedInfoButton2">
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
                 android:id="@+id/bookmark"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:drawableLeft="@drawable/map_bookmark_off"
-                android:paddingLeft="12dp"
-                android:background="@drawable/map_aed_button" />
+                android:background="@drawable/map_aed_button"
+                android:drawableStart="@drawable/map_bookmark_off"
+                android:paddingLeft="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                tools:text="즐겨찾기" />
+                android:text="즐겨찾기"
+                android:textSize="10sp" />
 
 
         </LinearLayout>
@@ -111,26 +119,27 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/aedInfoButton1">
+            app:layout_constraintStart_toEndOf="@id/aedInfoButton1"
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
                 android:drawableLeft="@drawable/map_find_way"
-                android:paddingLeft="12dp"/>
+                android:paddingLeft="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="10sp"
-                tools:text="길찾기" />
+                android:text="길찾기"
+                android:textSize="10sp" />
 
         </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

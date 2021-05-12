@@ -44,7 +44,9 @@
         android:layout_marginTop="50dp" />
 
 
-    <include layout="@layout/bottom_sheet" />
+    <include
+        android:id="@+id/bottomSheetDialog"
+        layout="@layout/bottom_sheet" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

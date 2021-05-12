@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -22,8 +23,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
@@ -67,6 +70,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private val recyclerAdapter = AedListAdapter()
     private lateinit var aedNumberTextView: TextView
     private lateinit var spannableString: SpannableString
+    private lateinit var rootView: View
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+
+
+    private val aedCategoryButton: Button by lazy {
+        rootView.findViewById(R.id.aedCategoryButton)
+    }
+
 
 
 
@@ -74,12 +86,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables", "ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var rootView = inflater.inflate(R.layout.fragment_map, container, false)
+        rootView = inflater.inflate(R.layout.fragment_map, container, false)
         var mapView = rootView.findViewById(R.id.map_view) as MapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
@@ -89,7 +102,66 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         aedNumberTextView = rootView.findViewById(R.id.aedNumber)
         locationButtonView = rootView.findViewById(R.id.location)
 
+        val behavior = BottomSheetBehavior.from(
+            rootView.findViewById(R.id.bottomSheetDialog)
+        )
 
+        aedCategoryButton.setOnClickListener {
+            Log.d(TAG, "onClick!!!")
+            resetMarkerList()
+            aedCategoryButton.background = resources.getDrawable(R.drawable.map_category_button_clicked)
+            aedCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
+            //aedCategoryButton.setPadding(5, 5, 5, 5)
+
+            val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol_clicked)
+            img?.setBounds(0, 0, 60, 60)
+
+            Log.d(TAG, "$img")
+            aedCategoryButton.setCompoundDrawables(img, null, null, null)
+
+            fetchAedLocation(latitude, longitude, DISTANCE)
+        }
+
+
+
+        behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            var offset: Float = 0F
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+                Log.d(TAG, "newState: $newState")
+                //behavior.saveFlags = BottomSheetBehavior.SAVE_ALL
+                when(newState) {
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        if(offset <= 0.3){
+                            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                        }
+                        if(offset > 0.3) {
+                            behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+                        }
+                        if(offset > 0.7) {
+                            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                        }
+
+                    }
+
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+
+                    }
+
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+
+                    }
+
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                Log.d(TAG, "offset: $slideOffset")
+                offset = slideOffset
+            }
+
+        })
 
         recyclerView.adapter = recyclerAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -198,6 +270,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     }
 
     private fun fetchAedLocation(lat: Double, lon: Double, km: Float) {
+        latitude = lat
+        longitude = lon
+
         Log.d(TAG, "fetchAEDLocation!!!!!!!")
 
         val retrofit = Retrofit.Builder()
@@ -303,8 +378,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-        private const val TAG = "MainActivity"
-        private const val BASE_URL = "http://172.30.1.57:8080"
+        private const val TAG = "MapFragment"
+        private const val BASE_URL = "http://172.30.1.51:8080"
         private const val DISTANCE = 0.5F
     }
 }
