@@ -5,38 +5,38 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:ellipsize="end"
-        android:textColor="#232323"/>
+<!--    <TextView-->
+<!--        android:id="@+id/address"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:textSize="12sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:ellipsize="end"-->
+<!--        android:textColor="#232323"/>-->
 
-    <TextView
-        android:id="@+id/addressDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:textColor="#5A5A5A"
-        android:maxLines="3"/>
+<!--    <TextView-->
+<!--        android:id="@+id/addressDetail"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:textSize="10sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#5A5A5A"-->
+<!--        android:maxLines="3"/>-->
 
-    <TextView
-        android:id="@+id/tel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="2dp"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:textColor="#5A5A5A"
-        android:maxLines="3"/>
+<!--    <TextView-->
+<!--        android:id="@+id/tel"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:layout_marginTop="2dp"-->
+<!--        android:textSize="10sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="#5A5A5A"-->
+<!--        android:maxLines="3"/>-->
 
 </LinearLayout>

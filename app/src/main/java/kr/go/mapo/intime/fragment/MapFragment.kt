@@ -4,10 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,15 +23,21 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
 import com.naver.maps.map.widget.LocationButtonView
 import kr.go.mapo.intime.AddressEvent
+import kr.go.mapo.intime.AedListAdapter
 import kr.go.mapo.intime.MainActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.api.AedService
@@ -51,25 +61,111 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
     private var markerList: MutableList<Marker> = mutableListOf()
-    private lateinit var infoWindow: InfoWindow
     private var isFirstLocation = true
     private lateinit var locationButtonView: LocationButtonView
     private lateinit var geoCoder: Geocoder
     private var myAddress: String = "init"
+    private lateinit var addressTextView: TextView
+    private lateinit var recyclerView: RecyclerView
+    private val recyclerAdapter = AedListAdapter()
+    private lateinit var aedNumberTextView: TextView
+    private lateinit var spannableString: SpannableString
+    private lateinit var rootView: View
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+
+
+    private val aedCategoryButton: Button by lazy {
+        rootView.findViewById(R.id.aedCategoryButton)
+    }
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables", "ResourceAsColor")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var rootView = inflater.inflate(R.layout.fragment_map, container, false)
+        rootView = inflater.inflate(R.layout.fragment_map, container, false)
         var mapView = rootView.findViewById(R.id.map_view) as MapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        addressTextView = rootView.findViewById<TextView>(R.id.addressTextView)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
+        aedNumberTextView = rootView.findViewById(R.id.aedNumber)
+        locationButtonView = rootView.findViewById(R.id.location)
+
+        val behavior = BottomSheetBehavior.from(
+            rootView.findViewById(R.id.bottomSheetDialog)
+        )
+
+        aedCategoryButton.setOnClickListener {
+            Log.d(TAG, "onClick!!!")
+            resetMarkerList()
+            aedCategoryButton.background = resources.getDrawable(R.drawable.map_category_button_clicked)
+            aedCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
+            //aedCategoryButton.setPadding(5, 5, 5, 5)
+
+            val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol_clicked)
+            img?.setBounds(0, 0, 60, 60)
+
+            Log.d(TAG, "$img")
+            aedCategoryButton.setCompoundDrawables(img, null, null, null)
+
+            fetchAedLocation(latitude, longitude, DISTANCE)
+        }
+
+
+
+        behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            var offset: Float = 0F
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+                Log.d(TAG, "newState: $newState")
+                //behavior.saveFlags = BottomSheetBehavior.SAVE_ALL
+                when(newState) {
+                    BottomSheetBehavior.STATE_SETTLING -> {
+                        if(offset <= 0.3){
+                            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                        }
+                        if(offset > 0.3) {
+                            behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+                        }
+                        if(offset > 0.7) {
+                            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                        }
+
+                    }
+
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+
+                    }
+
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+
+                    }
+
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                Log.d(TAG, "offset: $slideOffset")
+                offset = slideOffset
+            }
+
+        })
+
+        recyclerView.adapter = recyclerAdapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+
 
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
@@ -79,7 +175,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mapView = view.findViewById(R.id.map_view)
-        locationButtonView = view.findViewById(R.id.location)
         mapView.onCreate(savedInstanceState)
     }
 
@@ -122,6 +217,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     @SuppressLint("ResourceType")
     override fun onMapReady(naverMap: NaverMap) {
         this.naverMap = naverMap
+
+        naverMap.maxZoom = 18.0
+
+
         naverMap.locationSource = locationSource
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
@@ -136,15 +235,21 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         locationButtonView.map = naverMap
 
-        naverMap.addOnCameraIdleListener {
-            val latLng = naverMap.cameraPosition.target
-            fetchAedLocation(latLng.latitude, latLng.longitude, 0.7F)
-        }
+//        locationButtonView.setOnClickListener() {
+//            Log.d(TAG, "ClickClickClick!!!!!!!!!!!!!!!")
+//            val cameraPosition = naverMap.cameraPosition
+//            fetchAedLocation(cameraPosition.target.latitude, cameraPosition.target.longitude, 0.5F)
+//        }
+
+
+//        naverMap.addOnCameraIdleListener {
+//            val latLng = naverMap.cameraPosition.target
+//
+//            //fetchAedLocation(latLng.latitude, latLng.longitude, DISTANCE)
+//        }
 
         naverMap.setOnMapClickListener { _, _ ->
-            if (infoWindow.marker != null) {
-                infoWindow.close()
-            }
+
         }
 
         naverMap.addOnLocationChangeListener { location ->
@@ -153,46 +258,33 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 val cameraUpdate: CameraUpdate =
                     CameraUpdate.scrollTo(initializePosition).animate(CameraAnimation.Easing)
                 naverMap.moveCamera(cameraUpdate)
+
                 fetchAedLocation(location.latitude, location.longitude, 0.7F)
             }
             isFirstLocation = false
         }
-
-        infoWindow = InfoWindow()
-        if (context != null) {
-            infoWindow.adapter = object : InfoWindow.DefaultViewAdapter(context!!) {
-                override fun getContentView(p0: InfoWindow): View {
-                    val marker: Marker? = infoWindow.marker
-                    val aed: SortedAed = marker?.tag as SortedAed
-
-                    val view: View = View.inflate(context, R.layout.view_info_window, null)
-                    view.findViewById<TextView>(R.id.address).text = aed.aed.address
-                    view.findViewById<TextView>(R.id.addressDetail).text = aed.aed.addressDetail
-                    view.findViewById<TextView>(R.id.tel).text = aed.aed.tel
-
-                    return view
-                }
-
-            }
-        }
     }
 
     override fun onClick(overlay: Overlay): Boolean {
-
-        val marker: Marker = overlay as Marker
-        infoWindow.open(marker)
         return false
     }
 
     private fun fetchAedLocation(lat: Double, lon: Double, km: Float) {
+        latitude = lat
+        longitude = lon
+
         Log.d(TAG, "fetchAEDLocation!!!!!!!")
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         val aedService = retrofit.create(AedService::class.java)
+
         myAddress = setGeo(lat, lon)
-        EventBus.getDefault().post(AddressEvent(address = myAddress))
+        addressTextView.text = myAddress
+//        EventBus.getDefault().post(AddressEvent(address = myAddress))
 
         aedService.getAedsByDistance(lat, lon, km)
             .enqueue(object : Callback<AedDto> {
@@ -207,12 +299,16 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                             return
                         } else {
                             updateMapMarkers(result)
+                            recyclerAdapter.submitList(result.aeds)
+
+                            getCustomAedInfo(result.aeds.size)
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<AedDto>, t: Throwable) {
                     Log.e(TAG, t.toString())
+                    // todo fail handling
                 }
             })
     }
@@ -226,19 +322,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                 val latLng = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
                 marker.position = latLng
 
-                if (sortedAed.distance < 0.3) {
-                    marker.icon = MarkerIcons.RED
-                    marker.iconTintColor = Color.RED
-                }
+                marker.icon = OverlayImage.fromResource(R.drawable.map_aed_marker)
+                marker.width = 80
+                marker.height = 80
                 marker.map = naverMap
-                marker.setOnClickListener { overlay ->
-                    val marker = overlay as Marker
-                    if (marker.infoWindow != null) {
-                        infoWindow.close()
-                    } else {
-                        infoWindow.open(marker)
-                    }
-
+                marker.setOnClickListener {
                     true
                 }
                 markerList.add(marker)
@@ -270,14 +358,28 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
             Log.d(TAG, "No Address!")
             return ""
         }
-        Log.d(TAG, "${list[0]}")
 
         return list[0].getAddressLine(0).toString()
     }
 
+    private fun getCustomAedInfo(size: Int) {
+        val info = "나와 가장 가까운 심장충격기가 ${size}개 있습니다"
+
+        var word = size.toString()
+        val start = info.indexOf(word)
+        val end = start + word.length
+
+        spannableString = SpannableString(info)
+
+        spannableString.setSpan(ForegroundColorSpan(Color.parseColor("#FF6702")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        aedNumberTextView.text = spannableString
+    }
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
-        private const val TAG = "MainActivity"
-        private const val BASE_URL = "http://172.30.1.39:8080"
+        private const val TAG = "MapFragment"
+        private const val BASE_URL = "http://172.30.1.51:8080"
+        private const val DISTANCE = 0.5F
     }
 }

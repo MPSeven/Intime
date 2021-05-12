@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/map_top_radius_white_background"
+    app:behavior_peekHeight="60dp"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="12dp"
+        android:background="#cccccc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/bottomSheetButtonLayout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingHorizontal="5dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.widget.Button
+                android:id="@+id/aedCategoryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/map_category_button"
+                android:drawableStart="@drawable/map_aed_symbol"
+                android:padding="5dp"
+                android:text="심장충격기"
+                android:textColor="@drawable/map_button_text_color" />
+
+            <android.widget.Button
+                android:id="@+id/shelterCategoryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/map_category_button"
+                android:drawableStart="@drawable/map_shelter_symbol"
+                android:padding="5dp"
+                android:text="대피소" />
+
+            <android.widget.Button
+                android:id="@+id/emergencyRoomCategoryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/map_category_button"
+                android:drawableStart="@drawable/map_emergency_room_symbol"
+                android:padding="5dp"
+                android:text="응급실"
+                android:textColor="@drawable/map_button_text_color" />
+
+            <android.widget.Button
+                android:id="@+id/pharmacyCategoryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/map_category_button"
+                android:drawableStart="@drawable/map_pharmacy_symbol"
+                android:padding="5dp"
+                android:text="24시 약국" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/aedNumber"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bottomSheetButtonLayout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aedNumber" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
