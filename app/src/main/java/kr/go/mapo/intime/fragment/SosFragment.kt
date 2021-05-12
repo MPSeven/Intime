@@ -9,7 +9,6 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import java.io.IOException
 import java.util.*
@@ -36,6 +36,15 @@ class SosFragment : Fragment() {
         val root = binding.root
 
         tedPermission()
+
+        binding.btnAmb.setOnClickListener {
+            val ambFragment = SosAmbFragment()
+            val fragmentManager = getActivity()?.getSupportFragmentManager()
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.frameLayout, ambFragment)
+            fragmentTransaction?.addToBackStack(null)
+            fragmentTransaction?.commit()
+        }
 
         return root
     }
