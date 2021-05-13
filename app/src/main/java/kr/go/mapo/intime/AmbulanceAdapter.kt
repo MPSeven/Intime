@@ -1,9 +1,12 @@
 package kr.go.mapo.intime
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.databinding.AmbulanceListBinding
@@ -16,23 +19,6 @@ class AmbulanceAdapter(
 ) : RecyclerView.Adapter<AmbulanceAdapter.AmbHolder>() {
 
     private lateinit var binding: AmbulanceListBinding
-
-    inner class AmbHolder(view: View) : RecyclerView.ViewHolder(view){
-        val ambName: TextView = view.findViewById(R.id.amb_company)
-        val ambTel: TextView = view.findViewById(R.id.amb_tel)
-
-        fun bind(item: Ambulance, view: View) {
-            ambTel.text = item.telephone
-
-            val pos = adapterPosition
-            if(pos != RecyclerView.NO_POSITION) {
-                view.setOnClickListener {
-                    listener?.onItemClick(view, item, pos)
-                    Log.d("여기여기", pos.toString())
-                }
-            }
-        }
-    }
 
     interface OnItemClickListener{
         fun onItemClick(v:View, data: Ambulance, pos : Int)
@@ -49,28 +35,47 @@ class AmbulanceAdapter(
         return AmbHolder(view)
     }
 
+    override fun getItemCount() = AmbulanceList.size
+
     override fun onBindViewHolder(holder: AmbHolder, position: Int) {
         val ambData = AmbulanceList[position]
+
         with(holder){
             ambName.text = ambData.company
             ambTel.text = ambData.telephone
-        }
 
-/*
-        여기 to do
-        1. recyclerview에 있는 버튼 어떻게 처리할지 생각해보고
-        2. 버튼 누르면 전화 연결하기
+            ambBtn.setOnClickListener {
+                Log.d("여기", ambData.telephone)
 
-            var intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${ambData()[0].telephone}")
-            if(activity?.packageManager?.let { intent.resolveActivity(it) } != null){
-                startActivity(intent)
+                var intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${ambData.telephone}"))
+//                intent.data = Uri.parse("tel:${ambData.telephone}")
+//                인텐트 호출
+//                startActivity(intent)
             }
- */
-
-
+        }
     }
 
-    override fun getItemCount() = AmbulanceList.size
+
+
+    inner class AmbHolder(view: View) : RecyclerView.ViewHolder(view){
+        val ambName: TextView = itemView.findViewById(R.id.amb_company)
+        val ambTel: TextView = itemView.findViewById(R.id.amb_tel)
+        val ambBtn: ImageButton = itemView.findViewById(R.id.amb_tel_btn)
+
+//        fun bind(item: Ambulance) {
+//            ambTel.text = item.telephone
+//
+//            val pos = adapterPosition
+//            if(pos != RecyclerView.NO_POSITION) {
+//                itemView.setOnClickListener {
+//                    Log.d("여기", item.telephone)
+//                    var intent = Intent(Intent.ACTION_DIAL)
+//
+//                    intent.data = Uri.parse("tel:${item.telephone}")
+//                    startActivity(intent)
+//                }
+//            }
+//        }
+    }
 
 }
