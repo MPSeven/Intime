@@ -42,12 +42,11 @@
     <string name="info_tv_aed_step3">자동심장충격을 시행한 뒤에는 즉시 가슴압박과 인공호흡 비율을 30 : 2로 심폐소생술을 다시 시행한다.</string>
     <string name="info_tv_cpr_clickable">심폐소생술 방법 바로 알아보기 ></string>
     <string name="info_tv_aed_step3reminder">* 자동심장충격기는 2분마다 심장리듬 분석을 반복해서 시행하며, 자동심장충격기 사용과 심폐소생술 시행은 119구급대가 현장에 도착할 때까지 지속되어야 한다.</string>
-    <string name="info_iv_aed_copyright">2013(c)All rights Reserved National Emergency Medical Center</string>
+    <string name="info_iv_copyright">2013(c)All rights Reserved National Emergency Medical Center</string>
 
 
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
-    <string name="pop_title">알림</string>
     <!--SOS-->
     <string name="txt_select_num">긴급 문자를 전송할 번호를 선택해 주세요</string>
     <string name="txt_sms">다음과 같이 긴급 문자를 보냅니다</string>
@@ -57,4 +56,33 @@
     <string name="btn_fav">비상연락처</string>
     <string name="img_sms">긴급문자</string>
     <string name="btn_amb">민간구급차</string>
+
+    <!--How to CPR page texts:-->
+    <string name="info_iv_cpr_desc_numbering">info_iv_cpr_desc_numbering</string>
+    <string name="info_tv_cpr_step1_header">의식확인</string>
+    <string name="info_iv_cpr_step1">info_iv_cpr_step1</string>
+    <string name="info_tv_cpr_step1_1">양어깨를 두르리며 말을 걸고 눈과 귀로 심정지 및 무호흡 유무를 확인한다.</string>
+    <string name="info_tv_cpr_step1_2">반응과 호흡이 있으면 심정지 아님</string>
+    <string name="info_tv_cpr_step2">주변사람에게(꼭 집어서) 119신고를 부탁하고 자동심장충격기를 요청한다.</string>
+    <string name="info_tv_cpr_step3_header">흉부압박점 찾기</string>
+    <string name="info_iv_cpr_step3">info_iv_cpr_step3</string>
+    <string name="info_iv_cpr_step2">info_iv_cpr_step2</string>
+    <string name="info_tv_cpr_step2_header">도움 및 119신고 요청</string>
+    <string name="info_tv_cpr_step1_3">일반 구조자가 외상환자를 구조할 때에는 꼭 필요한 경우에만 환자를 이동시키도록 한다. \n예) 건물에 화재가 발생한 경우 등 현장이 안전하지 않은 상황</string>
+    <string name="info_tv_cpr_step3_1">먼저 환자의 가슴뼈의 아래쪽 1/2중앙 에 한 손바닥을 올려 놓고 그 위에 다른 손을 겹친다.</string>
+    <string name="info_tv_cpr_step3_2">* 손가락이 가슴에 닿지 않도록 주의</string>
+    <string name="info_tv_cpr_step4_header">가슴(흉부)압박하기</string>
+    <string name="info_iv_cpr_step4">info_iv_cpr_step4</string>
+    <string name="info_tv_cpr_step4">분당 100 ~ 120회의 속도로, 성인 약 5cm 깊이로 압박, 압박과 이완의 시간은 같은 정도로 하고, 각각의 압박 후에는 가슴이 완전히 올라오도록 해야 한다.</string>
+    <string name="info_tv_cpr_step4_2">* 압박 시 양팔을 쭉 편 상태에서 체중을 실어서 환자의 몸과 수직이 되게 눌러줘야 한다.</string>
+    <string name="info_tv_cpr_step5_header">인공호흡 2회 시행</string>
+    <string name="info_iv_cpr_step5">info_iv_cpr_step5</string>
+    <string name="info_tv_cpr_step5">먼저 머리를 젖혔던 손의 엄지와 검지로 환자의 코를 잡아 막는다.\n 코를 막고 구조자의 입을 완전히 밀착하여 정상호흡을 약 1초 동안 2회 숨을 불어 넣는다.\n (인공호흡이 어려울 경우 가슴압박을 지속적으로 시행)</string>
+    <string name="info_tv_cpr_step6_header">가슴(흉부)압박과 인공호흡의 반복</string>
+    <string name="info_tv_cpr_step6">이후에는 30회의 가슴압박과 2회의 인공호흡을 119구급대원이 현장에 도착할 때까지 반복해서 시행한다.</string>
+    <string name="info_tv_cpr_caution_header">주의사항</string>
+    <string name="info_tv_cpr_caution">인공호흡을 할 수 있는 일반인만 인공호흡을 시행해야 한다. 일반인인 경우, 가슴압박 소생술만 진행해도 된다.</string>
+    <string name="info_iv_cpr_summary_adult">info_iv_cpr_summary_adult</string>
+    <string name="info_tv_cpr_headline">심폐소생술 가이드라인</string>
+    <string name="info_tv_cpr_desc">위급상황시 ‘인타임’을 \n만들어 줄 수 있는 CPR 방법을 확인하세요!</string>
 </resources>

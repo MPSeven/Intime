@@ -32,6 +32,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:letterSpacing">-0.02</item>
         <item name="lineHeight">24sp</item>
+        <item name="fontWeight">700</item>
     </style>
     <style name="Head2" parent="TextAppearance.AppCompat">
         <item name="font">@font/spoqa_han_sans_neo_regular</item>
