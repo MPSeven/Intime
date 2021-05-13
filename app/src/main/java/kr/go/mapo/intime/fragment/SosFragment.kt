@@ -73,11 +73,12 @@ class SosFragment : Fragment() {
         TedPermission.with(requireContext())
             .setPermissionListener(permissionListener)
 //            .setRationaleMessage("SOS 사용을 위해서 위치 접근 권한과 SMS 발신 권한이 필요합니다.")
-            .setDeniedMessage("SOS 사용을 위해서 위치 접근 권한과 SMS 발신 권한이 필요합니다.\n[설정] > [권한] 에서 권한을 설정할 수 있습니다.")
+            .setDeniedMessage("SOS 사용을 위해서 위치 접근 권한과 전화 및 SMS 발신 권한이 필요합니다.\n[설정] > [권한] 에서 권한을 설정할 수 있습니다.")
             .setPermissions(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.SEND_SMS
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.CALL_PHONE
             )
             .check()
     }

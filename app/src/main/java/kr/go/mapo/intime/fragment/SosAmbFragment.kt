@@ -1,15 +1,16 @@
 package kr.go.mapo.intime.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.AmbulanceAdapter
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.DialogLocationPickerBinding
 import kr.go.mapo.intime.databinding.FragmentSosAmbBinding
 import kr.go.mapo.intime.model.Ambulance
 
@@ -36,10 +37,8 @@ class SosAmbFragment : Fragment() {
         }
 
         binding.amdLoc.setOnClickListener {
-
+            callLocationPicker(binding.root)
         }
-
-        val btnTel = recyclerview.findViewById<ImageButton>(R.id.amb_tel_btn)
 
         return binding.root
     }
@@ -73,5 +72,34 @@ class SosAmbFragment : Fragment() {
 
         return  ambData
     }
+
+
+    /*
+        여기 to do
+        클릭->넘버피커 다이얼로그 띄움 -> 로케이션 선택 ->앰뷸런스리스트 분기처리
+
+        */
+
+    private fun callLocationPicker(view: ViewGroup) {
+        val inflater: LayoutInflater = requireActivity().layoutInflater
+        val dialog: DialogLocationPickerBinding =
+            DialogLocationPickerBinding.inflate(inflater, view, false)
+
+//        val locationPicker: NumberPicker = dialog.picker.apply {
+//            minValue = 0
+//            maxValue = 25
+//            wrapSelectorWheel = false
+//            setOnValueChangedListener { _, _, newVal -> }
+//        }
+        val dialogBuilder: AlertDialog.Builder =
+            AlertDialog.Builder(requireActivity()).apply {
+                setView(dialog.root)
+
+            }
+        val alertLocationPickerDialog: AlertDialog = dialogBuilder.create()
+        alertLocationPickerDialog.show()
+    }
+
+
 
 }

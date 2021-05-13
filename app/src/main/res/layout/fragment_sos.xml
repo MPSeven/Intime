@@ -44,6 +44,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -56,8 +57,8 @@
                 android:textColor="@color/gray600"
                 android:textFontWeight="900"
                 android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
@@ -67,9 +68,10 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/sos_btn_119_custom"
                 android:contentDescription="@string/btn_119"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_select_num" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_select_num"
+                app:layout_constraintBottom_toTopOf="@id/btn_112"/>
 
             <ImageButton
                 android:id="@+id/btn_112"
@@ -78,9 +80,10 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/sos_btn_112_custom"
                 android:contentDescription="@string/btn_112"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_119" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_119"
+                app:layout_constraintBottom_toTopOf="@id/btn_fav"/>
 
             <ImageButton
                 android:id="@+id/btn_fav"
@@ -89,26 +92,10 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/sos_btn_fav_custom"
                 android:contentDescription="@string/btn_fav"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_112" />
-<!--
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_fav"
-                android:layout_width="363dp"
-                android:layout_height="79dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/sos_btn_sms_to_fav_an"
-                android:drawableLeft="@drawable/sos_btn_sms_to_fav_img"
-                android:fontFamily="@font/spoqahansansneo_bold"
-                android:textColor="@color/gray600"
-                android:textFontWeight="700"
-                android:textSize="20sp"
-                android:contentDescription="@string/btn_fav"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_112" />
--->
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_112"
+                app:layout_constraintBottom_toTopOf="@id/txt_sms_start" />
 
             <TextView
                 android:id="@+id/txt_sms_start"
@@ -121,9 +108,10 @@
                 android:textColor="@color/gray400"
                 android:textFontWeight="400"
                 android:textSize="13sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn_fav"
+                app:layout_constraintBottom_toTopOf="@id/img_sms_guide"
                 app:drawableStartCompat="@drawable/sos_img_sms" />
 
             <ImageView
@@ -133,9 +121,10 @@
                 android:layout_marginTop="17dp"
                 android:contentDescription="@string/img_sms"
                 android:background="@drawable/sos_img_sms_ex"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_sms_start" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_sms_start"
+                app:layout_constraintBottom_toTopOf="@id/txt_amb" />
 
             <TextView
                 android:id="@+id/txt_sms"
@@ -148,9 +137,8 @@
                 android:textColor="#1B6DB1"
                 android:textFontWeight="400"
                 android:textSize="14sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_sms_start"
-                tools:ignore="RtlHardcoded" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_sms_start" />
 
             <TextView
                 android:id="@+id/txt_amb"
@@ -162,9 +150,10 @@
                 android:textColor="@color/gray400"
                 android:textFontWeight="400"
                 android:textSize="14sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_sms_guide" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_sms_guide"
+                app:layout_constraintBottom_toTopOf="@id/btn_amb"/>
 
             <ImageButton
                 android:id="@+id/btn_amb"
@@ -173,9 +162,10 @@
                 android:layout_marginTop="9dp"
                 android:background="@drawable/sos_btn_amb_num"
                 android:contentDescription="@string/btn_amb"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_amb" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_amb"
+                app:layout_constraintBottom_toTopOf="@id/space_btm"/>
 
             <Space
                 android:id="@+id/space_btm"

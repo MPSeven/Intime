@@ -7,52 +7,54 @@
     android:id="@+id/fragment_sos_amb"
     tools:context=".fragment.SosAmbFragment">
 
-    <FrameLayout
-        android:id="@+id/amb_top"
-        android:layout_width="0dp"
-        android:layout_height="66dp"
+    <TextView
+        android:id="@+id/amd_loc"
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="32dp"
+        android:text="전체"
+        android:textColor="@color/black"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/sos_btn_loc"
+        android:drawablePadding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/amd_loc"
-            android:layout_width="70dp"
-            android:layout_height="19dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_gravity="right"
-            android:text="전체"
-            android:textColor="@color/black"
-            android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:textSize="16sp"
-            android:drawableRight="@drawable/sos_btn_loc"
-            android:drawablePadding="8dp" />
-
-    </FrameLayout>
+    <Space
+        android:id="@+id/amb_space"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:layout_constraintTop_toBottomOf="@id/amd_loc"
+        app:layout_constraintBottom_toTopOf="@id/amb_recycler_view" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/amb_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="450dp"
         android:fillViewport="true"
         android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amb_top"
+        app:layout_constraintTop_toBottomOf="@id/amb_space"
+        app:layout_constraintBottom_toTopOf="@id/amb_notice"
         tools:listitem="@layout/ambulance_list"/>
 
     <TextView
+        android:id="@+id/amb_notice"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="29dp"
-        android:gravity="bottom"
+        android:layout_marginTop="24dp"
         android:text="'인타임'은 정보 중개자로 업체 전화 후 관련된 문제에 대한 의무와 책임은 각 업체에 있으며, 민간 구급차를 이용하면 금액이 부과됩니다. 이용 시 부과되는 이용료는 담당 업체마다 상이합니다."
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amb_recycler_view"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
