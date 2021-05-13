@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SpinnerAdapter
+import androidx.databinding.adapters.AdapterViewBindingAdapter
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentAedBinding
 
@@ -17,7 +19,7 @@ class FragmentAed : Fragment(R.layout.fragment_aed) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAedBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,5 +32,4 @@ class FragmentAed : Fragment(R.layout.fragment_aed) {
         _binding = null
         super.onDestroyView()
     }
-
 }
