@@ -4,6 +4,6 @@ data class Ambulance(
 
     val company : String,
     val location : String,
-    val telephone : Int
+    val telephone : String
 
 )

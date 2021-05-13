@@ -136,11 +136,11 @@ class SosFragment : Fragment() {
 
         var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ getAddress()
         binding.txtSms.setText(smsContents)
-        var phoneNum = "즐겨찾기"
+        var phoneNum = "2121" //여기 즐겨찾기에서 가져온 거 넣기 여기여기
         val smsManager = SmsManager.getDefault()
 
         binding.btn119.setOnClickListener {
-            val dialog: SosDialogFragment = SosDialogFragment {
+            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?", ) {
                 when (it) {
                     0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
                     1 -> {
@@ -152,30 +152,31 @@ class SosFragment : Fragment() {
             dialog.show(getChildFragmentManager(), dialog.tag)
         }
 
-/*
-        try{
-            binding.btn119.setOnClickListener {
-                val dialog = SosDialog()
-                getFragmentManager()?.let {
-                        it1 -> dialog.show(it1,"SosDialog")
-
+        binding.btn112.setOnClickListener {
+            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "112에 긴급 문자를 보내시겠습니까?",) {
+                when (it) {
+                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                    1 -> {
+                        smsManager.sendTextMessage("112", null, smsContents, null, null)
+                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                    }
                 }
+            }
+            dialog.show(getChildFragmentManager(), dialog.tag)
+        }
 
-                smsManager.sendTextMessage("119", null, smsContents, null, null)
-                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+        binding.btnFav.setOnClickListener{
+            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
+                when (it) {
+                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                    1 -> {
+                        smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
+                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
-            binding.btn112.setOnClickListener {
-                smsManager.sendTextMessage("112", null, smsContents, null, null)
-                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
-            }
-            binding.btnFav.setOnClickListener{
-                smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
-                Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
-            }
-        } catch (e: Exception){
-            Toast.makeText(requireContext(), "전송실패", Toast.LENGTH_LONG).show()
-            e.printStackTrace()
-        }*/
+            dialog.show(getChildFragmentManager(), dialog.tag)
+        }
     }
 
     override fun onDestroyView() {

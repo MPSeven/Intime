@@ -28,7 +28,7 @@ class AmbulanceAdapter(
         val ambData = AmbulanceList[position]
         with(holder){
             ambName.text = ambData.company
-            ambTel.text = ambData.telephone.toString()
+            ambTel.text = ambData.telephone
         }
     }
 
