@@ -5,15 +5,14 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/map_top_radius_white_background"
-    app:behavior_peekHeight="0dp"
-    app:behavior_hideable="true"
+    android:padding="20dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <LinearLayout
         app:layout_constraintHorizontal_weight="2"
         android:id="@+id/infoText"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/infoButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +74,7 @@
         app:layout_constraintHorizontal_weight="1"
         android:id="@+id/infoButton"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/infoText"
@@ -88,12 +87,12 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/infoButton2"
+            app:layout_constraintEnd_toStartOf="@id/findPathLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
-                android:id="@+id/bookmark"
+                android:id="@+id/callNumber"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
@@ -111,7 +110,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/infoButton2"
+            android:id="@+id/findPathLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
@@ -122,6 +121,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
+                android:id="@+id/findPathButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
@@ -129,6 +129,7 @@
                 android:paddingLeft="12dp" />
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
