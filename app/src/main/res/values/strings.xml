@@ -85,4 +85,6 @@
     <string name="info_iv_cpr_summary_adult">info_iv_cpr_summary_adult</string>
     <string name="info_tv_cpr_headline">심폐소생술 가이드라인</string>
     <string name="info_tv_cpr_desc">위급상황시 ‘인타임’을 \n만들어 줄 수 있는 CPR 방법을 확인하세요!</string>
+    <string name="info_tb_adult">성인</string>
+    <string name="info_tb_child">소아</string>
 </resources>

@@ -10,7 +10,7 @@
         android:layout_height="60dp"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/info_aed_layout"
         style="@android:style/Widget.DeviceDefault.ScrollView"
         android:layout_width="match_parent"
@@ -23,7 +23,8 @@
             android:id="@+id/info_aed_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
 
             <ImageView
@@ -66,10 +67,12 @@
 
             <ImageView
                 android:id="@+id/iv_bar_design"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
                 android:contentDescription="@string/info_iv_bar_design"
-                android:src="@drawable/info_iv_aed_bar_design" />
+                android:src="@drawable/info_iv_aed_bar_design"
+                android:layout_weight="1"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="32dp"/>
@@ -96,8 +99,9 @@
 
                 <ImageView
                     android:id="@+id/info_iv_aed_desc_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="1118dp"
+                    android:adjustViewBounds="true"
                     android:contentDescription="@string/info_iv_aed_desc_number"
                     android:src="@drawable/info_iv_aed_desc_number" />
                 <Space
@@ -275,7 +279,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="49dp"/>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
