@@ -100,6 +100,9 @@
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/info_iv_aed_desc_number"
                     android:src="@drawable/info_iv_aed_desc_number" />
+                <Space
+                    android:layout_width="12dp"
+                    android:layout_height="1181dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -262,11 +265,11 @@
 
             </LinearLayout>
             <ImageView
-                android:id="@+id/info_iv_aed_copyright"
-                android:contentDescription="@string/info_iv_aed_copyright"
+                android:id="@+id/info_iv_copyright"
+                android:contentDescription="@string/info_iv_copyright"
                 android:layout_width="341dp"
                 android:layout_height="14dp"
-                android:src="@drawable/info_iv_aed_copyright"
+                android:src="@drawable/info_iv_copyright"
                 android:layout_gravity="center_horizontal" />
             <Space
                 android:layout_width="match_parent"

@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity(){
     private val infoFragment = InfoFragment()
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
-    private val textView: TextView by lazy {
-        findViewById(R.id.addressTextView)
-    }
-    private var mAddress: String = ""
+//    private val textView: TextView by lazy {
+//        findViewById(R.id.addressTextView)
+//    }
+//    private var mAddress: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,23 +61,23 @@ class MainActivity : AppCompatActivity(){
 
     override fun onStart() {
         super.onStart()
-        EventBus.getDefault().register(this)
+//        EventBus.getDefault().register(this)
     }
 
     override fun onStop() {
         super.onStop()
-        EventBus.getDefault().unregister(this)
+//        EventBus.getDefault().unregister(this)
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onAddressEvent(event: AddressEvent) {
-        if(event.address.isNotEmpty()) {
-            Log.d(TAG, "Event address: ${event.address}")
-            textView.text = event.address
-        } else {
-            Log.d(TAG, "Event is NULL")
-        }
-    }
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    fun onAddressEvent(event: AddressEvent) {
+//        if(event.address.isNotEmpty()) {
+//            Log.d(TAG, "Event address: ${event.address}")
+//            textView.text = event.address
+//        } else {
+//            Log.d(TAG, "Event is NULL")
+//        }
+//    }
 
 
     private val onNavigationItemSelectedListener =
