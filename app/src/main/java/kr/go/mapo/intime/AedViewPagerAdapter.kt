@@ -1,7 +1,12 @@
 package kr.go.mapo.intime
 
+import android.Manifest
+import android.Manifest.permission_group.PHONE
+import android.app.Activity
+import android.bluetooth.BluetoothClass.Device.Major.PHONE
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +15,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ListAdapter
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +37,8 @@ class AedViewPagerAdapter :
             val addressDetailTextView = view.findViewById<TextView>(R.id.addressDetailMarker)
             val distanceTextView = view.findViewById<TextView>(R.id.distanceMarker)
             val findPathButton = view.findViewById<Button>(R.id.findPathButton)
+            val callButton = view.findViewById<Button>(R.id.callNumber)
+            val bookmarkButton = view.findViewById<Button>(R.id.bookMarkButton)
 
             orgTextView.text = sortedAed.aed.org
             addressTextView.text = sortedAed.aed.address
@@ -50,6 +60,24 @@ class AedViewPagerAdapter :
                    val intentPlayStore = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME" ))
                    it.context.startActivity(intentPlayStore)
                 }
+            }
+
+            callButton.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${sortedAed.aed.tel}"))
+                it.context.startActivity(intent)
+                // todo ACTION_CALL
+//                val permissionCheck = ContextCompat.checkSelfPermission(it.context, Manifest.permission.CALL_PHONE)
+//                if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+//                    ActivityCompat.requestPermissions()
+//                    Toast.makeText(it.context, "permissionDenied!", Toast.LENGTH_SHORT).show()
+//                } else {
+//
+//                }
+            }
+
+            bookmarkButton.setOnClickListener {
+                // TODO DB
+                
             }
 
         }

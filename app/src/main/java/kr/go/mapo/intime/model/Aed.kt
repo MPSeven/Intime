@@ -1,5 +1,6 @@
 package kr.go.mapo.intime.model
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 data class Aed(

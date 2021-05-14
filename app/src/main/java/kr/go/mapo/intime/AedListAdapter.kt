@@ -30,6 +30,8 @@ class AedListAdapter : ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(dif
             val addressDetailTextView = view.findViewById<TextView>(R.id.addressDetail)
             val distanceTextView = view.findViewById<TextView>(R.id.distance)
             val findPathButton = view.findViewById<Button>(R.id.recyclerViewFindPathButton)
+            val callButton = view.findViewById<Button>(R.id.recyclerViewCallButton)
+
 
             orgTextView.text = sortedAed.aed.org
             addressTextView.text = sortedAed.aed.address
@@ -51,6 +53,12 @@ class AedListAdapter : ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(dif
                     val intentPlayStore = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${NAVER_MAP_PACKAGE_NAME}" ))
                     it.context.startActivity(intentPlayStore)
                 }
+            }
+
+            callButton.setOnClickListener {
+                val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:${sortedAed.aed.tel}"))
+                it.context.startActivity(intent)
+                // todo ACTION_CALL
             }
         }
     }
