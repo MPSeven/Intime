@@ -4,24 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.SettingFragment">
+    android:background="#4DEDEDED"
+    tools:context=".setting.SettingActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/setting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting"
+            android:textAppearance="@style/Body1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/setting_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/setting_btn_x" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/setting_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/sos_bg_amb"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/setting_bg"
+        app:layout_constraintTop_toBottomOf="@id/setting_title"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/setting_title"
+            android:id="@+id/setting_sub"
             android:layout_width="wrap_content"
             android:layout_height="17dp"
             android:layout_marginStart="24dp"
-            android:text="@string/setting_title"
+            android:text="@string/setting_sub"
+            android:textAppearance="@style/Body2"
             android:textColor="@color/gray500"
-            android:textSize="14sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -29,7 +63,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/setting_tel"
+        android:id="@+id/setting_con"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:background="@drawable/sos_bg_amb"
@@ -37,37 +71,35 @@
         app:layout_constraintTop_toBottomOf="@id/setting_top">
 
         <ImageView
-            android:id="@+id/setting_ic_fav"
+            android:id="@+id/setting_ic_con"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:src="@drawable/setting_ic_phone"
-            android:contentDescription="@string/setting_fav"
+            android:contentDescription="@string/setting_con"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/setting_txt_fav"
+            android:id="@+id/setting_txt_con"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
             android:layout_marginStart="12dp"
-            android:text="@string/setting_fav"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            app:layout_constraintStart_toEndOf="@id/setting_ic_fav"
+            android:text="@string/setting_con"
+            android:textAppearance="@style/Body1"
+            app:layout_constraintStart_toEndOf="@id/setting_ic_con"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
-            android:id="@+id/setting_btn_fav"
+            android:id="@+id/setting_btn_con"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:background="#00FFFFFF"
             android:src="@drawable/setting_ic_rightarrow"
-            android:contentDescription="@string/setting_fav"
+            android:contentDescription="@string/setting_con"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -80,40 +112,38 @@
         android:layout_height="66dp"
         android:background="@drawable/sos_bg_amb"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/setting_tel">
+        app:layout_constraintTop_toBottomOf="@id/setting_con">
 
         <ImageView
-            android:id="@+id/setting_ic_tel"
+            android:id="@+id/setting_ic_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:src="@drawable/setting_ic_star"
-            android:contentDescription="@string/setting_tel"
+            android:contentDescription="@string/setting_fav"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
-            android:id="@+id/setting_txt_tel"
+            android:id="@+id/setting_txt_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="@string/setting_tel"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            app:layout_constraintStart_toEndOf="@id/setting_ic_tel"
+            android:text="@string/setting_fav"
+            android:textAppearance="@style/Body1"
+            app:layout_constraintStart_toEndOf="@id/setting_ic_fav"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
-            android:id="@+id/setting_btn_tel"
+            android:id="@+id/setting_btn_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:background="#00FFFFFF"
             android:src="@drawable/setting_ic_rightarrow"
-            android:contentDescription="@string/setting_tel"
+            android:contentDescription="@string/setting_fav"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

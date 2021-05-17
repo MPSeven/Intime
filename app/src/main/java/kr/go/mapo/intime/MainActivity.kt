@@ -1,9 +1,10 @@
 package kr.go.mapo.intime
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -11,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.map.*
 import kr.go.mapo.intime.fragment.*
 import kr.go.mapo.intime.fragment.MapFragment
+import kr.go.mapo.intime.setting.SettingActivity
 
 
 class MainActivity : AppCompatActivity(){
@@ -18,7 +20,6 @@ class MainActivity : AppCompatActivity(){
     private val infoFragment = InfoFragment()
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
-    private val settingFragment = SettingFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +47,8 @@ class MainActivity : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.toolbar_btn -> {
-                this.setTitle(R.string.setting)
-                replaceFragment(SettingFragment())
+                val settingIntent = Intent(this, SettingActivity::class.java)
+                startActivity(settingIntent)
             }
         }
         return super.onOptionsItemSelected(item)

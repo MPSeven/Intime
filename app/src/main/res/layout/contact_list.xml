@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="148dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/setting_bg_con_list">
+
+    <Space
+        android:id="@+id/con_space"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/con_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="아빠"
+        android:textAppearance="@style/Head1"
+        android:textFontWeight="900"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/con_space"/>
+
+    <TextView
+        android:id="@+id/con_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:text="010-1234-5678"
+        android:textAppearance="@style/Head4"
+        android:textColor="@color/gray400"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/con_name"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
