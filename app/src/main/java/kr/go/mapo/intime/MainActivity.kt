@@ -1,37 +1,18 @@
 package kr.go.mapo.intime
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
-import android.widget.Toast
-import androidx.annotation.UiThread
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
-
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
-import com.naver.maps.map.overlay.Marker
-import com.naver.maps.map.overlay.OverlayImage
-import com.naver.maps.map.util.FusedLocationSource
-import kr.go.mapo.intime.api.AedService
-import kr.go.mapo.intime.fragment.InfoFragment
+import kr.go.mapo.intime.fragment.*
 import kr.go.mapo.intime.fragment.MapFragment
-import kr.go.mapo.intime.fragment.SosFragment
-import kr.go.mapo.intime.model.AedDto
-import kr.go.mapo.intime.model.SortedAed
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import kr.go.mapo.intime.setting.SettingActivity
 
 
 class MainActivity : AppCompatActivity(){
@@ -39,10 +20,6 @@ class MainActivity : AppCompatActivity(){
     private val infoFragment = InfoFragment()
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
-//    private val textView: TextView by lazy {
-//        findViewById(R.id.addressTextView)
-//    }
-//    private var mAddress: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,51 +27,54 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        frag manager 만들어서 이부분 다 바꾸기
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         bottomNavigationView.menu.getItem(1).isChecked = true
-
         replaceFragment(mapFragment)
 
-        setSupportActionBar(findViewById(R.id.basic_toolbar))
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
-    override fun onStart() {
-        super.onStart()
-//        EventBus.getDefault().register(this)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_app_bar, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onStop() {
-        super.onStop()
-//        EventBus.getDefault().unregister(this)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.toolbar_btn -> {
+                val settingIntent = Intent(this, SettingActivity::class.java)
+                startActivity(settingIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    fun onAddressEvent(event: AddressEvent) {
-//        if(event.address.isNotEmpty()) {
-//            Log.d(TAG, "Event address: ${event.address}")
-//            textView.text = event.address
-//        } else {
-//            Log.d(TAG, "Event is NULL")
-//        }
-//    }
+//    네비바 컨트롤
+    private fun fragmentManager(){
 
+    }
 
+//    바텀네비바
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_sos -> {
-                    this.setTitle(R.string.fragment_sos_tv)
+
                     replaceFragment(SosFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_map -> {
-                    this.setTitle(R.string.app_name)
+
                     replaceFragment(MapFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_info -> {
-                    this.setTitle(R.string.fragment_info_tv)
+
                     replaceFragment(InfoFragment())
                     return@OnNavigationItemSelectedListener true
                 }
