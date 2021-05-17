@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <ImageView
+                android:id="@+id/info_iv_cpr_child_numbering"
+                android:layout_width="24dp"
+                android:layout_height="2208dp"
+                android:contentDescription="@string/info_iv_cpr_desc_numbering"
+                android:src="@drawable/info_iv_cpr_child_numbering" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="2208dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step1H"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/h3height"
+                    android:text="@string/info_tv_cpr_child_step1H"
+                    android:textAppearance="@style/Head3" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="27dp" />
+
+                <ImageView
+                    android:id="@+id/info_iv_cpr_step1"
+                    android:layout_width="165dp"
+                    android:layout_height="140dp"
+                    android:contentDescription="@string/info_iv_cpr_step1"
+                    android:src="@drawable/info_iv_cpr_step1" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step1_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_single_space"
+                    android:text="@string/info_tv_cpr_child_step1_1"
+                    android:textAppearance="@style/Body1_26" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step1_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_tv_cpr_child_step1_2"
+                    android:textAppearance="@style/Body1"
+                    android:textColor="@color/red" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step1_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_tv_cpr_child_step1_3"
+                    android:textAppearance="@style/Body1_26" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step1_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_tv_cpr_child_step1_4"
+                    android:textColor="@color/red"
+                    android:textAppearance="@style/Body1_26" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="81dp" />
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step2H"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/h3height"
+                    android:text="@string/info_tv_cpr_child_step2H"
+                    android:textAppearance="@style/Head3"
+                    />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp" />
+
+                <ImageView
+                    android:id="@+id/info_iv_cpr_child_step2"
+                    android:layout_width="327dp"
+                    android:layout_height="162dp"
+                    android:contentDescription="@string/info_iv_cpr_child_step2"
+                    android:src="@drawable/ic_info_tv_cpr_howtochild_heart" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_cpr_child_step2_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="@string/info_cpr_child_step2_1"
+                    android:textAppearance="@style/Body1_26" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step2_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_cpr_child_step2_2"
+                    android:textAppearance="@style/Body1_26"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step2_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_cpr_child_step2_3"
+                    android:textAppearance="@style/Body1_26"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step2_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="78dp"
+                    android:text="@string/info_cpr_child_step2_4"
+                    android:textAppearance="@style/Body1_26"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="81dp"/>
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step3H"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/h3height"
+                    android:text="@string/info_tv_cpr_step3H"
+                    android:textAppearance="@style/Head3"
+                    />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"/>
+                <ImageView
+                    android:id="@+id/info_tv_cpr_child_step3"
+                    android:layout_width="327dp"
+                    android:layout_height="162dp"
+                    android:contentDescription="@string/info_tv_cpr_child_step3"
+                    android:src="@drawable/ic_info_iv_cpr_howtoaedchild" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+                <TextView
+                    android:id="@+id/info_cpr_child_step3_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="@string/info_cpr_child_step3_1"
+                    android:textAppearance="@style/Body1_26" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step3_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_cpr_child_step3_2"
+                    android:textAppearance="@style/Body1_26"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step3_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_cpr_child_step3_3"
+                    android:textAppearance="@style/Body1_26"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp" />
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step3_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_cpr_child_step3_4"
+                    android:textAppearance="@style/Body1_26"/>
+
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="81dp" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step4H"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/h3height"
+                    android:text="@string/info_tv_cpr_child_step4H"
+                    android:textAppearance="@style/Head3" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_double_space" />
+
+                <ImageView
+                    android:id="@+id/info_iv_cpr_step4"
+                    android:layout_width="165dp"
+                    android:layout_height="140dp"
+                    android:contentDescription="@string/info_iv_cpr_step4"
+                    android:src="@drawable/info_iv_cpr_step4" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step4_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:text="@string/info_tv_cpr_child_step4_1"
+                    android:textAppearance="@style/Body1_26" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step4_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_tv_cpr_child_step4_2"
+                    android:textAppearance="@style/Body1_26"
+                    android:textColor="@color/red" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="81dp" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step5H"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/h3height"
+                    android:text="@string/info_tv_cpr_child_step5H"
+                    android:textAppearance="@style/Head3" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_double_space" />
+
+                <ImageView
+                    android:id="@+id/info_iv_cpr_child_step5"
+                    android:layout_width="165dp"
+                    android:layout_height="140dp"
+                    android:contentDescription="@string/info_iv_cpr_step5"
+                    android:src="@drawable/info_iv_cpr_step5" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/p_single_space" />
+
+                <TextView
+                    android:id="@+id/info_tv_cpr_child_step5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/b1_double_line"
+                    android:text="@string/info_tv_cpr_child_step5"
+                    android:textAppearance="@style/Body1_26"
+                    />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"/>
+                <ImageView
+                    android:id="@id/info_iv_copyright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/info_iv_copyright"
+                    android:contentDescription="@string/info_iv_copyright"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
