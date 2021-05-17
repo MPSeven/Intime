@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/map_recyclerview_border"
-    android:padding="8dp">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/map_top_radius_white_background"
+    android:padding="20dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <LinearLayout
         app:layout_constraintHorizontal_weight="2"
-        android:id="@+id/aedInfoText"
+        android:id="@+id/infoText"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aedInfoButton"
+        app:layout_constraintEnd_toStartOf="@+id/infoButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +25,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/org"
+                android:id="@+id/orgMarker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -43,7 +42,7 @@
                 android:text="|" />
 
             <TextView
-                android:id="@+id/distance"
+                android:id="@+id/distanceMarker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="20m" />
@@ -51,7 +50,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/addressMarker"
             android:layout_marginVertical="5dp"
             android:layout_width="wrap_content"
             android:maxLines="2"
@@ -62,7 +61,7 @@
             tools:text="서울특별시 마포구 성산로 128" />
 
         <TextView
-            android:id="@+id/addressDetail"
+            android:id="@+id/addressDetailMarker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
@@ -73,29 +72,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         app:layout_constraintHorizontal_weight="1"
-        android:id="@+id/aedInfoButton"
+        android:id="@+id/infoButton"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="120dp"
         android:gravity="center"
-        android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/aedInfoText"
+        app:layout_constraintStart_toEndOf="@+id/infoText"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/aedInfoButton1"
+            android:id="@+id/infoButton1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/findPathLinearLayout"
+            app:layout_constraintEnd_toStartOf="@id/findPathLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
-                android:id="@+id/bookmark"
+                android:id="@+id/callNumber"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
@@ -113,18 +110,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/findPathLinearLayout"
+            android:id="@+id/findPathLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/aedInfoButton1"
+            app:layout_constraintStart_toEndOf="@id/infoButton1"
             app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
-                android:id="@+id/recyclerViewFindPathButton"
+                android:id="@+id/findPathButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
@@ -132,6 +129,7 @@
                 android:paddingLeft="12dp" />
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
