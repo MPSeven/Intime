@@ -2,7 +2,6 @@ package kr.go.mapo.intime
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +44,6 @@ class AmbulanceAdapter(
             ambTel.text = ambData.telephone
 
             ambBtn.setOnClickListener {
-                Log.d("여기", ambData.telephone)
 
                 var intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${ambData.telephone}"))
 

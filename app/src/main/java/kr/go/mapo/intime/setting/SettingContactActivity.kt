@@ -13,5 +13,9 @@ class SettingContactActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.setting_con_x).setOnClickListener {
             onBackPressed()
         }
+
+        findViewById<ImageButton>(R.id.setting_plus).setOnClickListener {
+
+        }
     }
 }
