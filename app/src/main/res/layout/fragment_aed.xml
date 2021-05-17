@@ -71,7 +71,7 @@
                 android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/info_iv_bar_design"
-                android:src="@drawable/info_iv_aed_bar_design"
+                android:src="@drawable/info_iv_bar_design"
                 android:layout_weight="1"/>
             <Space
                 android:layout_width="match_parent"
