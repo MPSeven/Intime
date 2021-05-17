@@ -278,12 +278,39 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="88dp"/>
-                <ImageView
-                    android:id="@+id/info_iv_cpr_summary_adult"
+                <TextView
+                    android:id="@+id/info_tv_cpr_summaryH"
                     android:layout_width="match_parent"
-                    android:layout_height="398dp"
-                    android:src="@drawable/info_iv_cpr_summary_adult"
-                    android:contentDescription="@string/info_iv_cpr_summary_adult"/>
+                    android:layout_height="@dimen/h3height"
+                    android:text="@string/info_tv_cpr_summaryH"
+                    android:textAppearance="@style/Head3" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"/>
+                <TextView
+                    android:id="@+id/info_tv_cpr_summary1"
+                    android:layout_width="match_parent"
+                    android:layout_height="182dp"
+                    android:text="@string/info_tv_cpr_summary1"
+                    android:textAppearance="@style/Body1_26"/>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"/>
+                <TextView
+                    android:id="@+id/info_tv_cpr_summary2H"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/h3height"
+                    android:textAppearance="@style/Head3"
+                    android:text="@string/info_tv_cpr_summary2H" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
+                <TextView
+                    android:id="@+id/info_tv_cpr_summary2"
+                    android:layout_width="match_parent"
+                    android:layout_height="104dp"
+                    android:text="@string/info_tv_cpr_summary2"
+                    android:textAppearance="@style/Body1_26" />
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="88dp"/>

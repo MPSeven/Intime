@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.FragmentBasicInfoBinding
 import kr.go.mapo.intime.databinding.FragmentInfoBinding
 
 class InfoFragment : Fragment(R.layout.fragment_info) {
-    private var _binding: FragmentInfoBinding? = null
+    private var _binding:FragmentInfoBinding ?= null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
