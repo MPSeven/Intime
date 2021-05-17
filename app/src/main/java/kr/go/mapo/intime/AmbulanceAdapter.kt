@@ -48,9 +48,8 @@ class AmbulanceAdapter(
                 Log.d("여기", ambData.telephone)
 
                 var intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${ambData.telephone}"))
-//                intent.data = Uri.parse("tel:${ambData.telephone}")
-//                인텐트 호출
-//                startActivity(intent)
+
+                it.context.startActivity(intent)
             }
         }
     }
@@ -62,20 +61,6 @@ class AmbulanceAdapter(
         val ambTel: TextView = itemView.findViewById(R.id.amb_tel)
         val ambBtn: ImageButton = itemView.findViewById(R.id.amb_tel_btn)
 
-//        fun bind(item: Ambulance) {
-//            ambTel.text = item.telephone
-//
-//            val pos = adapterPosition
-//            if(pos != RecyclerView.NO_POSITION) {
-//                itemView.setOnClickListener {
-//                    Log.d("여기", item.telephone)
-//                    var intent = Intent(Intent.ACTION_DIAL)
-//
-//                    intent.data = Uri.parse("tel:${item.telephone}")
-//                    startActivity(intent)
-//                }
-//            }
-//        }
     }
 
 }
