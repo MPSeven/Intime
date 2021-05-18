@@ -16,6 +16,7 @@ import androidx.annotation.UiThread
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.room.Room
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.geometry.LatLng

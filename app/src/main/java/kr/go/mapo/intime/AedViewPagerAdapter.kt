@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import kr.go.mapo.intime.fragment.MapFragment
 import kr.go.mapo.intime.model.SortedAed
 import java.lang.Exception
@@ -28,6 +29,7 @@ import kotlin.math.roundToInt
 
 class AedViewPagerAdapter :
     androidx.recyclerview.widget.ListAdapter<SortedAed, AedViewPagerAdapter.ItemViewHolder>(differ) {
+
 
     inner class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -77,7 +79,7 @@ class AedViewPagerAdapter :
 
             bookmarkButton.setOnClickListener {
                 // TODO DB
-                
+
             }
 
         }

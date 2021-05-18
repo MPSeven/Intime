@@ -67,8 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             tools:text="5층 로비" />
-
-
+        
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

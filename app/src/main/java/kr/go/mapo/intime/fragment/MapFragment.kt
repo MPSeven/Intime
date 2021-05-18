@@ -442,7 +442,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MapFragment"
-        private const val BASE_URL = "http://172.30.1.51:8080"
+        private const val BASE_URL = "http://172.30.1.31:8080"
         private const val DISTANCE = 0.5F
     }
 }
