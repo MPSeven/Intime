@@ -13,7 +13,7 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
         findViewById<ConstraintLayout>(R.id.setting_con).setOnClickListener {
-            val conIntent = Intent(this, SettingContactActivity::class.java)
+            val conIntent = Intent(this, SettingContactsActivity::class.java)
             startActivity(conIntent)
         }
 
