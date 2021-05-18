@@ -191,4 +191,7 @@
         4. 연기가 많을 때에는 젖은 수건 등으로 코와 입을 가리며 몸을 낮추고 이동합니다.\n\n
         5. 불길 속을 통과하기 전에 담요나 수건 등을 물에 적셔 몸과 얼굴을 감쌉니다.\n\n
         6. 출구가 없으면 연기가 방안에 들어오지 못하도록 젖은 옷이나 수건으로 문틈을 막고 구조를 기다립니다. 119에 신고합니다.</string>
+    <string name="info_tab_basic">기본</string>
+    <string name="info_tab_addl">추가물품</string>
+    <string name="info_tab_mine">나의 리스트</string>
 </resources>

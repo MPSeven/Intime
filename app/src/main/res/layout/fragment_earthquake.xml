@@ -48,7 +48,7 @@
                 android:textSize="18sp"
                 android:letterSpacing="-0.02"
                 android:textColor="@color/gray600"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:translationY="-3.6sp"
                 android:lineSpacingExtra="7sp"
                 android:gravity="top"
