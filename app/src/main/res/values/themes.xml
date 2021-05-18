@@ -100,6 +100,25 @@
         <item name="android:letterSpacing">-0.02</item>
         <item name="lineHeight">12sp</item>
     </style>
+    <style name="disaster" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="lineHeight">38sp</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/gray300</item>
+        <item name="fontWeight">700</item>
+    </style>
+    <style name="disaster_body" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="lineHeight">26sp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="fontWeight">400</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:translationY">-3.2sp</item>
+        <item name="android:gravity">top</item>
+    </style>
 
     <style name="TextButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="font">@font/spoqa_han_sans_neo_regular</item>
@@ -109,4 +128,6 @@
         <item name="lineHeight">19sp</item>
         <item name="android:gravity">top</item>
     </style>
+
+    <style name="TextButtonColorless" parent="TextAppearance.AppCompat.Widget.Button.Borderless.Colored"/>
 </resources>
