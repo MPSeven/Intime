@@ -6,6 +6,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
 import kr.go.mapo.intime.R
@@ -19,6 +21,7 @@ class SettingAddContact : AppCompatActivity() {
     private var selectedCon: Uri? = null
     private lateinit var selName: EditText
     private lateinit var selNum: EditText
+    private lateinit var chk: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,7 @@ class SettingAddContact : AppCompatActivity() {
 
         selName = findViewById(R.id.setting_addcon_con_namespace)
         selNum = findViewById(R.id.setting_addcon_con_numspace)
+        chk = findViewById(R.id.setting_addcon_chk)
 
         db = IntimeDatabase.getInstance(this)
 
@@ -41,8 +45,8 @@ class SettingAddContact : AppCompatActivity() {
 
 
         findViewById<ImageButton>(R.id.setting_addcon_btn).setOnClickListener {
-            val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString())
-//            Log.d("여기", contact.toString())
+            val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
+            Log.d("여기", contact.toString())
             db?.contactsDao()?.insertCon(contact)
             conList.add(contact)
             onBackPressed()

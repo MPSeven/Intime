@@ -2,7 +2,9 @@ package kr.go.mapo.intime.setting
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +32,7 @@ class SettingContactsActivity : AppCompatActivity() {
         }
 //        Log.d("여기", conList.toString())
         val adapter = ContactsAdapter(conList)
+
 
         recyclerview = findViewById(R.id.setting_con_rv)
         recyclerview.apply {
