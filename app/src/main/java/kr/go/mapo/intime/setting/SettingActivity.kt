@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import kr.go.mapo.intime.R
 
 class SettingActivity : AppCompatActivity() {
@@ -11,12 +12,12 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
-        findViewById<ImageButton>(R.id.setting_btn_con).setOnClickListener {
-            val conIntent = Intent(this, SettingContactActivity::class.java)
+        findViewById<ConstraintLayout>(R.id.setting_con).setOnClickListener {
+            val conIntent = Intent(this, SettingContactsActivity::class.java)
             startActivity(conIntent)
         }
 
-        findViewById<ImageButton>(R.id.setting_btn_fav).setOnClickListener {
+        findViewById<ConstraintLayout>(R.id.setting_fav).setOnClickListener {
             val favIntent = Intent(this, SettingFavoriteActivity::class.java)
             startActivity(favIntent)
         }

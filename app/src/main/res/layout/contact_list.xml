@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="148dp"
     android:layout_marginBottom="16dp"
-    android:background="@drawable/setting_bg_con_list">
+    android:background="@drawable/setting_bg_con_custom">
 
     <Space
         android:id="@+id/con_space"

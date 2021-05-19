@@ -28,8 +28,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/gray600"
         app:menu="@menu/top_app_bar">
+
+        <TextView
+            android:id="@+id/toolbar_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textAppearance="@style/Head3"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
 <!--
