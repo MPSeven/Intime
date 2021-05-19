@@ -2,15 +2,15 @@ package kr.go.mapo.intime.setting
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.CheckBox
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.ContactsAdapter
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.fragment.CommonDialogFragment
 import kr.go.mapo.intime.model.Contacts
 import kr.go.mapo.intime.room.IntimeDatabase
 
@@ -49,11 +49,24 @@ class SettingContactsActivity : AppCompatActivity() {
         adapter.setItemClickListener(object : ContactsAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
 
-                val contacts = conList[position]
-
-                db?.contactsDao()?.deleteCon(contacts = contacts)
-                conList.removeAt(position)
-                adapter.notifyDataSetChanged()
+                val dialog: CommonDialogFragment = CommonDialogFragment("비상연락처 삭제", "비상연락처를 삭제 하시겠습니까? \n삭제하면 복구가 불가능합니다.") {
+                    when (it) {
+                        0 -> Toast.makeText(applicationContext,"삭제취소", Toast.LENGTH_SHORT).show()
+                        1 -> {
+                            val contacts = conList[position]
+                            db?.contactsDao()?.deleteCon(contacts = contacts)
+                            conList.removeAt(position)
+                            adapter.notifyDataSetChanged()
+                            Toast.makeText(applicationContext, "삭제완료", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+                dialog.show(supportFragmentManager, dialog.tag)
+//                val contacts = conList[position]
+//
+//                db?.contactsDao()?.deleteCon(contacts = contacts)
+//                conList.removeAt(position)
+//                adapter.notifyDataSetChanged()
             }
         })
 
