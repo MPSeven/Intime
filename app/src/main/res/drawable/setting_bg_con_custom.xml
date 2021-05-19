@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:drawable="@drawable/setting_bg_con_seleted"
-        android:state_selected="true" />
+        android:state_pressed="true" />
     <item android:drawable="@drawable/setting_bg_con_list" />
 
 </selector>

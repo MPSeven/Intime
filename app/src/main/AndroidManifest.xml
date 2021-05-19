@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Intime"
         android:usesCleartextTraffic="true">
-        <activity android:name=".setting.SettingFavoriteActivity"></activity>
+        <activity android:name=".setting.SettingAddContact" />
+        <activity android:name=".setting.SettingFavoriteActivity" />
         <activity android:name=".setting.SettingContactsActivity" />
         <activity android:name=".setting.SettingActivity" />
 

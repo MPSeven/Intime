@@ -23,6 +23,21 @@ class ContactsAdapter(private val ContactsList: MutableList<Contacts>): Recycler
             conName.text = conData.name
             conNum.text = conData.phoneNumber
         }
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
+        holder.apply {
+            ConHolder(itemView)
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+    private lateinit var itemClickListener : OnItemClickListener
+
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 
     inner class ConHolder(view: View): RecyclerView.ViewHolder(view) {

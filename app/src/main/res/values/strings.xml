@@ -71,6 +71,8 @@
     <string name="setting_con">비상연락처</string>
     <string name="setting_fav">즐겨찾기</string>
     <string name="setting_plus">연락처 추가</string>
+    <string name="setting_add_con">비상연락처 등록</string>
+    <string name="setting_add_con_no">비상문자를 보낼 \n비상 연락처를 등록해 주세요.</string>
 
     <!--How to CPR page texts:-->
     <string name="info_iv_cpr_desc_numbering">info_iv_cpr_desc_numbering</string>
