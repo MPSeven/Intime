@@ -1,14 +1,13 @@
-package kr.go.mapo.intime.splash
+package kr.go.mapo.intime
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import kr.go.mapo.intime.MainActivity
-import kr.go.mapo.intime.R
 
-class SplashScreen : AppCompatActivity() {
+
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
