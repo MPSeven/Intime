@@ -196,4 +196,13 @@
     <string name="info_tab_basic">기본</string>
     <string name="info_tab_addl">추가물품</string>
     <string name="info_tab_mine">나의 리스트</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+<!-- Splash Screen-->
+    <string name="ic_splashScreenImage">Splash Screen Image</string>
 </resources>
