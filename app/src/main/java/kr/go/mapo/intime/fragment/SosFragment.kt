@@ -173,16 +173,21 @@ class SosFragment : Fragment() {
         }
 
         binding.btnFav.setOnClickListener{
-            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
-                when (it) {
-                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
-                    1 -> {
-                        smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
-                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+
+            if (phoneNum.isNullOrBlank()){
+                Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다 등록 후 사용해주세요", Toast.LENGTH_LONG).show()
+            } else{
+                val dialog: CommonDialogFragment = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
+                    when (it) {
+                        0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                        1 -> {
+                            smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
+                            Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
+                dialog.show(getChildFragmentManager(), dialog.tag)
             }
-            dialog.show(getChildFragmentManager(), dialog.tag)
         }
     }
 
