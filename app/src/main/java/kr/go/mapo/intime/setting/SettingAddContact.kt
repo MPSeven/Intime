@@ -8,6 +8,7 @@ import android.provider.ContactsContract
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.model.Contacts
@@ -44,11 +45,15 @@ class SettingAddContact : AppCompatActivity() {
 
 
         findViewById<ImageButton>(R.id.setting_addcon_btn).setOnClickListener {
-            val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
+            if(selName.text.toString().isBlank() || selNum.text.toString().isBlank() ){
+                Toast.makeText(applicationContext,"비상연락처를 입력해주세요", Toast.LENGTH_LONG).show()
+            } else{
+                val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
 //            Log.d("여기", contact.toString())
-            db?.contactsDao()?.insertCon(contact)
-            conList.add(contact)
-            onBackPressed()
+                db?.contactsDao()?.insertCon(contact)
+                conList.add(contact)
+                onBackPressed()
+            }
         }
 
     }
