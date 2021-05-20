@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(){
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
 
+    lateinit var presentFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,12 +36,14 @@ class MainActivity : AppCompatActivity(){
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
         menuInflater.inflate(R.menu.top_app_bar, menu)
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -56,7 +59,10 @@ class MainActivity : AppCompatActivity(){
 
 //    네비바 컨트롤
     private fun fragmentManager(){
+        val fragManager = supportFragmentManager
+        fragManager.beginTransaction().apply {
 
+        }
     }
 
 //    바텀네비바
