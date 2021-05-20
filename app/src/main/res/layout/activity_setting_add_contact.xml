@@ -43,6 +43,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="32dp"
         android:fillViewport="true"
         android:overScrollMode="never"
         app:layout_constraintTop_toBottomOf="@id/setting_addcon_title"
@@ -53,7 +54,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/setting_addcon_scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -163,31 +164,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/setting_addcon_line">
 
-                <ImageView
+                <CheckBox
                     android:id="@+id/setting_addcon_chk"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/setting_ic_check_custom"
+                    android:layout_height="32dp"
+                    android:button="@null"
+                    android:background="@drawable/setting_ic_check_custom"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/setting_addcon_select"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="7dp"
-                    android:text="대표연락처 설정하기"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray300"
-                    app:layout_constraintStart_toEndOf="@id/setting_addcon_chk"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/setting_addcon_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="100dp"
+                    android:layout_marginBottom="32dp"
                     android:background="@drawable/setting_btn_add"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/setting_addcon_chk" />

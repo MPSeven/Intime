@@ -19,6 +19,7 @@ import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentSosBinding
+import kr.go.mapo.intime.room.IntimeDatabase
 import java.io.IOException
 import java.util.*
 
@@ -26,7 +27,7 @@ class SosFragment : Fragment() {
 
     private var _binding: FragmentSosBinding? = null
     private val binding get() = _binding!!
-
+    private var db : IntimeDatabase? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -138,7 +139,11 @@ class SosFragment : Fragment() {
 
         var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ getAddress()
         binding.txtSms.setText(smsContents)
-        var phoneNum = "2121" //여기 즐겨찾기에서 가져온 거 넣기 여기여기
+
+//      여기:   dao where절 true값 넣고 가져오기
+        db = IntimeDatabase.getInstance(requireContext())
+        var phoneNum = db?.contactsDao()?.selectSms()?.phoneNumber.toString()
+
         val smsManager = SmsManager.getDefault()
 
         binding.btn119.setOnClickListener {

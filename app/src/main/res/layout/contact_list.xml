@@ -9,20 +9,49 @@
     <Space
         android:id="@+id/con_space"
         android:layout_width="0dp"
-        android:layout_height="36dp"
+        android:layout_height="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:id="@+id/con_vspace"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <CheckBox
+        android:id="@+id/con_chk"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="4dp"
+        android:button="@android:color/transparent"
+        android:background="@drawable/setting_ic_rv_chk"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/con_vspace"
+        app:layout_constraintTop_toBottomOf="@id/con_space"/>
 
     <TextView
         android:id="@+id/con_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="아빠"
         android:textAppearance="@style/Head1"
         android:textFontWeight="900"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/con_chk"
+        app:layout_constraintTop_toBottomOf="@id/con_space"/>
+
+    <TextView
+        android:id="@+id/con_chk_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="24dp"
+        android:text="대표연락처"
+        android:textAppearance="@style/Body1"
+        android:textColor="@color/gray300"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/con_space"/>
 
     <TextView
@@ -30,11 +59,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="24dp"
-        android:text="010-1234-5678"
         android:textAppearance="@style/Head4"
         android:textColor="@color/gray400"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/con_vspace"
         app:layout_constraintTop_toBottomOf="@id/con_name"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

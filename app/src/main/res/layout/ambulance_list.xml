@@ -19,22 +19,42 @@
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_marginStart="24dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textAppearance="@style/Head4"
         android:textColor="@color/gray600"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amb_space" />
+
+    <TextView
+        android:id="@+id/amb_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textColor="@color/gray400"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amb_company"/>
+
+    <ImageView
+        android:id="@+id/amb_ic_ph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/sos_ic_phone"
+        app:layout_constraintStart_toEndOf="@id/amb_location"
+        app:layout_constraintTop_toBottomOf="@id/amb_company"/>
 
     <TextView
         android:id="@+id/amb_tel"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="9dp"
-        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textAppearance="@style/Body2"
         android:textColor="@color/gray600"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/amb_ic_ph"
         app:layout_constraintTop_toBottomOf="@id/amb_company" />
 
     <ImageButton
