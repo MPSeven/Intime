@@ -7,4 +7,5 @@
     <dimen name="b1_single_space">19dp</dimen>
     <dimen name="h1height">24dp</dimen>
     <dimen name="default_padding">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
