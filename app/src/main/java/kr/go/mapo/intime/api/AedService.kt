@@ -1,6 +1,6 @@
 package kr.go.mapo.intime.api
 
-import kr.go.mapo.intime.model.AedDto
+import kr.go.mapo.intime.response.AedDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

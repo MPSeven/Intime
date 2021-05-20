@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="즐겨찾기" />
+                android:text="@string/bookmark" />
 
             <android.widget.Button
                 android:id="@+id/bookMarkButton"
@@ -133,14 +133,14 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/map_aed_button"
-                    android:drawableStart="@drawable/map_bookmark_off"
+                    android:drawableStart="@drawable/map_call_symbol"
                     android:paddingLeft="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="즐겨찾기"
+                    android:text="@string/call"
                     android:textSize="10sp" />
 
 
@@ -169,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="길찾기"
+                    android:text="@string/findPath"
                     android:textSize="10sp" />
 
             </LinearLayout>

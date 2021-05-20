@@ -1,13 +1,10 @@
 package kr.go.mapo.intime.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.location.Address
 import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -17,47 +14,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
-import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
-import com.naver.maps.map.util.MarkerIcons
 import com.naver.maps.map.widget.LocationButtonView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kr.go.mapo.intime.*
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.api.AedService
-import kr.go.mapo.intime.model.AedDto
-import kr.go.mapo.intime.model.SortedAed
-import org.greenrobot.eventbus.EventBus
-import org.w3c.dom.Text
+import kr.go.mapo.intime.databinding.FragmentMapBinding
+import kr.go.mapo.intime.response.AedDto
+import kr.go.mapo.intime.response.Url
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
-import java.lang.RuntimeException
+import kotlin.coroutines.CoroutineContext
 
-import java.security.Permissions
-import kotlin.properties.Delegates
-
-class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
+class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, CoroutineScope {
     private lateinit var mapView: MapView
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
@@ -67,13 +54,24 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private lateinit var geoCoder: Geocoder
     private var myAddress: String = "init"
     private lateinit var addressTextView: TextView
-    private lateinit var recyclerView: RecyclerView
     private val recyclerAdapter = AedListAdapter()
     private lateinit var aedNumberTextView: TextView
     private lateinit var spannableString: SpannableString
     private lateinit var rootView: View
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
+
+    private val job: Job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    private var _binding: FragmentMapBinding? = null
+    private val binding get() = _binding!!
+
+    private val recyclerView: RecyclerView by lazy {
+        rootView.findViewById(R.id.recyclerView)
+    }
 
     private val aedCategoryButton: Button by lazy {
         rootView.findViewById(R.id.aedCategoryButton)
@@ -87,6 +85,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     private val listViewButton: Button by lazy {
         rootView.findViewById<Button>(R.id.listViewButton)
     }
+    private val emptyResultTextView: TextView by lazy {
+        rootView.findViewById(R.id.emptyResultTextView)
+    }
     private val viewPagerAdapter = AedViewPagerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,17 +96,18 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
     @SuppressLint("UseCompatLoadingForDrawables", "ResourceAsColor")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_map, container, false)
-        var mapView = rootView.findViewById(R.id.map_view) as MapView
+        _binding = FragmentMapBinding.inflate(inflater, container, false)
+        rootView = binding.root
+        mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
-        addressTextView = rootView.findViewById<TextView>(R.id.addressTextView)
-        recyclerView = rootView.findViewById(R.id.recyclerView)
+        addressTextView = rootView.findViewById(R.id.addressTextView)
         aedNumberTextView = rootView.findViewById(R.id.aedNumber)
         locationButtonView = rootView.findViewById(R.id.location)
 
@@ -116,6 +118,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
 
         recyclerView.adapter = recyclerAdapter
         viewPager.adapter = viewPagerAdapter
+
+
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
@@ -167,18 +171,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                     BottomSheetBehavior.STATE_SETTLING -> {
 
                     }
-
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         listViewButton.visibility = View.VISIBLE
-
                     }
-
                     BottomSheetBehavior.STATE_HIDDEN -> {
-                        listViewButton.visibility = View.VISIBLE
 
                     }
                 }
             }
+
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 Log.d(TAG, "offset: $slideOffset")
             }
@@ -257,10 +258,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         naverMap.setOnMapClickListener { _, _ ->
             viewPager.visibility = View.GONE
             listViewButton.visibility = View.VISIBLE
-            val behavior = BottomSheetBehavior.from(
-                rootView.findViewById(R.id.bottomSheetDialog)
-            )
-            behavior.state = BottomSheetBehavior.STATE_HIDDEN
+            recyclerViewHidden()
         }
 
         naverMap.addOnLocationChangeListener { location ->
@@ -270,7 +268,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                     CameraUpdate.scrollTo(initializePosition).animate(CameraAnimation.Easing)
                 naverMap.moveCamera(cameraUpdate)
 
-                fetchAedLocation(location.latitude, location.longitude, 0.7F)
+                fetchAedLocation(location.latitude, location.longitude, DISTANCE)
             }
             isFirstLocation = false
         }
@@ -279,6 +277,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     override fun onClick(overlay: Overlay): Boolean {
         viewPager.visibility = View.VISIBLE
         listViewButton.visibility = View.GONE
+        recyclerViewHidden()
+
 
         val selectedModel = viewPagerAdapter.currentList.firstOrNull {
             it == overlay.tag
@@ -299,7 +299,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         Log.d(TAG, "fetchAEDLocation!!!!!!!")
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(Url.INTIME_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -317,13 +317,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
                     if (response.code() == 200) {
                         val result: AedDto? = response.body()
                         if (result == null) {
-                            // todo no result page
+                            emptyResultTextView.visibility = View.VISIBLE
+                            recyclerView.visibility = View.GONE
                             return
                         } else {
                             updateMapMarkers(result)
                             recyclerAdapter.submitList(result.aeds)
                             viewPagerAdapter.submitList(result.aeds)
-
                             getCustomAedInfo(result.aeds.size)
                         }
                     }
@@ -402,6 +402,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
         aedNumberTextView.text = spannableString
     }
 
+    private fun recyclerViewHidden(){
+        val behavior = BottomSheetBehavior.from(
+            rootView.findViewById(R.id.bottomSheetDialog)
+        )
+        behavior.state = BottomSheetBehavior.STATE_HIDDEN
+    }
+
     @SuppressLint("UseCompatLoadingForDrawables", "UseCompatLoadingForColorStateLists")
     private fun setClickedAedButtonAppearance() {
         aedCategoryButton.background =
@@ -442,7 +449,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MapFragment"
-        private const val BASE_URL = "http://172.30.1.31:8080"
-        private const val DISTANCE = 0.5F
+        private const val DISTANCE = 0.1F
     }
+
+
 }

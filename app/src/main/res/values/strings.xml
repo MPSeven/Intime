@@ -21,4 +21,8 @@
     <string name="btn_fav">비상연락처</string>
     <string name="img_sms">긴급문자</string>
     <string name="btn_amb">민간구급차</string>
+    <string name="call">전화하기</string>
+    <string name="findPath">길찾기</string>
+    <string name="bookmark">즐겨찾기</string>
+    <string name="emptyAedResult">내 주변에 심장충격기가 없습니다</string>
 </resources>
