@@ -3,13 +3,12 @@ package kr.go.mapo.intime.setting
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.util.Log
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.model.Contacts
 import kr.go.mapo.intime.room.IntimeDatabase
@@ -46,7 +45,7 @@ class SettingAddContact : AppCompatActivity() {
 
         findViewById<ImageButton>(R.id.setting_addcon_btn).setOnClickListener {
             val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
-            Log.d("여기", contact.toString())
+//            Log.d("여기", contact.toString())
             db?.contactsDao()?.insertCon(contact)
             conList.add(contact)
             onBackPressed()

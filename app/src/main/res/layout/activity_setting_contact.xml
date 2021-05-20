@@ -58,7 +58,7 @@
         android:id="@+id/setting_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="24dp"
         android:background="#00FFFFFF"
         android:src="@drawable/setting_btn_plus"

@@ -2,6 +2,7 @@ package kr.go.mapo.intime.setting
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
@@ -30,7 +31,7 @@ class SettingContactsActivity : AppCompatActivity() {
         if(savedContacts.isNotEmpty()){
             conList.addAll(savedContacts)
         }
-//        Log.d("여기", conList.toString())
+        Log.d("여기", conList.toString())
         val adapter = ContactsAdapter(conList)
 
 
@@ -62,11 +63,6 @@ class SettingContactsActivity : AppCompatActivity() {
                     }
                 }
                 dialog.show(supportFragmentManager, dialog.tag)
-//                val contacts = conList[position]
-//
-//                db?.contactsDao()?.deleteCon(contacts = contacts)
-//                conList.removeAt(position)
-//                adapter.notifyDataSetChanged()
             }
         })
 

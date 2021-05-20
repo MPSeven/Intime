@@ -42,6 +42,7 @@ class AmbulanceAdapter(
         with(holder){
             ambName.text = ambData.company
             ambTel.text = ambData.telephone
+            ambLocation.text = ambData.location
 
             ambBtn.setOnClickListener {
 
@@ -57,6 +58,7 @@ class AmbulanceAdapter(
     inner class AmbHolder(view: View) : RecyclerView.ViewHolder(view){
         val ambName: TextView = itemView.findViewById(R.id.amb_company)
         val ambTel: TextView = itemView.findViewById(R.id.amb_tel)
+        val ambLocation: TextView = itemView.findViewById(R.id.amb_location)
         val ambBtn: ImageButton = itemView.findViewById(R.id.amb_tel_btn)
 
     }

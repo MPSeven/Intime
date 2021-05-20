@@ -2,6 +2,7 @@ package kr.go.mapo.intime.dao
 
 import androidx.room.*
 import kr.go.mapo.intime.model.Contacts
+import kr.go.mapo.intime.model.SelectCon
 
 @Dao
 interface ContactsDao {
@@ -17,4 +18,8 @@ interface ContactsDao {
 
     @Update
     fun updateCon(Contacts: Contacts)
+
+    @Query("SELECT phoneNumber FROM contacts")
+    fun selectSms(): SelectCon
+
 }
