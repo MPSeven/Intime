@@ -203,7 +203,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <!-- Splash Screen-->
+<!-- Splash Screen-->
     <string name="ic_splashScreenImage">Splash Screen Image</string>
     <string name="onBoarding_tb_skip">건너뛰기</string>
     <string name="onboarding_ib_start">start button</string>
