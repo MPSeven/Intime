@@ -1,4 +1,4 @@
-package kr.go.mapo.intime.response
+package kr.go.mapo.intime.map.response
 
 import com.google.gson.annotations.SerializedName
 import kr.go.mapo.intime.map.model.SortedShelter

@@ -1,4 +1,4 @@
-package kr.go.mapo.intime.fragment
+package kr.go.mapo.intime.sos
 
 import android.Manifest
 import android.content.Context
@@ -18,8 +18,8 @@ import androidx.fragment.app.Fragment
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kr.go.mapo.intime.R
-import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.common.CommonDialogFragment
+import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.setting.database.ContactsDatabase
 import java.io.IOException
 import java.util.*

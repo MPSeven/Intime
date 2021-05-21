@@ -1,7 +1,7 @@
 package kr.go.mapo.intime.map.api
 
-import kr.go.mapo.intime.response.AedDto
-import kr.go.mapo.intime.response.ShelterDto
+import kr.go.mapo.intime.map.response.AedDto
+import kr.go.mapo.intime.map.response.ShelterDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

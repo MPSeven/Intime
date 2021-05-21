@@ -1,4 +1,4 @@
-package kr.go.mapo.intime.response
+package kr.go.mapo.intime.map.response
 
 object Url {
 

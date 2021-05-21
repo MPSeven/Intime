@@ -34,9 +34,9 @@ import kr.go.mapo.intime.R
 import kr.go.mapo.intime.map.api.AedService
 import kr.go.mapo.intime.map.api.ShelterService
 import kr.go.mapo.intime.databinding.FragmentMapBinding
-import kr.go.mapo.intime.response.AedDto
-import kr.go.mapo.intime.response.ShelterDto
-import kr.go.mapo.intime.response.Url
+import kr.go.mapo.intime.map.response.AedDto
+import kr.go.mapo.intime.map.response.ShelterDto
+import kr.go.mapo.intime.map.response.Url
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
