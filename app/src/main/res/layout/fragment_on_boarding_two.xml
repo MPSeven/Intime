@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/default_padding"
+    android:paddingRight="@dimen/default_padding"
+    tools:context=".onboarding.OnBoardingTwo">
+
+
+    <ImageView
+        android:id="@+id/onBoarding_iv2"
+        android:contentDescription="@string/info_iv_aed_compression_picture"
+        android:layout_width="200dp"
+        android:layout_height="197dp"
+        android:src="@drawable/onboarding_iv_compression_picture"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="91dp" />
+    <TextView
+        android:id="@+id/onBoarding_tv_slide_header2"
+        android:layout_width="wrap_content"
+        android:layout_height="76dp"
+        app:layout_constraintTop_toBottomOf="@id/onBoarding_iv2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text= "@string/tv_onboarding2h"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textFontWeight="400"
+        android:lineSpacingExtra="10sp"
+        android:translationY="-4.8sp"
+        android:gravity="top"
+        android:textSize="24sp"
+        android:letterSpacing="-0.02"
+        android:textColor="@color/black"
+        android:layout_marginTop="92dp"/>
+
+    <TextView
+        android:id="@+id/onBoarding_tv_slide_body2"
+        android:layout_width="0dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="42dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:gravity="top"
+        android:letterSpacing="-0.02"
+        android:lineHeight="29sp"
+        android:lineSpacingExtra="7sp"
+        android:text="@string/tv_onBoarding2b"
+        android:textColor="@color/black"
+        android:textFontWeight="400"
+        android:textSize="18sp"
+        android:translationY="-3.6sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/onBoarding_tv_slide_header2" />
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="64dp"
+        android:layout_height="8dp"
+        app:layout_constraintTop_toBottomOf="@id/onBoarding_tv_slide_body2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

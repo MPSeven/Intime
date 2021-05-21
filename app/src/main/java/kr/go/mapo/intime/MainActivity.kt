@@ -14,7 +14,6 @@ import kr.go.mapo.intime.fragment.*
 import kr.go.mapo.intime.fragment.MapFragment
 import kr.go.mapo.intime.setting.SettingActivity
 
-
 class MainActivity : AppCompatActivity(){
 
     private val infoFragment = InfoFragment()
