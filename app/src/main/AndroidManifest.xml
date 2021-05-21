@@ -19,10 +19,11 @@
         android:theme="@style/Theme.Intime"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashScreen"
             android:theme="@style/Theme.Intime.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,8 +36,13 @@
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="3stwx8pka5" />
 
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <!-- <category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
