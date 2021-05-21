@@ -12,11 +12,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.model.Contacts
-import kr.go.mapo.intime.room.IntimeDatabase
+import kr.go.mapo.intime.setting.database.ContactsDatabase
 
 class SettingAddContact : AppCompatActivity() {
 
-    private var db : IntimeDatabase? = null
+    private var db : ContactsDatabase? = null
     private var conList = mutableListOf<Contacts>()
     private var selectedCon: Uri? = null
     private lateinit var selName: EditText
@@ -31,7 +31,7 @@ class SettingAddContact : AppCompatActivity() {
         selNum = findViewById(R.id.setting_addcon_con_numspace)
         chk = findViewById(R.id.setting_addcon_chk)
 
-        db = IntimeDatabase.getInstance(this)
+        db = ContactsDatabase.getInstance(this)
 
         findViewById<ImageButton>(R.id.setting_addcon_btn_from).setOnClickListener {
             val intent = (Intent(Intent.ACTION_PICK))

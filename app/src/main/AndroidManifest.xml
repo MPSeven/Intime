@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Intime"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".splash.SplashScreen"
+            android:name=".onboarding.SplashScreen"
             android:theme="@style/Theme.Intime.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

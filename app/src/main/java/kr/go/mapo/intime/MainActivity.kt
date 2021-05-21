@@ -12,9 +12,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.map.*
 
-import kr.go.mapo.intime.fragment.*
-import kr.go.mapo.intime.fragment.MapFragment
+import kr.go.mapo.intime.common.*
+import kr.go.mapo.intime.info.InfoFragment
+import kr.go.mapo.intime.map.MapFragment
 import kr.go.mapo.intime.setting.SettingActivity
+import kr.go.mapo.intime.sos.SosFragment
 
 class MainActivity : AppCompatActivity(){
 
