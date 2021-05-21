@@ -14,7 +14,23 @@
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/fonts</item>
+<!--        <item name="fontFamily">@font/fonts</item>-->
+    </style>
+
+    <style name="Text.BoldStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">40px</item>
+        <item name="android:textColor">@color/gray400</item>
+        <item name="android:fontFamily">@font/fonts</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.NormalStyle" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">32px</item>
+        <item name="android:textColor">@color/gray400</item>
+        <item name="android:fontFamily">@font/fonts</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <!-- FONT STYLES -->

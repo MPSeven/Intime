@@ -1,5 +1,6 @@
 package kr.go.mapo.intime
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.map.*
+
 import kr.go.mapo.intime.fragment.*
 import kr.go.mapo.intime.fragment.MapFragment
 import kr.go.mapo.intime.setting.SettingActivity
@@ -35,9 +37,8 @@ class MainActivity : AppCompatActivity(){
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity(){
     private fun fragmentManager(){
         val fragManager = supportFragmentManager
         fragManager.beginTransaction().apply {
-
         }
     }
 
