@@ -168,4 +168,9 @@
     <style name="Theme.Intime.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Intime.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeOverlay.Intime.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/widgetbg</item>
+        <item name="appWidgetTextColor">@color/black</item>
+    </style>
 </resources>

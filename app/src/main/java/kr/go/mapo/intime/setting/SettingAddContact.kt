@@ -43,6 +43,16 @@ class SettingAddContact : AppCompatActivity() {
             onBackPressed()
         }
 
+        chk.setOnClickListener {
+            if(chk.isChecked){
+                if(selName.text.toString().isBlank() || selNum.text.toString().isBlank()){
+                    Toast.makeText(applicationContext,"비상연락처를 입력해주세요", Toast.LENGTH_LONG).show()
+                } else{
+                    Toast.makeText(applicationContext,"대표 연락처로 설정되었습니다", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
 
         findViewById<ImageButton>(R.id.setting_addcon_btn).setOnClickListener {
             if(selName.text.toString().isBlank() || selNum.text.toString().isBlank() ){

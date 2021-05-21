@@ -18,4 +18,6 @@
     <color name="gray500">#606060</color>
     <color name="gray600">#363636</color>
 
+    <color name="widgetbg">#80FFFFFF</color>
+
 </resources>

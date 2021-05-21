@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
@@ -19,6 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Intime"
         android:usesCleartextTraffic="true">
+        <receiver android:name=".widget.IntimeWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/intime_widget_info" />
+        </receiver>
+
         <activity
             android:name=".onboarding.SplashScreen"
             android:theme="@style/Theme.Intime.NoActionBar">
