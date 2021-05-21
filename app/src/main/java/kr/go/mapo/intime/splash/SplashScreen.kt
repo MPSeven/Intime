@@ -7,13 +7,13 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import kr.go.mapo.intime.MainActivity
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.onboarding.Splash
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-
-        @Suppress("DEPRECATION")
+/*        @Suppress("DEPRECATION")
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -24,5 +24,6 @@ class SplashScreen : AppCompatActivity() {
             startActivity(intent)
             finish()
         },3000)
+    */
     }
 }

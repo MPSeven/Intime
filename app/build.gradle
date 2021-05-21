@@ -81,4 +81,8 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
 
+    // DotsIndicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+    implementation 'me.relex:circleindicator:2.1.6'
+
 }
