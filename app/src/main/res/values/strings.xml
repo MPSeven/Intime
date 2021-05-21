@@ -203,6 +203,20 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-<!-- Splash Screen-->
+    <!-- Splash Screen-->
     <string name="ic_splashScreenImage">Splash Screen Image</string>
+    <string name="onBoarding_tb_skip">건너뛰기</string>
+    <string name="onboarding_ib_start">start button</string>
+    <string name="tv_onBoarding3h"><![CDATA[심장 충격기를 <b>가지러 갈 수 없다면</b>\n주변 사람들에게 <b>요청</b>하세요!]]></string>
+    <string name="tv_onBoarding3b">푸시알림으로 내 위치 반경 20m안의 사람들에게 \n심장충격기 위치를 전송해서\n응급상황을 알려줍니다.</string>
+    <string name="tv_onBoarding1h"><![CDATA[일상 속 예상치 못한 <b>응급상황!</b>\n<b>미리 대비</b>하세요!]]></string>
+    <string name="tv_onBoarding1b">내 주변 사람이 갑자기 쓰러진다면?\n재난 상황이 일어났을 때 대피소는 어디지?\n당황하지 말고 인타임에서 미리 대비하세요!</string>
+    <string name="tv_onboarding2h"><![CDATA[나에게 <b>응급상황</b>이 일어난다면?\n<b>위젯</b>으로 <b>빠르게 연락</b>하세요!]]></string>
+    <string name="tv_onBoarding2b">인타임 비상연락 위젯을 통해 \n앱을 통하지 않더라도 바로 내 상황을 \n빠르게 알릴 수 있습니다.</string>
+    <string name="tv_onBoarding4h"><![CDATA[위급상황 <b>A to Z</b>\n <b>INTIME</b>]]></string>
+    <string name="tv_onBoarding4b">위급상황을 빠르고, 쉽게,\n미리미리 대비할 수 있는 인타임!\n지금 바로 시작해보세요!</string>
+
+    <!--widgwt-->
+    <string name="appwidget_text">INTIME</string>
+    <string name="add_widget">위젯 추가하기</string>
 </resources>
