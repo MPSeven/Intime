@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setting.SettingFavoriteActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:background="#4DEDEDED"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/setting_fav_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/setting_fav"
+            android:textAppearance="@style/Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/setting_fav_x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/setting_btn_x" />
+
+        <TextView
+            android:id="@+id/setting_fav_cnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="83dp"
+            android:text="총 10개"
+            android:textAppearance="@style/Body1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <HorizontalScrollView
+            android:id="@+id/setting_fav_scroll"
+            android:layout_width="0dp"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:orientation="horizontal">
+
+                <android.widget.Button
+                    android:id="@+id/setting_fav_all"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/setting_fav_btn_custom"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/all"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <android.widget.Button
+                    android:id="@+id/setting_fav_aed"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/setting_fav_btn_custom"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/aed"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/setting_fav_all"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.widget.Button
+                    android:id="@+id/setting_fav_she"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/setting_fav_btn_custom"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/shelter"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/setting_fav_aed"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.widget.Button
+                    android:id="@+id/setting_fav_eme"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/setting_fav_btn_custom"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/emergency"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/setting_fav_she"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.widget.Button
+                    android:id="@+id/setting_fav_pha"
+                    android:layout_width="67dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/setting_fav_btn_custom"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/pharmacy"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/setting_fav_eme"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,25 +6,62 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.FragmentBasicInfoBinding
+import kr.go.mapo.intime.databinding.FragmentInfoBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-class InfoFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+class InfoFragment : Fragment(R.layout.fragment_info) {
+    private var _binding:FragmentInfoBinding ?= null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false)
+    ): View {
+        _binding = FragmentInfoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.ibHowToAed.setOnClickListener {
+            replaceFragment(it)
+        }
+        binding.ibHowToCpr.setOnClickListener(View.OnClickListener {
+            replaceFragment(it)
+        })
+        binding.ibHowToDisaster.setOnClickListener(View.OnClickListener {
+            replaceFragment(it)
+        })
+        binding.ibHowToChecklist.setOnClickListener(View.OnClickListener {
+            replaceFragment(it)
+        })
+    }
+
+    private fun replaceFragment(view: View) {
+        val replaceFragment = when (view.id) {
+            binding.ibHowToAed.id -> {
+                FragmentAed()
+            }
+            binding.ibHowToCpr.id -> {
+                FragmentCpr()
+            }
+            binding.ibHowToDisaster.id -> {
+                FragmentDisaster()
+            }
+            else -> {
+                FragmentChecklist()
+            }
+
+        }
+        val fragmentManager = activity?.supportFragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.replace(R.id.frameLayout, replaceFragment)
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
 }

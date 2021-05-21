@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="h3height">22dp</dimen>
+    <dimen name="p_single_space">16dp</dimen>
+    <dimen name="p_double_space">32dp</dimen>
+    <dimen name="b1_double_line">52dp</dimen>
+    <dimen name="b1_single_space">19dp</dimen>
+    <dimen name="h1height">24dp</dimen>
+    <dimen name="default_padding">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

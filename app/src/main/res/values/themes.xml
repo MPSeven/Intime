@@ -32,4 +32,140 @@
         <item name="android:fontFamily">@font/fonts</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <!-- FONT STYLES -->
+    <style name="Head0" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">29sp</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="Head1" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">24sp</item>
+        <item name="fontWeight">700</item>
+    </style>
+
+    <style name="Head2" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">17sp</item>
+    </style>
+
+    <style name="Head3" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">22sp</item>
+    </style>
+
+    <style name="Head4" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">22sp</item>
+    </style>
+
+    <style name="Body1" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">19sp</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="Body1_26" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">26sp</item>
+        <item name="android:gravity">top</item>
+        <item name="android:translationY">-3.2sp</item>
+    </style>
+
+    <style name="Body2" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">17sp</item>
+    </style>
+
+    <style name="Body3" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">17sp</item>
+    </style>
+
+    <style name="Caption1" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">14sp</item>
+    </style>
+
+    <style name="Caption2" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="lineHeight">12sp</item>
+    </style>
+
+    <style name="disaster" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="lineHeight">38sp</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+        <item name="android:textColor">@color/gray300</item>
+        <item name="fontWeight">700</item>
+
+    </style>
+
+    <style name="disaster_body" parent="TextAppearance.AppCompat">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="lineHeight">26sp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="android:textColor">@color/gray600</item>
+        <item name="fontWeight">400</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:translationY">-3.2sp</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="TextButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+        <item name="lineHeight">19sp</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="TextButtonColorless" parent="TextAppearance.AppCompat.Widget.Button.Borderless.Colored" />
+
+    <style name="Theme.Intime.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Intime.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Intime.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

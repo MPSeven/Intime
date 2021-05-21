@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="113dp"
+    android:background="@drawable/sos_bg_amb">
+
+    <Space
+        android:id="@+id/amb_space"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/amb_company"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_marginStart="24dp"
+        android:textAppearance="@style/Head4"
+        android:textColor="@color/gray600"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amb_space" />
+
+    <TextView
+        android:id="@+id/amb_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textColor="@color/gray400"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amb_company"/>
+
+    <ImageView
+        android:id="@+id/amb_ic_ph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/sos_ic_phone"
+        app:layout_constraintStart_toEndOf="@id/amb_location"
+        app:layout_constraintTop_toBottomOf="@id/amb_company"/>
+
+    <TextView
+        android:id="@+id/amb_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="9dp"
+        android:textAppearance="@style/Body2"
+        android:textColor="@color/gray600"
+        app:layout_constraintStart_toEndOf="@id/amb_ic_ph"
+        app:layout_constraintTop_toBottomOf="@id/amb_company" />
+
+    <ImageButton
+        android:id="@+id/amb_tel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/sos_btn_tel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/sos_amb_tel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
