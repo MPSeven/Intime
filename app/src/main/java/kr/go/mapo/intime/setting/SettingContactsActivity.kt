@@ -9,23 +9,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kr.go.mapo.intime.ContactsAdapter
 import kr.go.mapo.intime.R
-import kr.go.mapo.intime.fragment.CommonDialogFragment
+import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.model.Contacts
-import kr.go.mapo.intime.room.IntimeDatabase
+import kr.go.mapo.intime.setting.database.ContactsDatabase
 
 class SettingContactsActivity : AppCompatActivity() {
 
     private lateinit var recyclerview: RecyclerView
-    private var db : IntimeDatabase? = null
+    private var db : ContactsDatabase? = null
     private var conList = mutableListOf<Contacts>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_contact)
 
-        db = IntimeDatabase.getInstance(this)
+        db = ContactsDatabase.getInstance(this)
 
         val savedContacts = db!!.contactsDao().getCon()
         if(savedContacts.isNotEmpty()){

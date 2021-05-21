@@ -65,6 +65,10 @@
     <string name="sos_amb_notice">\'인타임\'은 정보 중개자로 업체 전화 후 관련된 문제에 대한 의무와 책임은 각 업체에 있으며, 민간 구급차를 이용하면 금액이 부과됩니다. 이용 시 부과되는 이용료는 담당 업체마다 상이합니다.</string>
     <string name="sos_amb_tel">전화걸기</string>
 
+    <string name="call">전화하기</string>
+    <string name="findPath">길찾기</string>
+    <string name="bookmark">즐겨찾기</string>
+    <string name="emptyAedResult">내 주변에 심장충격기가 없습니다</string>
 
     <!--setting-->
     <string name="setting_sub">인타임 관리</string>
@@ -203,7 +207,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-<!-- Splash Screen-->
+    <!-- Splash Screen-->
     <string name="ic_splashScreenImage">Splash Screen Image</string>
     <string name="onBoarding_tb_skip">건너뛰기</string>
     <string name="onboarding_ib_start">start button</string>

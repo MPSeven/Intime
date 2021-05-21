@@ -67,8 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
             tools:text="5층 로비" />
-
-
+        
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,11 +94,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.widget.Button
-                android:id="@+id/bookmark"
+                android:id="@+id/recyclerViewCallButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/map_aed_button"
-                android:drawableStart="@drawable/map_bookmark_off"
+                android:drawableStart="@drawable/map_call_symbol"
                 android:paddingLeft="12dp" />
 
             <TextView
