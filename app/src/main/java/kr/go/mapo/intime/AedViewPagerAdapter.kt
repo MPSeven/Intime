@@ -35,7 +35,8 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
 class AedViewPagerAdapter :
-    androidx.recyclerview.widget.ListAdapter<SortedAed, AedViewPagerAdapter.ItemViewHolder>(differ), CoroutineScope {
+    androidx.recyclerview.widget.ListAdapter<SortedAed, AedViewPagerAdapter.ItemViewHolder>(differ),
+    CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + Job()
@@ -50,6 +51,13 @@ class AedViewPagerAdapter :
             addressMarker.text = sortedAed.aed.address
             addressDetailMarker.text = sortedAed.aed.addressDetail
             distanceMarker.text = "${(sortedAed.distance * 1000).roundToInt()}m"
+
+            if (sortedAed.aed.checked) {
+                val img: Drawable? =
+                    findPathButton.context.resources.getDrawable(R.drawable.map_bookmark_on)
+                img?.setBounds(0, 0, 80, 80)
+                findPathButton.setCompoundDrawables(img, null, null, null)
+            }
 
         }
 
@@ -87,31 +95,40 @@ class AedViewPagerAdapter :
             }
 
             binding.bookMarkButton.setOnClickListener {
-                // TODO DB
                 if (!sortedAed.aed.checked) {
                     sortedAed.aed.checked = true
                     val img: Drawable? =
                         it.context.resources.getDrawable(R.drawable.map_bookmark_on)
-                    img?.setBounds(0, 0, 60, 60)
+                    img?.setBounds(0, 0, 80, 80)
                     binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
 
                     CoroutineScope(Dispatchers.IO).launch {
-                        DataBaseProvider.provideDB(it.context).bookmarkAedDao().insertAed(sortedAed.aed)
+                        try {
+                            DataBaseProvider.provideDB(it.context).bookmarkAedDao()
+                                .insertAed(sortedAed.aed)
+                        } catch (e: Exception) {
+                            DataBaseProvider.provideDB(it.context).bookmarkAedDao()
+                                .updateAed(sortedAed.aed)
+                        }
 
-                        val aedRepo = DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
+
+                        val aedRepo =
+                            DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
                         Log.d("ViewPagerAdapter", aedRepo.toString())
                     }
                 } else {
                     sortedAed.aed.checked = false
                     val img: Drawable? =
                         it.context.resources.getDrawable(R.drawable.map_bookmark_off)
-                    img?.setBounds(0, 0, 60, 60)
+                    img?.setBounds(0, 0, 80, 80)
                     binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
 
                     CoroutineScope(Dispatchers.IO).launch {
-                        DataBaseProvider.provideDB(it.context).bookmarkAedDao().delete(sortedAed.aed.lat)
+                        DataBaseProvider.provideDB(it.context).bookmarkAedDao()
+                            .delete(sortedAed.aed.lat)
 
-                        val aedRepo = DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
+                        val aedRepo =
+                            DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
                         Log.d("ViewPagerAdapter", aedRepo.toString())
                     }
                 }
@@ -125,7 +142,8 @@ class AedViewPagerAdapter :
         parent: ViewGroup,
         viewType: Int
     ): ItemViewHolder {
-        val view = ItemDetailViewpagerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view =
+            ItemDetailViewpagerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(view)
     }
 

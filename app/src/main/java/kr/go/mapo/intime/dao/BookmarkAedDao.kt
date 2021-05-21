@@ -1,9 +1,6 @@
 package kr.go.mapo.intime.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import kr.go.mapo.intime.model.Aed
 
 @Dao
@@ -11,6 +8,9 @@ interface BookmarkAedDao {
 
     @Query("SELECT * FROM aed")
     fun getAll(): List<Aed>
+
+    @Update
+    fun updateAed(aed: Aed)
 
     @Insert
     fun insertAed(aed: Aed)
