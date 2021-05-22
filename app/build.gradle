@@ -63,11 +63,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'androidx.room:room-runtime:2.3.0'
-    kapt 'androidx.room:room-compiler:2.3.0'
-    implementation "androidx.room:room-ktx:2.3.0"
-    annotationProcessor "androidx.room:room-compiler:2.3.0"
-
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
 
 
@@ -88,5 +83,8 @@ dependencies {
     // DotsIndicator
     implementation 'com.tbuonomo:dotsindicator:4.2'
     implementation 'me.relex:circleindicator:2.1.6'
+
+    //work manager
+    implementation "androidx.work:work-runtime-ktx:2.1.0"
 
 }

@@ -1,30 +1,34 @@
 package kr.go.mapo.intime.widget
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.net.Uri
 import android.widget.RemoteViews
-import androidx.core.content.ContentProviderCompat.requireContext
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kr.go.mapo.intime.R
-import kr.go.mapo.intime.info.FragmentCpr
-import kr.go.mapo.intime.setting.SettingAddContact
 import kr.go.mapo.intime.setting.database.ContactsDatabase
-import kr.go.mapo.intime.sos.SosFragment
+import java.util.*
 
 /**
  * Implementation of App Widget functionality.
  */
 class IntimeWidget : AppWidgetProvider() {
+
     private var db : ContactsDatabase? = null
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-
         db = ContactsDatabase.getInstance(context)
         appWidgetIds.forEach {
             updateAppWidget(context, appWidgetManager, it)
@@ -42,13 +46,17 @@ class IntimeWidget : AppWidgetProvider() {
                 Intent(Intent.ACTION_DIAL, Uri.parse(
                     "tel:${db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()}")), 0
             )
-
             val intentCpr: PendingIntent
+            val intentRefresh = PendingIntent.getActivity(
+                context, 0,
+                Intent(context, IntimeWidget::class.java), 0
+            )
             val views: RemoteViews = RemoteViews(context.packageName, R.layout.intime_widget)
             views.setOnClickPendingIntent(R.id.widget_119, intent119)
             views.setOnClickPendingIntent(R.id.widget_112, intent112)
             views.setOnClickPendingIntent(R.id.widget_fav, intentFav)
 //            views.setOnClickPendingIntent(R.id.widget_fav, intentCpr)
+            views.setOnClickPendingIntent(R.id.widget_refresh, intentRefresh)
 
             appWidgetManager.updateAppWidget(it, views)
         }
@@ -64,17 +72,30 @@ class IntimeWidget : AppWidgetProvider() {
     }
 }
 
+@SuppressLint("MissingPermission")
 internal fun updateAppWidget(
     context: Context,
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
+    var latitude: Double?
+    var longitude: Double?
+    val mGeoCoder = Geocoder(context, Locale.KOREAN)
+    var address: String?
+    var currentAddress: List<Address>?
 
-    // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.intime_widget)
-    views.setTextViewText(R.id.widget_text, widgetText)
+    var fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+    fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
+        // Got last known location. In some rare situations this can be null.
+        latitude = location?.latitude
+        longitude = location?.longitude
+        currentAddress = mGeoCoder.getFromLocation(latitude!!, longitude!!, 1)
+        address = (currentAddress as MutableList<Address>)?.get(0).getAddressLine(0).substring(5)
 
-    // Instruct the widget manager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)
+        val widgetText = context.getString(R.string.app_name)
+        val views = RemoteViews(context.packageName, R.layout.intime_widget)
+        views.setTextViewText(R.id.widget_text, widgetText)
+        views.setTextViewText(R.id.widget_currentLoc, address)
+        appWidgetManager.updateAppWidget(appWidgetId, views)
+    }
 }
