@@ -4,13 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.common.CommonDialogFragment
+import kr.go.mapo.intime.databinding.ActivitySettingContactBinding
 import kr.go.mapo.intime.model.Contacts
 import kr.go.mapo.intime.setting.database.ContactsDatabase
 
@@ -19,10 +19,11 @@ class SettingContactsActivity : AppCompatActivity() {
     private lateinit var recyclerview: RecyclerView
     private var db : ContactsDatabase? = null
     private var conList = mutableListOf<Contacts>()
+    val binding by lazy { ActivitySettingContactBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting_contact)
+        setContentView(binding.root)
 
         db = ContactsDatabase.getInstance(this)
 
@@ -30,18 +31,18 @@ class SettingContactsActivity : AppCompatActivity() {
         if(savedContacts.isNotEmpty()){
             conList.addAll(savedContacts)
         }
-        Log.d("여기", conList.toString())
+//        Log.d("여기", conList.toString())
         val adapter = ContactsAdapter(conList)
 
 
-        recyclerview = findViewById(R.id.setting_con_rv)
+        recyclerview = binding.settingConRv
         recyclerview.apply {
             this.adapter = adapter
             this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 
 
-        findViewById<ImageButton>(R.id.setting_plus).setOnClickListener {
+        binding.settingPlus.setOnClickListener {
             val intent = Intent(this, SettingAddContact::class.java)
             startActivity(intent)
         }
@@ -66,7 +67,7 @@ class SettingContactsActivity : AppCompatActivity() {
         })
 
 
-        findViewById<ImageButton>(R.id.setting_con_x).setOnClickListener {
+        binding.settingConX.setOnClickListener {
             onBackPressed()
         }
     }

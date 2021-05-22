@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="148dp"
-    android:layout_marginBottom="16dp"
+    android:layout_margin="8dp"
+    android:elevation="10dp"
     android:background="@drawable/setting_bg_con_custom">
 
     <Space
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="24dp"
-        android:text="대표연락처"
+        android:text="@string/setting_sms_con"
         android:textAppearance="@style/Body1"
         android:textColor="@color/gray300"
         android:visibility="gone"

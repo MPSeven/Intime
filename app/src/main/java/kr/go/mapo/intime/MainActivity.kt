@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity(){
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
 
-    lateinit var presentFragment: Fragment
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

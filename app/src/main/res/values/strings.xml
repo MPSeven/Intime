@@ -64,6 +64,7 @@
     <string name="sos_btn_amb">민간구급차</string>
     <string name="sos_amb_notice">\'인타임\'은 정보 중개자로 업체 전화 후 관련된 문제에 대한 의무와 책임은 각 업체에 있으며, 민간 구급차를 이용하면 금액이 부과됩니다. 이용 시 부과되는 이용료는 담당 업체마다 상이합니다.</string>
     <string name="sos_amb_tel">전화걸기</string>
+    <string name="sos_amb_title">서울시 민간 구급차 업체 정보</string>
 
     <string name="call">전화하기</string>
     <string name="findPath">길찾기</string>
@@ -76,6 +77,7 @@
     <string name="setting_fav">즐겨찾기</string>
     <string name="setting_plus">연락처 추가</string>
     <string name="setting_add_con">비상연락처 등록</string>
+    <string name="setting_sms_con">대표연락처</string>
     <string name="setting_add_con_no">비상문자를 보낼 \n비상 연락처를 등록해 주세요.</string>
 
     <!--How to CPR page texts:-->

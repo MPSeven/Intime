@@ -1,45 +1,38 @@
 package kr.go.mapo.intime.sos
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.ActivityAmbulanceBinding
 import kr.go.mapo.intime.databinding.DialogLocationPickerBinding
-import kr.go.mapo.intime.databinding.FragmentSosAmbBinding
 import kr.go.mapo.intime.sos.model.Ambulance
 
-class SosAmbFragment : Fragment() {
+class AmbulanceActivity : AppCompatActivity() {
 
-    private lateinit var binding: FragmentSosAmbBinding
-
+    val binding by lazy { ActivityAmbulanceBinding.inflate(layoutInflater) }
     private lateinit var recyclerview: RecyclerView
-    private lateinit var amb: Ambulance
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentSosAmbBinding.inflate(inflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
         recyclerview = binding.root.findViewById(R.id.amb_recycler_view)
         val adapter = AmbulanceAdapter(ambData(), this)
 
         recyclerview.apply {
             this.adapter = adapter
-            this.layoutManager = LinearLayoutManager(binding.root.context,LinearLayoutManager.VERTICAL,false)
+            this.layoutManager = LinearLayoutManager(binding.root.context,
+                LinearLayoutManager.VERTICAL,false)
         }
 
+        binding.ambBack.setOnClickListener{
+            onBackPressed()
+        }
 //        binding.amdLoc.setOnClickListener {
 //            callLocationPicker(binding.root)
 //        }
-
-        return binding.root
     }
 
     private fun ambData() : MutableList<Ambulance>{
@@ -79,27 +72,23 @@ class SosAmbFragment : Fragment() {
 
         */
 
-    private fun callLocationPicker(view: ViewGroup) {
-        val inflater: LayoutInflater = requireActivity().layoutInflater
-        val dialog: DialogLocationPickerBinding =
-            DialogLocationPickerBinding.inflate(inflater, view, false)
-
-//        val locationPicker: NumberPicker = dialog.picker.apply {
-//            minValue = 0
-//            maxValue = 25
-//            wrapSelectorWheel = false
-//            setOnValueChangedListener { _, _, newVal -> }
-//        }
-        val dialogBuilder: AlertDialog.Builder =
-            AlertDialog.Builder(requireActivity()).apply {
-                setView(dialog.root)
-
-            }
-        val alertLocationPickerDialog: AlertDialog = dialogBuilder.create()
-        alertLocationPickerDialog.show()
-    }
-
-
-
-
+//    private fun callLocationPicker(view: ViewGroup) {
+//        val inflater: LayoutInflater = this.layoutInflater
+//        val dialog: DialogLocationPickerBinding =
+//            DialogLocationPickerBinding.inflate(inflater, view, false)
+//
+////        val locationPicker: NumberPicker = dialog.picker.apply {
+////            minValue = 0
+////            maxValue = 25
+////            wrapSelectorWheel = false
+////            setOnValueChangedListener { _, _, newVal -> }
+////        }
+//        val dialogBuilder: AlertDialog.Builder =
+//            AlertDialog.Builder(this).apply {
+//                setView(dialog.root)
+//
+//            }
+//        val alertLocationPickerDialog: AlertDialog = dialogBuilder.create()
+//        alertLocationPickerDialog.show()
+//    }
 }
