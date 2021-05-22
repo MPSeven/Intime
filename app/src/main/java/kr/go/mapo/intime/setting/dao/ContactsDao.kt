@@ -17,9 +17,9 @@ interface ContactsDao {
     fun deleteCon(contacts: Contacts)
 
     @Update
-    fun updateCon(Contacts: Contacts)
+    fun updateCon(contacts: Contacts)
 
-    @Query("SELECT phoneNumber FROM contacts")
-    fun selectSms(): SelectCon
+    @Query("SELECT phoneNumber FROM contacts WHERE chk = :check")
+    fun selectSms(check: Boolean): SelectCon
 
 }

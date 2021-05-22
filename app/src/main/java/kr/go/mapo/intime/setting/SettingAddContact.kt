@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.ActivitySettingAddContactBinding
 import kr.go.mapo.intime.model.Contacts
 import kr.go.mapo.intime.setting.database.ContactsDatabase
 
@@ -22,24 +23,25 @@ class SettingAddContact : AppCompatActivity() {
     private lateinit var selName: EditText
     private lateinit var selNum: EditText
     private lateinit var chk: CheckBox
+    val binding by lazy { ActivitySettingAddContactBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting_add_contact)
+        setContentView(binding.root)
 
-        selName = findViewById(R.id.setting_addcon_con_namespace)
-        selNum = findViewById(R.id.setting_addcon_con_numspace)
-        chk = findViewById(R.id.setting_addcon_chk)
+        selName = binding.settingAddconConNamespace
+        selNum = binding.settingAddconConNumspace
+        chk = binding.settingAddconChk
 
         db = ContactsDatabase.getInstance(this)
 
-        findViewById<ImageButton>(R.id.setting_addcon_btn_from).setOnClickListener {
+        binding.settingAddconBtnFrom.setOnClickListener {
             val intent = (Intent(Intent.ACTION_PICK))
             intent.data = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
             startActivityForResult(intent, 100)
         }
 
-        findViewById<ImageButton>(R.id.setting_addcon_x).setOnClickListener {
+        binding.settingAddconX.setOnClickListener {
             onBackPressed()
         }
 
@@ -54,7 +56,7 @@ class SettingAddContact : AppCompatActivity() {
         }
 
 
-        findViewById<ImageButton>(R.id.setting_addcon_btn).setOnClickListener {
+        binding.settingAddconBtn.setOnClickListener {
             if(selName.text.toString().isBlank() || selNum.text.toString().isBlank() ){
                 Toast.makeText(applicationContext,"비상연락처를 입력해주세요", Toast.LENGTH_LONG).show()
             } else{

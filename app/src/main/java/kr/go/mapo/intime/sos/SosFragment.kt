@@ -2,6 +2,7 @@ package kr.go.mapo.intime.sos
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -9,6 +10,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,12 +42,10 @@ class SosFragment : Fragment() {
         tedPermission()
 
         binding.btnAmb.setOnClickListener {
-            val ambFragment = SosAmbFragment()
-            val fragmentManager = getActivity()?.getSupportFragmentManager()
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.frameLayout, ambFragment)
-            fragmentTransaction?.addToBackStack(null)
-            fragmentTransaction?.commit()
+            activity?.let{
+                val intent = Intent(context, AmbulanceActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         return root
@@ -141,9 +141,9 @@ class SosFragment : Fragment() {
         var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ getAddress()
         binding.txtSms.setText(smsContents)
 
-//      여기:   dao where절 true값 넣고 가져오기
         db = ContactsDatabase.getInstance(requireContext())
-        var phoneNum = db?.contactsDao()?.selectSms()?.phoneNumber.toString()
+        var phoneNum = db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()
+        Log.d("여기", phoneNum)
 
         val smsManager = SmsManager.getDefault()
 
@@ -175,7 +175,7 @@ class SosFragment : Fragment() {
 
         binding.btnFav.setOnClickListener{
 
-            if (phoneNum.isNullOrBlank()){
+            if (phoneNum.isBlank()){
                 Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다 등록 후 사용해주세요", Toast.LENGTH_LONG).show()
             } else{
                 val dialog: CommonDialogFragment = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {

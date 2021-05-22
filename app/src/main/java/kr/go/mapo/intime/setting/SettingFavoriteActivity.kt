@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.ActivitySettingFavoriteBinding
 
 class SettingFavoriteActivity : AppCompatActivity() {
+
+    val binding by lazy { ActivitySettingFavoriteBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting_favorite)
+        setContentView(binding.root)
 
-        findViewById<ImageButton>(R.id.setting_fav_x).setOnClickListener {
+        binding.settingFavX.setOnClickListener {
             onBackPressed()
         }
     }

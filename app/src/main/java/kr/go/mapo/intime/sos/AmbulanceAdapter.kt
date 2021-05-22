@@ -14,7 +14,7 @@ import kr.go.mapo.intime.sos.model.Ambulance
 
 class AmbulanceAdapter(
     private val AmbulanceList: MutableList<Ambulance>,
-    private val owner: SosAmbFragment
+    private val owner: AmbulanceActivity
 ) : RecyclerView.Adapter<AmbulanceAdapter.AmbHolder>() {
 
     private lateinit var binding: AmbulanceListBinding
