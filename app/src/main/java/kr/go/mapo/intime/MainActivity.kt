@@ -11,9 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.map.*
+import kr.go.mapo.intime.info.InfoActivity
 import kr.go.mapo.intime.info.InfoFragment
 import kr.go.mapo.intime.map.MapFragment
 import kr.go.mapo.intime.setting.SettingActivity
+import kr.go.mapo.intime.sos.AmbulanceActivity
 import kr.go.mapo.intime.sos.SosFragment
 
 class MainActivity : AppCompatActivity(){
@@ -77,9 +79,10 @@ class MainActivity : AppCompatActivity(){
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_info -> {
+                        startActivity(Intent(applicationContext, InfoActivity::class.java))
 
-                    replaceFragment(InfoFragment())
-                    return@OnNavigationItemSelectedListener true
+/*                    replaceFragment(InfoFragment())
+                    return@OnNavigationItemSelectedListener true*/
                 }
             }
             true

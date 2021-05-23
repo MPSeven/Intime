@@ -1,9 +1,7 @@
 package kr.go.mapo.intime.info
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentInfoBinding
@@ -11,6 +9,7 @@ import kr.go.mapo.intime.databinding.FragmentInfoBinding
 class InfoFragment : Fragment(R.layout.fragment_info) {
     private var _binding:FragmentInfoBinding ?= null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +22,7 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
         super.onViewCreated(view, savedInstanceState)
         binding.ibHowToAed.setOnClickListener {
             replaceFragment(it)
+
         }
         binding.ibHowToCpr.setOnClickListener(View.OnClickListener {
             replaceFragment(it)
