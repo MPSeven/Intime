@@ -17,9 +17,6 @@ import kr.go.mapo.intime.R
 import kr.go.mapo.intime.setting.database.ContactsDatabase
 import java.util.*
 
-/**
- * Implementation of App Widget functionality.
- */
 class IntimeWidget : AppWidgetProvider() {
 
     private var db : ContactsDatabase? = null
@@ -47,16 +44,13 @@ class IntimeWidget : AppWidgetProvider() {
                     "tel:${db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()}")), 0
             )
             val intentCpr: PendingIntent
-            val intentRefresh = PendingIntent.getActivity(
-                context, 0,
-                Intent(context, IntimeWidget::class.java), 0
-            )
+            val intentRefresh: PendingIntent
             val views: RemoteViews = RemoteViews(context.packageName, R.layout.intime_widget)
             views.setOnClickPendingIntent(R.id.widget_119, intent119)
             views.setOnClickPendingIntent(R.id.widget_112, intent112)
             views.setOnClickPendingIntent(R.id.widget_fav, intentFav)
-//            views.setOnClickPendingIntent(R.id.widget_fav, intentCpr)
-            views.setOnClickPendingIntent(R.id.widget_refresh, intentRefresh)
+//            views.setOnClickPendingIntent(R.id.widget_cpr, intentCpr)
+//            views.setOnClickPendingIntent(R.id.widget_refresh, intentRefresh)
 
             appWidgetManager.updateAppWidget(it, views)
         }
