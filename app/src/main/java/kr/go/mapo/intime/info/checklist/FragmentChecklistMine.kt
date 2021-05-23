@@ -1,4 +1,4 @@
-package kr.go.mapo.intime.info
+package kr.go.mapo.intime.info.checklist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class FragmentChecklistBasic : Fragment() {
+class FragmentChecklistMine : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -16,7 +16,7 @@ class FragmentChecklistBasic : Fragment() {
     }
     companion object{
         fun newInstance(): Fragment{
-            val fragment:Fragment = FragmentChecklistBasic()
+            val fragment:Fragment = FragmentChecklistMine()
             val args = Bundle()
             fragment.arguments = args
             return fragment
