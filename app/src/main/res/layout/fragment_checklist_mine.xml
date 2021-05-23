@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior = "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-        <Space
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf=""
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="81dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="@style/Body1_26"
-            android:text="위급상황에 나에게 딱 맞춘\n\n나만의 체크리스트를 만들어보세요!"/>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="36dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="@style/Body1_26"
-            android:text="위급상황에 무엇이 가장 필요할까요?"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/checklistTVphrase1"
+                android:layout_width="226dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="81dp"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textAppearance="@style/Body1_26"
+                android:text="위급상황에 나에게 딱 맞춘\n나만의 체크리스트를 만들어보세요!"/>
+            <TextView
+                android:layout_width="232dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="36dp"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textAppearance="@style/Body1_26"
+                android:text="위급상황에 무엇이 가장 필요할까요?"/>
+        </LinearLayout>
 
 
-    </androidx.viewpager.widget.ViewPager>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_marginRight="24dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="16dp"
         android:src="@drawable/info_btn_addmore" />
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

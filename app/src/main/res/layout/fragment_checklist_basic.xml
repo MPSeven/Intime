@@ -1,15 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
-    tools:context=".info.FragmentChecklist">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
+        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf=""
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding">
+
+            <CheckBox
+                android:id="@+id/cb_basicWater"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="물"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <TextView
+                android:id="@+id/cb_basicWaterDetail"
+                android:layout_width="match_parent"
+                android:layout_height="17dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginBottom="22dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="음료 및 위생을 위해 며칠 동안 1 인당 하루 3.785L"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/gray400" />
+
+            <CheckBox
+                android:id="@+id/cb_basicFood"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="식품"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <TextView
+                android:id="@+id/cb_basicFoodDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginBottom="22dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="최소한 3 일분의 부패하지 않는 식품"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/gray400" />
+
+            <CheckBox
+                android:id="@+id/cb_basicBattery"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginBottom="34dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="배터리 전원"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <CheckBox
+                android:id="@+id/cb_basicFirstaid"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="구급상자"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <TextView
+                android:id="@+id/cb_basicFirstaidDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginBottom="22dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="본인이 필요한 약 포함한 3 일분"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/gray400" />
+
+            <CheckBox
+                android:id="@+id/cb_basic_extraBatteries"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginBottom="34dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="추가 배터리"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <CheckBox
+                android:id="@+id/cb_basicWhistle"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginBottom="34dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="호루라기"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <CheckBox
+                android:id="@+id/cb_basicMask"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginBottom="34dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="먼지 마스크"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <CheckBox
+                android:id="@+id/cb_basicPlasticSheet"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="플라스틱 시트 및 덕트 테이프"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600" />
+
+            <TextView
+                android:id="@+id/cb_basicPlasticSheetDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginBottom="22dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="대피용"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/gray400" />
+
+            <CheckBox
+                android:id="@+id/cb_basicTissue"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="물티슈 혹은 간편 샤워타올, 쓰레기 봉투 및 플라스틱 끈"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600"
+                android:layout_marginBottom="34dp"
+                />
+            <CheckBox
+                android:id="@+id/cb_basicWrench"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="렌치 또는 펜치"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600"
+                />
+            <TextView
+                android:id="@+id/cb_basicWrenchDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginBottom="22dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="유틸리티 끄기"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/gray400" />
+
+            <CheckBox
+                android:id="@+id/cb_basic_water"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="수동 캔 따개"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600"
+
+                />
+
+            <TextView
+                android:id="@+id/cb_basic_water_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginBottom="22dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="식품용"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/gray400" />
+            <CheckBox
+                android:id="@+id/cb_basicAreaMap"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:button="@drawable/checklist_checkbox"
+                android:paddingStart="12dp"
+                android:text="지역지도"
+                android:textAppearance="@style/Body1"
+                android:textColor="@color/gray600"
+                />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
