@@ -43,8 +43,12 @@ class SettingContactsActivity : AppCompatActivity() {
 
 
         binding.settingPlus.setOnClickListener {
-            val intent = Intent(this, SettingAddContact::class.java)
-            startActivity(intent)
+            if (db?.contactsDao()?.countAll()!! >= 5) {
+                Toast.makeText(applicationContext, "비상연락처는 다섯개까지 등록 가능합니다", Toast.LENGTH_LONG).show()
+            } else{
+                val intent = Intent(this, SettingAddContact::class.java)
+                startActivity(intent)
+            }
         }
 
         adapter.setItemClickListener(object : ContactsAdapter.OnItemClickListener{

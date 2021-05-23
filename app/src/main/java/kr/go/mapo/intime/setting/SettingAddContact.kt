@@ -5,12 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.ActivitySettingAddContactBinding
 import kr.go.mapo.intime.model.Contacts
 import kr.go.mapo.intime.setting.database.ContactsDatabase
@@ -33,6 +32,8 @@ class SettingAddContact : AppCompatActivity() {
         selNum = binding.settingAddconConNumspace
         chk = binding.settingAddconChk
 
+        selNum.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
         db = ContactsDatabase.getInstance(this)
 
         binding.settingAddconBtnFrom.setOnClickListener {
@@ -45,23 +46,23 @@ class SettingAddContact : AppCompatActivity() {
             onBackPressed()
         }
 
-        chk.setOnClickListener {
-            if(chk.isChecked){
-                if(selName.text.toString().isBlank() || selNum.text.toString().isBlank()){
-                    Toast.makeText(applicationContext,"비상연락처를 입력해주세요", Toast.LENGTH_LONG).show()
-                } else{
-                    Toast.makeText(applicationContext,"대표 연락처로 설정되었습니다", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-
-
         binding.settingAddconBtn.setOnClickListener {
             if(selName.text.toString().isBlank() || selNum.text.toString().isBlank() ){
                 Toast.makeText(applicationContext,"비상연락처를 입력해주세요", Toast.LENGTH_LONG).show()
-            } else{
+            } else if (db?.contactsDao()?.countAll()!! >= 5) {
+                Toast.makeText(applicationContext, "비상연락처는 다섯개까지 등록 가능합니다", Toast.LENGTH_LONG).show()
+            } else if (chk.isChecked) {
+                if (db?.contactsDao()?.countSms(check = true)!! >= 1) {
+                    Toast.makeText(applicationContext, "대표 연락처는 하나만 등록 가능합니다", Toast.LENGTH_LONG).show()
+                } else{
+                    Toast.makeText(applicationContext,"대표 연락처로 설정되었습니다", Toast.LENGTH_LONG).show()
+                    val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
+                    db?.contactsDao()?.insertCon(contact)
+                    conList.add(contact)
+                    onBackPressed()
+                }
+            } else {
                 val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
-//            Log.d("여기", contact.toString())
                 db?.contactsDao()?.insertCon(contact)
                 conList.add(contact)
                 onBackPressed()

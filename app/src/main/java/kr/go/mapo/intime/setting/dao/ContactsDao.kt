@@ -22,4 +22,10 @@ interface ContactsDao {
     @Query("SELECT phoneNumber FROM contacts WHERE chk = :check")
     fun selectSms(check: Boolean): SelectCon
 
+    @Query("SELECT count(id) FROM contacts WHERE chk = :check")
+    fun countSms(check: Boolean): Int
+
+    @Query("SELECT count(id) FROM contacts")
+    fun countAll(): Int
+
 }

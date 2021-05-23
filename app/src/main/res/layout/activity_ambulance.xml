@@ -12,8 +12,8 @@ tools:context=".sos.AmbulanceActivity">
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:background="@drawable/sos_bg_amb"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
@@ -60,7 +60,8 @@ tools:context=".sos.AmbulanceActivity">
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/amb_recycler_view"
     android:layout_width="match_parent"
-    android:layout_height="510dp"
+    android:layout_height="0dp"
+    android:layout_marginBottom="10dp"
     android:fillViewport="true"
     android:overScrollMode="never"
     app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +77,6 @@ tools:context=".sos.AmbulanceActivity">
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp"
     android:layout_marginBottom="24dp"
-    android:layout_marginTop="14dp"
     android:text="@string/sos_amb_notice"
     android:textSize="14sp"
     android:textAppearance="@style/Body2"
