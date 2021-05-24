@@ -27,16 +27,17 @@ import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.widget.LocationButtonView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.android.synthetic.main.item_detail_viewpager.view.*
+import kotlinx.coroutines.*
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.map.api.AedService
 import kr.go.mapo.intime.map.api.ShelterService
 import kr.go.mapo.intime.databinding.FragmentMapBinding
+import kr.go.mapo.intime.map.model.Aed
 import kr.go.mapo.intime.map.response.AedDto
 import kr.go.mapo.intime.map.response.ShelterDto
 import kr.go.mapo.intime.map.response.Url
+import kr.go.mapo.intime.setting.database.DataBaseProvider
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,7 +90,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     }
 
     private val listViewButton: Button by lazy {
-        rootView.findViewById<Button>(R.id.listViewButton)
+        rootView.findViewById(R.id.listViewButton)
     }
     private val emptyResultTextView: TextView by lazy {
         rootView.findViewById(R.id.emptyResultTextView)
@@ -136,14 +137,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                 Log.d(TAG, "newState: $newState")
                 //behavior.saveFlags = BottomSheetBehavior.SAVE_ALL
                 when (newState) {
-                    BottomSheetBehavior.STATE_SETTLING -> {
-
-                    }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
                         listViewButton.visibility = View.VISIBLE
                     }
                     BottomSheetBehavior.STATE_HIDDEN -> {
-
                     }
                 }
             }
@@ -157,33 +154,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         initViews()
         bindViews()
 
-        behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-
-                Log.d(TAG, "newState: $newState")
-                when (newState) {
-                    BottomSheetBehavior.STATE_SETTLING -> {
-
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        listViewButton.visibility = View.VISIBLE
-                    }
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-
-                    }
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.d(TAG, "offset: $slideOffset")
-            }
-
-        })
-
         locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
 
         return rootView
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -197,6 +172,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
 
     private fun bindViews() = with(binding) {
+
         binding.bottomSheetDialog.aedCategoryButton.setOnClickListener {
             Log.d(TAG, "aedCategoryButton onClick!!!")
             resetMarkerList()
@@ -226,6 +202,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                 }
             })
         }
+
 
         binding.bottomSheetDialog.shelterCategoryButton.setOnClickListener {
             Log.d(TAG, "shelterCategoryButton onClick!!!")
@@ -320,6 +297,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             recyclerViewHidden()
         }
 
+
         naverMap.addOnLocationChangeListener { location ->
             if (isFirstLocation) {
                 val initializePosition = LatLng(location.latitude, location.longitude)
@@ -331,6 +309,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             }
             isFirstLocation = false
         }
+
+        fetchAedLocation(latitude, longitude, DISTANCE)
     }
 
     private fun initMap() {

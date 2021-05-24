@@ -9,6 +9,9 @@ interface BookmarkAedDao {
     @Query("SELECT * FROM aed")
     fun getAll(): List<Aed>
 
+    @Query("SELECT * FROM aed WHERE lat = :lat")
+    fun getAed(lat: Double): Aed
+
     @Update
     fun updateAed(aed: Aed)
 
@@ -17,6 +20,9 @@ interface BookmarkAedDao {
 
     @Query("DELETE FROM aed WHERE lat = :aedLat")
     fun delete(aedLat: Double)
+
+    @Delete
+    fun remove(aed: Aed)
 
     @Query("DELETE FROM aed")
     fun clearAll()
