@@ -79,6 +79,7 @@
                     android:textFontWeight="800"
                     android:textColor="@color/gray600"
                     android:textSize="20sp"
+                    android:textAppearance="@style/Head1_32"
                     android:text="@string/setting_add_con_no"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

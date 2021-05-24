@@ -1,4 +1,4 @@
-package kr.go.mapo.intime.info
+package kr.go.mapo.intime.info.checklist
 
 import android.os.Bundle
 import android.view.LayoutInflater

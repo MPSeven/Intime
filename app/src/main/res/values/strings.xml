@@ -228,4 +228,8 @@
     <string name="widget_refresh">새로고침</string>
     <string name="widget_cpr">CPR 방법</string>
 
+    <!--checklist-->
+    <string name="info_chk_title">위급상황 준비물</string>
+    <string name="info_chk_contents">위급상황이 생겼을 때 잊지 말고 챙길 \n체크리스트를 인타임 함께 확인해보세요!</string>
+
 </resources>

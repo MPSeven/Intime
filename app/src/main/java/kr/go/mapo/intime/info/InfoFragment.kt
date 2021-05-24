@@ -1,10 +1,13 @@
 package kr.go.mapo.intime.info
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentInfoBinding
+import kr.go.mapo.intime.info.checklist.ChecklistActivity
+import kr.go.mapo.intime.info.checklist.FragmentChecklist
 
 class InfoFragment : Fragment(R.layout.fragment_info) {
     private var _binding:FragmentInfoBinding ?= null
@@ -31,7 +34,10 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
             replaceFragment(it)
         })
         binding.ibHowToChecklist.setOnClickListener(View.OnClickListener {
-            replaceFragment(it)
+            activity?.let{
+                val intent = Intent(context, ChecklistActivity::class.java)
+                startActivity(intent)
+            }
         })
     }
 
