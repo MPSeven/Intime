@@ -81,15 +81,22 @@ internal fun updateAppWidget(
     var fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
     fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
         // Got last known location. In some rare situations this can be null.
-        latitude = location?.latitude
-        longitude = location?.longitude
-        currentAddress = mGeoCoder.getFromLocation(latitude!!, longitude!!, 1)
-        address = (currentAddress as MutableList<Address>)?.get(0).getAddressLine(0).substring(5)
+        val views = RemoteViews(context.packageName, R.layout.intime_widget)
+
+        if(location == null){
+            views.setTextViewText(R.id.widget_currentLoc, "gps 연결이 불안정합니다")
+        } else {
+            latitude = location?.latitude
+            longitude = location?.longitude
+            currentAddress = mGeoCoder.getFromLocation(latitude!!, longitude!!, 1)
+            address = (currentAddress as MutableList<Address>)?.get(0).getAddressLine(0).substring(5)
+
+            views.setTextViewText(R.id.widget_currentLoc, address)
+        }
 
         val widgetText = context.getString(R.string.app_name)
-        val views = RemoteViews(context.packageName, R.layout.intime_widget)
         views.setTextViewText(R.id.widget_text, widgetText)
-        views.setTextViewText(R.id.widget_currentLoc, address)
+
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 }

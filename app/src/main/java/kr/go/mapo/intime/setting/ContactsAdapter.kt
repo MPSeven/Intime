@@ -14,7 +14,7 @@ class ContactsAdapter(private val ContactsList: MutableList<Contacts>): Recycler
     override fun getItemCount() = ContactsList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.contact_list, parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_contact, parent,false)
         return ConHolder(view)
     }
 

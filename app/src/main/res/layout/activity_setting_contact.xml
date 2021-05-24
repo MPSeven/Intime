@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@id/setting_con_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/contact_list"/>
+        tools:listitem="@layout/list_contact"/>
 
     <ImageButton
         android:id="@+id/setting_plus"

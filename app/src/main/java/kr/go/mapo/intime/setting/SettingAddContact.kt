@@ -59,13 +59,13 @@ class SettingAddContact : AppCompatActivity() {
                     val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
                     db?.contactsDao()?.insertCon(contact)
                     conList.add(contact)
-                    onBackPressed()
+                    finish()
                 }
             } else {
                 val contact = Contacts(0, name = selName.text.toString(), phoneNumber = selNum.text.toString(), chk = chk.isChecked)
                 db?.contactsDao()?.insertCon(contact)
                 conList.add(contact)
-                onBackPressed()
+                finish()
             }
         }
 

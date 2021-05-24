@@ -14,12 +14,4 @@ class FragmentChecklistExtra : Fragment() {
     ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
-    companion object{
-        fun newInstance(): Fragment{
-            val fragment:Fragment = FragmentChecklistExtra()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
-    }
 }

@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import kr.go.mapo.intime.R
 import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.setting.database.ContactsDatabase
@@ -175,8 +174,8 @@ class SosFragment : Fragment() {
 
         binding.btnFav.setOnClickListener{
 
-            if (phoneNum.isBlank()){
-                Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다 등록 후 사용해주세요", Toast.LENGTH_LONG).show()
+            if (db?.contactsDao()?.countSms(check = true) == 0){
+                Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다\n등록 후 사용해주세요", Toast.LENGTH_LONG).show()
             } else{
                 val dialog: CommonDialogFragment = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
                     when (it) {

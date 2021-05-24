@@ -9,7 +9,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.R
-import kr.go.mapo.intime.databinding.AmbulanceListBinding
+import kr.go.mapo.intime.databinding.ListAmbulanceBinding
 import kr.go.mapo.intime.sos.model.Ambulance
 
 class AmbulanceAdapter(
@@ -17,7 +17,7 @@ class AmbulanceAdapter(
     private val owner: AmbulanceActivity
 ) : RecyclerView.Adapter<AmbulanceAdapter.AmbHolder>() {
 
-    private lateinit var binding: AmbulanceListBinding
+    private lateinit var binding: ListAmbulanceBinding
 
     interface OnItemClickListener{
         fun onItemClick(v:View, data: Ambulance, pos : Int)
@@ -29,7 +29,7 @@ class AmbulanceAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmbHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.ambulance_list, parent, false)
+            R.layout.list_ambulance, parent, false)
 
         return AmbHolder(view)
     }
