@@ -70,11 +70,8 @@ class SettingContactsActivity : AppCompatActivity() {
             }
         })
 
-
         binding.settingConX.setOnClickListener {
             onBackPressed()
         }
     }
-
-
 }

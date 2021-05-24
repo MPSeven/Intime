@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="24dp"
-    android:layout_marginVertical="16dp"
-    android:background="@drawable/map_recyclerview_border"
-    android:padding="8dp">
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/map_recyclerview_border">
 
     <LinearLayout
-        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintHorizontal_weight="1.9"
         android:id="@+id/aedInfoText"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -40,12 +39,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10sp"
+                android:textColor="@color/gray500"
+                android:textSize="14sp"
                 android:text="|" />
 
             <TextView
                 android:id="@+id/distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/gray500"
                 tools:text="20m" />
 
         </LinearLayout>
@@ -56,22 +59,23 @@
             android:layout_width="wrap_content"
             android:maxLines="2"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            android:textStyle="bold"
+            android:textColor="@color/gray500"
+            android:textSize="14sp"
             tools:text="서울특별시 마포구 성산로 128" />
 
         <TextView
             android:id="@+id/addressDetail"
+            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:textColor="@color/gray500"
             tools:text="5층 로비" />
         
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintHorizontal_weight="1.1"
         android:id="@+id/aedInfoButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -95,17 +99,18 @@
 
             <android.widget.Button
                 android:id="@+id/recyclerViewCallButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/map_aed_button"
                 android:drawableStart="@drawable/map_call_symbol"
-                android:paddingLeft="12dp" />
+                android:paddingLeft="11dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="즐겨찾기"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/gray400"
+                android:text="@string/callAed"
                 android:textSize="10sp" />
 
 
@@ -124,17 +129,18 @@
 
             <android.widget.Button
                 android:id="@+id/recyclerViewFindPathButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/map_aed_button"
                 android:drawableLeft="@drawable/map_find_way"
-                android:paddingLeft="12dp" />
+                android:paddingLeft="11dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="길찾기"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/gray400"
+                android:text="@string/findPathAed"
                 android:textSize="10sp" />
 
         </LinearLayout>

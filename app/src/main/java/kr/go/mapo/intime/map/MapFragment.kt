@@ -515,7 +515,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             return ""
         }
 
-        return list[0].getAddressLine(0).toString()
+        return list[0].getAddressLine(0).toString().substring(4)
     }
 
     private fun getCustomAedInfo(size: Int) {
