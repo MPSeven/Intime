@@ -46,11 +46,11 @@ class FragmentChecklistBasic : Fragment() {
         chbData.add(Checklist(5, "추가 배터리", "", 0, false))
         chbData.add(Checklist(6, "호루라기", "", 0, false))
         chbData.add(Checklist(7, "먼지 마스크", "", 0, false))
-        chbData.add(Checklist(8, "플라스틱 시트 및 덕트 테이프", "", 0, false))
-        chbData.add(Checklist(9, "대피용", "물티슈 혹은 간편 샤워타올, 쓰레기 봉투 및 플라스틱 끈", 0, false))
-        chbData.add(Checklist(10, "렌치 또는 펜치", "", 0, false))
-        chbData.add(Checklist(11, "유틸리티 끄기", "", 0, false))
-        chbData.add(Checklist(12, "수동 캔 따개", "", 0, false))
+        chbData.add(Checklist(8, "플라스틱 시트 및 덕트 테이프", "대피용", 0, false))
+        chbData.add(Checklist(9, "물티슈 혹은 간편 샤워타올, 쓰레기 봉투 및 플라스틱 끈", "", 0, false))
+        chbData.add(Checklist(10, "렌치 또는 펜치", "유틸리티 끄기", 0, false))
+        chbData.add(Checklist(11, "수동 캔 따개", "식품용", 0, false))
+        chbData.add(Checklist(12, "지역지도", "", 0, false))
 
         return chbData
     }

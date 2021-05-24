@@ -5,21 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kr.go.mapo.intime.databinding.FragmentChecklistMineBinding
 
 class FragmentChecklistMine : Fragment() {
+
+    private var _binding: FragmentChecklistMineBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-    companion object{
-        fun newInstance(): Fragment{
-            val fragment:Fragment = FragmentChecklistMine()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+        _binding = FragmentChecklistMineBinding.inflate(inflater, container, false)
+        val root = binding.root
+
+        return root
     }
 }

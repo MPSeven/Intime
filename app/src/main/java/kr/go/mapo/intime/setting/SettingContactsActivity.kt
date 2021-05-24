@@ -23,22 +23,7 @@ class SettingContactsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        db = ContactsDatabase.getInstance(this)
-
-        val savedContacts = db!!.contactsDao().getCon()
-        if(savedContacts.isNotEmpty()){
-            conList.addAll(savedContacts)
-        }
-//        Log.d("여기", conList.toString())
-        val adapter = ContactsAdapter(conList)
-
-
-        recyclerview = binding.settingConRv
-        recyclerview.apply {
-            this.adapter = adapter
-            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        }
-
+        displayList()
 
         binding.settingPlus.setOnClickListener {
             if (db?.contactsDao()?.countAll()!! >= 5) {
@@ -49,17 +34,17 @@ class SettingContactsActivity : AppCompatActivity() {
             }
         }
 
-        adapter.setItemClickListener(object : ContactsAdapter.OnItemClickListener{
+        contactAdapter.setItemClickListener(object : ContactsAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
 
-                val dialog: CommonDialogFragment = CommonDialogFragment("비상연락처 삭제", "비상연락처를 삭제 하시겠습니까? \n삭제하면 복구가 불가능합니다.") {
+                val dialog = CommonDialogFragment("비상연락처 삭제", "비상연락처를 삭제 하시겠습니까? \n삭제하면 복구가 불가능합니다.") {
                     when (it) {
                         0 -> Toast.makeText(applicationContext,"삭제취소", Toast.LENGTH_SHORT).show()
                         1 -> {
                             val contacts = conList[position]
                             db?.contactsDao()?.deleteCon(contacts = contacts)
                             conList.removeAt(position)
-                            adapter.notifyDataSetChanged()
+                            contactAdapter.notifyDataSetChanged()
                             Toast.makeText(applicationContext, "삭제완료", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -73,5 +58,26 @@ class SettingContactsActivity : AppCompatActivity() {
             onBackPressed()
         }
     }
+    override fun onRestart(){
+        super.onRestart()
+        finishAndRemoveTask()
+    }
+    private lateinit var contactAdapter: ContactsAdapter
+    private fun displayList(){
+        db = ContactsDatabase.getInstance(this)
 
+        val savedContacts = db!!.contactsDao().getCon()
+        if(savedContacts.isNotEmpty()){
+            conList.addAll(savedContacts)
+        }
+//        Log.d("여기", conList.toString())
+        contactAdapter = ContactsAdapter(conList)
+
+
+        recyclerview = binding.settingConRv
+        recyclerview.apply {
+            adapter = contactAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
+    }
 }

@@ -10,7 +10,8 @@
         android:id="@+id/cb_chk"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:button="@drawable/info_checklist_checkbox"
+        android:button="@android:color/transparent"
+        android:background="@drawable/info_checklist_checkbox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
