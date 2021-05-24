@@ -16,9 +16,8 @@ import kr.go.mapo.intime.map.model.SortedShelter
 import java.lang.Exception
 import kotlin.math.roundToInt
 
-class ShelterListAdapter : ListAdapter<SortedShelter, ShelterListAdapter.ShelterItemViewHolder>(
-    differ
-) {
+class ShelterListAdapter :
+    ListAdapter<SortedShelter, ShelterListAdapter.ShelterItemViewHolder>(differ) {
 
     inner class ShelterItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -41,20 +40,29 @@ class ShelterListAdapter : ListAdapter<SortedShelter, ShelterListAdapter.Shelter
             }
 
             findPathButton.setOnClickListener {
-                try{
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("nmap://route/walk?dlat=${sortedShelter.shelter.lat}&dlng=${sortedShelter.shelter.lon}&dname=${sortedShelter.shelter.placeName}")).apply {
+                try {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("nmap://route/walk?dlat=${sortedShelter.shelter.lat}&dlng=${sortedShelter.shelter.lon}&dname=${sortedShelter.shelter.placeName}")
+                    ).apply {
                         `package` = "com.nhn.android.nmap"
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     }
                     it.context.startActivity(intent)
-                }catch (e: Exception) {
-                    val intentPlayStore = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME" ))
+                } catch (e: Exception) {
+                    val intentPlayStore = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
+                    )
                     it.context.startActivity(intentPlayStore)
                 }
             }
 
             callButton.setOnClickListener {
-                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${sortedShelter.shelter.capacityArea}"))
+                val intent = Intent(
+                    Intent.ACTION_DIAL,
+                    Uri.parse("tel:${sortedShelter.shelter.capacityArea}")
+                )
                 it.context.startActivity(intent)
                 // todo ACTION_CALL
             }
@@ -76,7 +84,10 @@ class ShelterListAdapter : ListAdapter<SortedShelter, ShelterListAdapter.Shelter
                 return oldItem.distance == newItem.distance
             }
 
-            override fun areContentsTheSame(oldItem: SortedShelter, newItem: SortedShelter): Boolean {
+            override fun areContentsTheSame(
+                oldItem: SortedShelter,
+                newItem: SortedShelter
+            ): Boolean {
                 return oldItem == newItem
             }
         }

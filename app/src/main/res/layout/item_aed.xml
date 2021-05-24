@@ -3,22 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="106dp"
     android:layout_marginHorizontal="24dp"
-    android:layout_marginVertical="16dp"
-    android:background="@drawable/map_recyclerview_border"
-    android:padding="8dp">
+    android:paddingTop="16dp"
+    android:paddingBottom="12dp"
+    android:background="@drawable/map_recyclerview_border">
 
     <LinearLayout
-        app:layout_constraintHorizontal_weight="2"
         android:id="@+id/aedInfoText"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/aedInfoButton"
+        app:layout_constraintHorizontal_weight="1.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/org"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="공덕역" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="서울특별시 마포구 성산로 128" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,14 +48,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/org"
+                android:id="@+id/addressDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="공덕역" />
-
+                tools:text="5층 로비" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,35 +67,18 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/address"
-            android:layout_marginVertical="5dp"
-            android:layout_width="wrap_content"
-            android:maxLines="2"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            tools:text="서울특별시 마포구 성산로 128" />
 
-        <TextView
-            android:id="@+id/addressDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            tools:text="5층 로비" />
-        
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:layout_constraintHorizontal_weight="1"
         android:id="@+id/aedInfoButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:gravity="center"
         android:layout_marginStart="10dp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/aedInfoText"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -97,7 +97,7 @@
                 android:id="@+id/recyclerViewCallButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/map_aed_button"
+                android:background="@drawable/map_aed_button_click"
                 android:drawableStart="@drawable/map_call_symbol"
                 android:paddingLeft="12dp" />
 
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="즐겨찾기"
+                android:text="@string/call"
                 android:textSize="10sp" />
 
 
@@ -126,7 +126,7 @@
                 android:id="@+id/recyclerViewFindPathButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/map_aed_button"
+                android:background="@drawable/map_aed_button_click"
                 android:drawableLeft="@drawable/map_find_way"
                 android:paddingLeft="12dp" />
 
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="길찾기"
+                android:text="@string/findPath"
                 android:textSize="10sp" />
 
         </LinearLayout>

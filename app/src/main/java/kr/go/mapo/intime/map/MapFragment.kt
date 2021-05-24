@@ -377,11 +377,19 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                 ) {
                     if (response.code() == 200) {
                         val result: AedDto? = response.body()
+
+                        Log.d(TAG, "$result")
+
                         if (result == null) {
-                            emptyResultTextView.visibility = View.VISIBLE
-                            recyclerView.visibility = View.GONE
                             return
                         } else {
+                            if(result.result == 0) {
+                                emptyResultTextView.visibility = View.VISIBLE
+                                recyclerView.visibility = View.INVISIBLE
+                            } else {
+                                emptyResultTextView.visibility = View.GONE
+                                recyclerView.visibility = View.VISIBLE
+                            }
                             updateAedMapMarkers(result)
                             aedRecyclerAdapter.submitList(result.aeds)
                             aedViewPagerAdapter.submitList(result.aeds)
@@ -428,10 +436,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                         Log.d(TAG, "$result")
 
                         if (result == null) {
-                            emptyResultTextView.visibility = View.VISIBLE
-                            recyclerView.visibility = View.GONE
                             return
                         } else {
+                            if(result.result == 0) {
+                                emptyResultTextView.visibility = View.VISIBLE
+                                recyclerView.visibility = View.INVISIBLE
+                            } else {
+                                emptyResultTextView.visibility = View.GONE
+                                recyclerView.visibility = View.VISIBLE
+                            }
 
                             updateShelterMapMarkers(result)
                             shelterRecyclerAdapter.submitList(result.shelters)
@@ -528,7 +541,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         spannableString = SpannableString(info)
 
         spannableString.setSpan(
-            ForegroundColorSpan(Color.parseColor("#FF6702")),
+            ForegroundColorSpan(Color.parseColor("#EE4B3C")),
             start,
             end,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -547,7 +560,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         spannableString = SpannableString(info)
 
         spannableString.setSpan(
-            ForegroundColorSpan(Color.parseColor("#FF6702")),
+            ForegroundColorSpan(Color.parseColor("#1874C1")),
             start,
             end,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -603,7 +616,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MapFragment"
-        private const val DISTANCE = 0.8F
+        private const val DISTANCE = 0.6F
     }
 
 
