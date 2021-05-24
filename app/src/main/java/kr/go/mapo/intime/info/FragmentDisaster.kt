@@ -20,7 +20,7 @@ class FragmentDisaster : Fragment(R.layout.fragment_disaster) {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+/*    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.infoTbEarthquake.setOnClickListener { replaceFragment(it)}
         binding.infoTbTyphoon.setOnClickListener { replaceFragment(it)}
@@ -42,7 +42,7 @@ class FragmentDisaster : Fragment(R.layout.fragment_disaster) {
         fragmentTransaction?.replace(R.id.frameLayout, replaceFragment)
         fragmentTransaction?.addToBackStack(null)
         fragmentTransaction?.commit()
-    }
+    }*/
 
     companion object {
         fun newInstance(): FragmentDisaster {

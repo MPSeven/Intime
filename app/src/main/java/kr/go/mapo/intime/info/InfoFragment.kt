@@ -24,14 +24,26 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.ibHowToAed.setOnClickListener {
-            replaceFragment(it)
+            /*replaceFragment(it)*/
+            activity?.let {
+                val intent = Intent(context, AedActivity::class.java)
+                startActivity(intent)
+            }
 
         }
         binding.ibHowToCpr.setOnClickListener(View.OnClickListener {
-            replaceFragment(it)
+            /*replaceFragment(it)*/
+            activity?.let {
+                val intent = Intent(context, CprActivity::class.java)
+                startActivity(intent)
+            }
         })
         binding.ibHowToDisaster.setOnClickListener(View.OnClickListener {
-            replaceFragment(it)
+            /*replaceFragment(it)*/
+            activity?.let {
+                val intent = Intent(context, DisasterActivity::class.java)
+                startActivity(intent)
+            }
         })
         binding.ibHowToChecklist.setOnClickListener(View.OnClickListener {
             activity?.let{

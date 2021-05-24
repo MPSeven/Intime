@@ -14,29 +14,6 @@ class FragmentCpr : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_basic_info, container, false)
+        return inflater.inflate(R.layout.item_cpr_adult, container, false)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.setOnClickListener(View.OnClickListener {
-
-            when(view.id){
-                R.id.info_tb_adult ->{
-                    val fragmentManager = activity?.supportFragmentManager
-                    val fragmentTransaction = fragmentManager?.beginTransaction()
-                    fragmentTransaction?.replace(R.id.layout_cpr_basic, FragmentCpr())
-                    fragmentTransaction?.addToBackStack(null)
-                    fragmentTransaction?.commit()
-                }else ->{
-                val fragmentManager = activity?.supportFragmentManager
-                val fragmentTransaction = fragmentManager?.beginTransaction()
-                fragmentTransaction?.replace(R.id.container_cpr, FragmentCprChild())
-                fragmentTransaction?.addToBackStack(null)
-                fragmentTransaction?.commit()
-                }
-            }
-        })
-    }
-
 }

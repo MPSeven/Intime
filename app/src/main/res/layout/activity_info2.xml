@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/top_app_bar" />
+        app:menu="@menu/top_app_bar"/>
 
     <ScrollView
         android:layout_width="match_parent"

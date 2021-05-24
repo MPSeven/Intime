@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="false"
@@ -41,10 +41,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".info.InfoActivity" android:parentActivityName=".MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
-        </activity>
+        <!--Under Info:-->
+        <activity
+            android:name=".info.InfoActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".info.DisasterActivity"
+            android:parentActivityName=".info.InfoActivity" />
+        <activity
+            android:name=".info.EarthquakeActivity"
+            android:parentActivityName=".info.DisasterActivity" />
+        <activity
+            android:name=".info.FloodActivity"
+            android:parentActivityName=".info.DisasterActivity" />
+        <activity
+            android:name=".info.TyphoonActivity"
+            android:parentActivityName=".info.DisasterActivity" />
+        <activity
+            android:name=".info.ForestFireActivity"
+            android:parentActivityName=".info.DisasterActivity" />
+        <activity
+            android:name=".info.UrbanFireActivity"
+            android:parentActivityName=".info.DisasterActivity" />
+        <activity
+            android:name=".info.AedActivity"
+            android:parentActivityName=".info.InfoActivity" />
+        <activity
+            android:name=".info.CprActivity"
+            android:parentActivityName=".info.InfoActivity" />
+
+        <!--Settings:-->
         <activity android:name=".setting.SettingAddContact" />
         <activity android:name=".setting.SettingFavoriteActivity" />
         <activity android:name=".setting.SettingContactsActivity" />

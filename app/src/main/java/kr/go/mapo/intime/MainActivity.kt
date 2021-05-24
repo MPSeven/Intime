@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId){
+        when(item.itemId){
             R.id.toolbar_btn -> {
                 val settingIntent = Intent(this, SettingActivity::class.java)
                 startActivity(settingIntent)
@@ -79,10 +79,10 @@ class MainActivity : AppCompatActivity(){
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_info -> {
-                        startActivity(Intent(applicationContext, InfoActivity::class.java))
+/*                        startActivity(Intent(applicationContext, InfoActivity::class.java))*/
 
-/*                    replaceFragment(InfoFragment())
-                    return@OnNavigationItemSelectedListener true*/
+                    replaceFragment(InfoFragment())
+                    return@OnNavigationItemSelectedListener true
                 }
             }
             true

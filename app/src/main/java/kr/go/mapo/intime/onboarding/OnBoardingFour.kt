@@ -19,7 +19,7 @@ class OnBoardingFour : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view= inflater.inflate(R.layout.fragment_on_boarding_four, container, false)
-        val vP = activity?.findViewById<ViewPager2>(R.id.vp)
+        activity?.findViewById<ViewPager2>(R.id.vp)
         view.findViewById<ImageButton>(R.id.onboarding_ib_start).setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_mainActivity)
             onBoardingFinished()

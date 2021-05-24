@@ -16,6 +16,7 @@ class Splash : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        @Suppress("DEPRECATION")
         Handler().postDelayed({
             if (onBoardingFinished()) {
                 findNavController().navigate(R.id.action_splash_to_mainActivity)
