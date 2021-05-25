@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/myAddress"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,12 +18,16 @@
         <TextView
             android:id="@+id/addressTextView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawablePadding="5dip"
+            android:drawablePadding="8dp"
             android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16dp"
             android:lines="1"
-            android:text="hello"
+            android:text="서울특별시 마포구 성산동"
+            android:textColor="@color/black"
             app:drawableStartCompat="@drawable/map_navigation_arrow" />
 
     </LinearLayout>
@@ -32,7 +36,7 @@
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="48dp" />
 
     <com.naver.maps.map.widget.LocationButtonView
         android:id="@+id/location"
@@ -40,8 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="72dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

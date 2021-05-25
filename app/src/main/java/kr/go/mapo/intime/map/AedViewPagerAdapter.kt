@@ -1,27 +1,37 @@
 package kr.go.mapo.intime.map
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.FragmentMapBinding
 import kr.go.mapo.intime.setting.database.DataBaseProvider
 import kr.go.mapo.intime.databinding.ItemDetailViewpagerBinding
+import kr.go.mapo.intime.map.model.Aed
 import kr.go.mapo.intime.map.model.SortedAed
+import kr.go.mapo.intime.setting.dao.BookmarkAedDao
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
 class AedViewPagerAdapter :
     androidx.recyclerview.widget.ListAdapter<SortedAed, AedViewPagerAdapter.ItemViewHolder>(differ),
     CoroutineScope {
+
+    private lateinit var context: Context
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
+    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + Job()
@@ -31,19 +41,23 @@ class AedViewPagerAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(sortedAed: SortedAed) = with(binding) {
-
             orgMarker.text = sortedAed.aed.org
             addressMarker.text = sortedAed.aed.address
             addressDetailMarker.text = sortedAed.aed.addressDetail
             distanceMarker.text = "${(sortedAed.distance * 1000).roundToInt()}m"
 
-            if (sortedAed.aed.checked) {
-                val img: Drawable? =
-                    findPathButton.context.resources.getDrawable(R.drawable.map_bookmark_on)
-                img?.setBounds(0, 0, 80, 80)
-                findPathButton.setCompoundDrawables(img, null, null, null)
+            launch {
+                Log.d("viewPagerAdapter", "setLikeState")
+                withContext(Dispatchers.IO) {
+                    val repository = DataBaseProvider.provideDB(context).bookmarkAedDao().getAed(sortedAed.aed.lat)
+                    Log.d("viewPagerAdapter", "repository: $repository")
+                    val isLike = repository != null
+                    Log.d("viewPagerAdapter", "isLike: $isLike")
+                    withContext(Dispatchers.Main) {
+                        setLikeImage(isLike)
+                    }
+                }
             }
-
         }
 
         fun bindViews(sortedAed: SortedAed) {
@@ -80,55 +94,72 @@ class AedViewPagerAdapter :
             }
 
             binding.bookMarkButton.setOnClickListener {
-                if (!sortedAed.aed.checked) {
-                    sortedAed.aed.checked = true
-                    val img: Drawable? =
-                        it.context.resources.getDrawable(R.drawable.map_bookmark_on)
-                    img?.setBounds(0, 0, 80, 80)
-                    binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
+                setLikeState(sortedAed.aed)
+            }
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        try {
-                            DataBaseProvider.provideDB(it.context).bookmarkAedDao()
-                                .insertAed(sortedAed.aed)
-                        } catch (e: Exception) {
-                            DataBaseProvider.provideDB(it.context).bookmarkAedDao()
-                                .updateAed(sortedAed.aed)
-                        }
+        }
 
+        private fun setLikeState(aed: Aed) = launch {
+            Log.d("viewPagerAdapter", "setLikeState")
+            withContext(Dispatchers.IO) {
+                val repository = DataBaseProvider.provideDB(context).bookmarkAedDao().getAed(aed.lat)
+                Log.d("viewPagerAdapter", "repository: $repository")
+                val isLike = repository != null
+                Log.d("viewPagerAdapter", "isLike: $isLike")
 
-                        val aedRepo =
-                            DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
-                        Log.d("ViewPagerAdapter", aedRepo.toString())
-                    }
-                } else {
-                    sortedAed.aed.checked = false
-                    val img: Drawable? =
-                        it.context.resources.getDrawable(R.drawable.map_bookmark_off)
-                    img?.setBounds(0, 0, 80, 80)
-                    binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
+                likeRepository(aed, isLike)
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        DataBaseProvider.provideDB(it.context).bookmarkAedDao()
-                            .delete(sortedAed.aed.lat)
-
-                        val aedRepo =
-                            DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
-                        Log.d("ViewPagerAdapter", aedRepo.toString())
-                    }
+                withContext(Dispatchers.Main) {
+                    setLikeImage(isLike)
                 }
             }
         }
 
-    }
+        private fun likeRepository(aed: Aed, isLike: Boolean) = launch {
+            Log.d("viewpageradapter", "LikeRepository")
+            withContext(Dispatchers.IO) {
+                val dao = DataBaseProvider.provideDB(context).bookmarkAedDao()
+                if(isLike) {
+                    dao.delete(aed.lat)
+                    Log.d("viewPagerAdapter", "delete aed")
+                    val db = dao.getAll()
+                    Log.d("viewPagerAdapter", "$db")
+                } else {
+                    dao.insertAed(aed)
+                    Log.d("viewPagerAdapter", "insert aed")
+                    val db = dao.getAll()
+                    Log.d("viewPagerAdapter", "$db")
+                }
+                withContext(Dispatchers.Main) {
+                    setLikeImage(isLike.not())
+                }
+            }
+        }
 
+        private fun setLikeImage(isLike: Boolean) = with(binding){
+            Log.d("viewPagerAdapter", "setLikeImage")
+            if(isLike) {
+                val img: Drawable? =
+                    bookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_on)
+                img?.setBounds(0, 0, 80, 80)
+                bookMarkButton.setCompoundDrawables(img, null, null, null)
+            } else {
+                val img: Drawable? =
+                    bookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_off)
+                img?.setBounds(0, 0, 80, 80)
+                binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ItemViewHolder {
+
         val view =
             ItemDetailViewpagerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return ItemViewHolder(view)
     }
 
@@ -136,6 +167,8 @@ class AedViewPagerAdapter :
         holder.bindData(currentList[position])
         holder.bindViews(currentList[position])
     }
+
+
 
     companion object {
         val differ = object : DiffUtil.ItemCallback<SortedAed>() {
@@ -146,9 +179,7 @@ class AedViewPagerAdapter :
             override fun areContentsTheSame(oldItem: SortedAed, newItem: SortedAed): Boolean {
                 return oldItem == newItem
             }
-
         }
-
         private const val NAVER_MAP_PACKAGE_NAME = "com.nhn.android.nmap"
     }
 

@@ -2,11 +2,13 @@ package kr.go.mapo.intime.setting
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kr.go.mapo.intime.R
 import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.databinding.ActivitySettingContactBinding
 import kr.go.mapo.intime.model.Contacts

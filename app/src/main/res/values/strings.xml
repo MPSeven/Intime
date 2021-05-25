@@ -227,6 +227,8 @@
     <string name="widget_loc">현재위치</string>
     <string name="widget_refresh">새로고침</string>
     <string name="widget_cpr">CPR 방법</string>
+    <string name="callAed">전화하기</string>
+    <string name="findPathAed">길찾기</string>
 
     <!--checklist-->
     <string name="info_chk_title">위급상황 준비물</string>
