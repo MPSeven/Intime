@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +20,10 @@ import kr.go.mapo.intime.map.model.SortedAed
 import java.lang.Exception
 import kotlin.math.roundToInt
 
-class AedListAdapter: ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(differ) {
+class AedListAdapter(fragmentManager: FragmentManager): ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(differ) {
 
     private lateinit var context: Context
+    private var mFragmentManager: FragmentManager = fragmentManager
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -58,25 +61,25 @@ class AedListAdapter: ListAdapter<SortedAed, AedListAdapter.ItemViewHolder>(diff
 
             findPathButton.setOnClickListener {
 
-//                val bottomSheetDialog: MapBottomSheetDialog = MapBottomSheetDialog()
-//                bottomSheetDialog.show()
+                val bottomSheetDialog = MapBottomSheetDialog(sortedAed)
+                bottomSheetDialog.show(mFragmentManager, bottomSheetDialog.tag)
 
-                try {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("nmap://route/walk?dlat=${sortedAed.aed.lat}&dlng=${sortedAed.aed.lon}&dname=${sortedAed.aed.org}")
-                    ).apply {
-                        `package` = "com.nhn.android.nmap"
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                    it.context.startActivity(intent)
-                } catch (e: Exception) {
-                    val intentPlayStore = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
-                    )
-                    it.context.startActivity(intentPlayStore)
-                }
+//                try {
+//                    val intent = Intent(
+//                        Intent.ACTION_VIEW,
+//                        Uri.parse("nmap://route/walk?dlat=${sortedAed.aed.lat}&dlng=${sortedAed.aed.lon}&dname=${sortedAed.aed.org}")
+//                    ).apply {
+//                        `package` = "com.nhn.android.nmap"
+//                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                    }
+//                    it.context.startActivity(intent)
+//                } catch (e: Exception) {
+//                    val intentPlayStore = Intent(
+//                        Intent.ACTION_VIEW,
+//                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
+//                    )
+//                    it.context.startActivity(intentPlayStore)
+//                }
             }
 
             callButton.setOnClickListener {

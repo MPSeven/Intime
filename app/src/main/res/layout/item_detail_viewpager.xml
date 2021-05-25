@@ -141,14 +141,6 @@
                     android:drawableStart="@drawable/map_call_symbol"
                     android:paddingLeft="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/call"
-                    android:textSize="10sp" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -169,13 +161,6 @@
                     android:background="@drawable/map_aed_button"
                     android:drawableLeft="@drawable/map_find_way"
                     android:paddingLeft="12dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/findPath"
-                    android:textSize="10sp" />
 
             </LinearLayout>
 

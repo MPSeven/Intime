@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:background="@drawable/map_top_radius_white_background">
 
-    <android.widget.Button
-        android:id="@+id/naverMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:background="@drawable/map_top_radius_white_background"
+        android:id="@+id/naverMapLayout"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/kakaoMapLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <android.widget.Button
-        android:id="@+id/kakaoMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ImageButton
+            android:background="#FFFFFFFF"
+            android:id="@+id/naverMapButton"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_marginBottom="22dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/naver_map" />
+
+        <TextView
+            android:id="@+id/naverMapTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/naverMapTextView" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/map_top_radius_white_background"
+        android:id="@+id/kakaoMapLayout"
+        android:layout_width="0dp"
+        android:layout_height="190dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/naverMapLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:background="#FFFFFFFF"
+            android:id="@+id/kakaoMapButton"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_marginBottom="22dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/kakao_map" />
+
+        <TextView
+            android:id="@+id/kakaoMapTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kakaoMapTextView" />
+
+    </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

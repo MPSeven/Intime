@@ -6,8 +6,10 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.renderscript.ScriptGroup
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -124,11 +126,19 @@ class AedViewPagerAdapter :
                     Log.d("viewPagerAdapter", "delete aed")
                     val db = dao.getAll()
                     Log.d("viewPagerAdapter", "$db")
+
+                    withContext(Dispatchers.Main) {
+                        bookmarkToast("즐겨찾기가 해제되었습니다. ")
+                    }
                 } else {
                     dao.insertAed(aed)
                     Log.d("viewPagerAdapter", "insert aed")
                     val db = dao.getAll()
                     Log.d("viewPagerAdapter", "$db")
+
+                    withContext(Dispatchers.Main) {
+                        bookmarkToast("즐겨찾기에 추가되었습니다. ")
+                    }
                 }
                 withContext(Dispatchers.Main) {
                     setLikeImage(isLike.not())
@@ -143,11 +153,13 @@ class AedViewPagerAdapter :
                     bookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_on)
                 img?.setBounds(0, 0, 80, 80)
                 bookMarkButton.setCompoundDrawables(img, null, null, null)
+
             } else {
                 val img: Drawable? =
                     bookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_off)
                 img?.setBounds(0, 0, 80, 80)
                 binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
+
             }
         }
     }
@@ -168,6 +180,11 @@ class AedViewPagerAdapter :
         holder.bindViews(currentList[position])
     }
 
+    private fun bookmarkToast(string: String) {
+        val toast = Toast.makeText(context, "$string", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.BOTTOM, 0, 950)
+        toast.show()
+    }
 
 
     companion object {

@@ -10,12 +10,17 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -57,7 +62,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     private lateinit var geoCoder: Geocoder
     private var myAddress: String = "init"
     private lateinit var addressTextView: TextView
-    private val aedRecyclerAdapter = AedListAdapter()
+    private lateinit var aedRecyclerAdapter: AedListAdapter
     private val shelterRecyclerAdapter = ShelterListAdapter()
     private val aedViewPagerAdapter = AedViewPagerAdapter()
     private val shelterViewPagerAdapter = ShelterViewPagerAdapter()
@@ -66,6 +71,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     private lateinit var rootView: View
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
+
+    private lateinit var manager: FragmentManager
 
     private val job: Job = Job()
 
@@ -123,6 +130,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         aedNumberTextView = rootView.findViewById(R.id.aedNumber)
         locationButtonView = rootView.findViewById(R.id.location)
 
+        manager = (context as FragmentActivity).supportFragmentManager
+
+        aedRecyclerAdapter = AedListAdapter(manager)
+
         recyclerView.adapter = aedRecyclerAdapter
         viewPager.adapter = aedViewPagerAdapter
 
@@ -150,7 +161,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                         .animate(CameraAnimation.Easing)
 
                 naverMap.moveCamera(cameraUpdate)
-
             }
         })
 
@@ -213,11 +223,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
             fetchAedLocation(latitude, longitude, DISTANCE)
 
-            val locationOverlay = naverMap.locationOverlay
-            locationOverlay.icon = OverlayImage.fromResource(R.drawable.map_aed_overlay_png)
-            locationOverlay.iconWidth = 80
-            locationOverlay.iconHeight = 80
 
+            getOverlay(R.drawable.map_aed_overlay)
 
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -250,10 +257,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             setClickedShelterButtonAppearance()
             fetchShelterLocation(latitude, longitude, DISTANCE)
 
-            val locationOverlay = naverMap.locationOverlay
-            locationOverlay.icon = OverlayImage.fromResource(R.drawable.map_shelter_overlay_png)
-            locationOverlay.iconWidth = 60
-            locationOverlay.iconHeight = 60
+            getOverlay(R.drawable.map_shelter_overlay)
 
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -280,6 +284,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             setClickedEmergencyButtonAppearance()
             resetMarkerList()
 
+            getOverlay(R.drawable.map_emergency_overlay)
+
             emptyResultTextView.visibility = View.VISIBLE
             recyclerView.visibility = View.INVISIBLE
 
@@ -291,6 +297,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         binding.bottomSheetDialog.pharmacyCategoryButton.setOnClickListener {
             setClickedPharmacyButtonAppearance()
             resetMarkerList()
+
+            getOverlay(R.drawable.map_pharmacy_overlay)
 
             emptyResultTextView.visibility = View.VISIBLE
             recyclerView.visibility = View.INVISIBLE
@@ -386,11 +394,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     }
 
     private fun initMap() {
-        val locationOverlay = naverMap.locationOverlay
-        locationOverlay.isVisible = true
-        locationOverlay.icon = OverlayImage.fromResource(R.drawable.map_aed_overlay_png)
-        locationOverlay.iconWidth = 80
-        locationOverlay.iconHeight = 80
+        getOverlay(R.drawable.map_aed_overlay)
 
         val uiSettings: UiSettings = naverMap.uiSettings
         uiSettings.isLocationButtonEnabled = false
@@ -602,6 +606,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             return ""
         }
 
+        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
+
         return list[0].getAddressLine(0).toString().substring(4)
     }
 
@@ -812,6 +818,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol_clicked)
         img4?.setBounds(0, 0, 60, 60)
         pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
+    }
+
+    private fun getOverlay(res: Int){
+        val locationOverlay = naverMap.locationOverlay
+        locationOverlay.icon = OverlayImage.fromResource(res)
+        locationOverlay.iconWidth = 80
+        locationOverlay.iconHeight = 80
     }
 
 
