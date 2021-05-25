@@ -9,6 +9,12 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/disaster_appbar"
         android:layout_width="match_parent"
+        android:textAlignment="center"
+        app:titleCentered="true"
+        app:titleEnabled="true"
+        android:gravity="center"
+        android:padding="0dp"
+        tools:text = "재난상황 대처 방법"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -26,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="48dp"
         android:paddingLeft="@dimen/default_padding"
         android:paddingRight="@dimen/default_padding"
         app:layout_constraintTop_toBottomOf="@id/iv_bar_design">
@@ -47,7 +54,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="22dp" />
+            android:layout_height="12dp" />
 
         <Button
             android:id="@+id/infoTbTyphoon"
@@ -66,7 +73,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="22dp" />
+            android:layout_height="12dp" />
 
         <Button
             android:id="@+id/infoTbFlood"
@@ -85,7 +92,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="22dp" />
+            android:layout_height="12dp" />
 
         <Button
             android:id="@+id/infoTbForrestfire"
@@ -104,7 +111,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="22dp" />
+            android:layout_height="12dp" />
 
         <Button
             android:id="@+id/infoTBUrbanFire"
