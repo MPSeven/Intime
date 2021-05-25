@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/map_top_radius_white_background"
-    android:padding="20dp"
+    android:padding="24dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <LinearLayout
@@ -14,66 +14,68 @@
         android:layout_height="120dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/infoButton"
-        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintHorizontal_weight="1.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/orgMarker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/orgMarker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textFontWeight="900"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                tools:text="공덕역" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10sp"
-                android:text="|" />
-
-            <TextView
-                android:id="@+id/distanceMarker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20m" />
-
-        </LinearLayout>
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="공덕역" />
 
         <TextView
             android:id="@+id/addressMarker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:maxLines="2"
+            android:layout_marginVertical="16dp"
+            android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="13sp"
-            android:textStyle="bold"
+            android:textSize="14sp"
             tools:text="서울특별시 마포구 성산로 128" />
 
-        <TextView
-            android:id="@+id/addressDetailMarker"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            tools:text="5층 로비" />
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/addressDetailMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:text="5층 로비" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10sp"
+                android:text="|"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/distanceMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:text="20m" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/infoButton"
         android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_height="110dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
@@ -84,9 +86,9 @@
             android:id="@+id/bookMarkLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="horizontal"
             android:gravity="end
 "
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/buttonsLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,13 +98,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bookmark" />
+                android:text="@string/bookmark"
+                android:textColor="@color/gray400"
+                android:textSize="14sp" />
 
             <android.widget.Button
                 android:id="@+id/bookMarkButton"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginHorizontal="8dp"
                 android:background="@drawable/map_bookmark_off" />
 
         </LinearLayout>
@@ -112,6 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bookMarkLayout"

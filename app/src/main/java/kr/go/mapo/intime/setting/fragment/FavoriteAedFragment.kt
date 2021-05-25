@@ -62,7 +62,6 @@ class FavoriteAedFragment : Fragment(), CoroutineScope{
                 favoriteAedAdapter.submitList(repository)
             }
         }
-
     }
 
 }

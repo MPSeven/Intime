@@ -62,7 +62,7 @@ class SettingContactsActivity : AppCompatActivity() {
     }
     override fun onRestart(){
         super.onRestart()
-        finishAndRemoveTask()
+
     }
     private lateinit var contactAdapter: ContactsAdapter
     private fun displayList(){

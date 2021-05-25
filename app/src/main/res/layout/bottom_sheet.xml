@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/map_top_radius_white_background"
+    android:elevation="4dp"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -21,61 +22,63 @@
     <HorizontalScrollView
         android:id="@+id/bottomSheetButtonLayout"
         android:layout_width="0dp"
-        android:layout_height="42dp"
+        android:layout_height="40dp"
         android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:paddingHorizontal="24dp"
+        android:layout_marginStart="24dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="42dp"
-            android:layout_height="match_parent"
+            android:layout_width="4dp"
+            android:layout_height="40dp"
             android:orientation="horizontal">
 
             <android.widget.Button
                 android:id="@+id/aedCategoryButton"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_height="@dimen/button_height"
                 android:background="@drawable/map_category_button"
                 android:drawableStart="@drawable/map_aed_symbol"
-                android:padding="5dp"
-                android:text="심장충격기"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="@dimen/button_vertical_padding"
+                android:text="@string/aed"
                 android:textColor="@drawable/map_button_text_color" />
 
             <android.widget.Button
                 android:id="@+id/shelterCategoryButton"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/map_category_button"
                 android:drawableStart="@drawable/map_shelter_symbol"
-                android:padding="5dp"
-                android:text="대피소" />
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="@dimen/button_vertical_padding"
+                android:text="@string/shelter" />
 
             <android.widget.Button
                 android:id="@+id/emergencyRoomCategoryButton"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/map_category_button"
                 android:drawableStart="@drawable/map_emergency_room_symbol"
-                android:padding="5dp"
-                android:text="응급실"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="@dimen/button_vertical_padding"
+                android:text="@string/emergency"
                 android:textColor="@drawable/map_button_text_color" />
 
             <android.widget.Button
                 android:id="@+id/pharmacyCategoryButton"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/map_category_button"
                 android:drawableStart="@drawable/map_pharmacy_symbol"
-                android:padding="5dp"
-                android:text="24시 약국" />
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="@dimen/button_vertical_padding"
+                android:text="  24시 약국" />
         </LinearLayout>
 
     </HorizontalScrollView>
@@ -85,10 +88,13 @@
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="24dp"
+        android:paddingTop="12dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
+        tools:text="나와 가장 가까운 심장충격기가 있습니다"
         app:layout_constraintTop_toBottomOf="@id/bottomSheetButtonLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -105,13 +111,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/emptyAedResult"
-        app:layout_constraintVertical_bias="0.25"
-        android:visibility="gone"
         android:textColor="@color/gray400"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aedNumber"
+        app:layout_constraintVertical_bias="0.15"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

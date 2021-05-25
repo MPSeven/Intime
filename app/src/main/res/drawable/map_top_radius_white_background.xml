@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-
     <solid android:color="#F2FFFFFF" />
     <corners android:topRightRadius="30dp"
         android:topLeftRadius="30dp" />
-
 </shape>
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="#CABBBBBB" />-->
+<!--            <corners android:topRightRadius="30dp"-->
+<!--                android:topLeftRadius="30dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--    <item-->
+<!--        android:left="0dp"-->
+<!--        android:right="0dp"-->
+<!--        android:top="2dp"-->
+<!--        android:bottom="0dp">-->
+<!--        <shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:shape="rectangle">-->
+<!--            <solid android:color="#F2FFFFFF" />-->
+<!--            <corners android:topRightRadius="30dp"-->
+<!--                android:topLeftRadius="30dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--</layer-list>-->
