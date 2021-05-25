@@ -30,6 +30,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_child"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -39,7 +40,7 @@
                     android:id="@+id/ch_extra_childrv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     android:overScrollMode="never"
                     android:fillViewport="true"
                     tools:listitem="@layout/list_checklist" />
@@ -59,6 +60,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_women"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -69,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:fillViewport="true"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
@@ -87,6 +89,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_medicine"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -97,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:fillViewport="true"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
@@ -115,6 +118,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_pet"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -125,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:fillViewport="true"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
@@ -143,6 +147,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_valuables"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -153,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:fillViewport="true"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
@@ -171,6 +176,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_clothing"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -181,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:fillViewport="true"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
@@ -199,6 +205,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/info_chk_etc"
                     android:textAppearance="@style/Head3"
                     android:textFontWeight="1100"
@@ -209,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     android:fillViewport="true"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="10dp"
                     tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
 

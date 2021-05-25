@@ -13,7 +13,8 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" >
         <TextView
             android:id="@+id/checklistTVphrase1"
             android:layout_width="wrap_content"
@@ -25,7 +26,7 @@
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:textSize="16sp"
             android:lineHeight="26dp"
-            android:text="위급상황에 나에게 딱 맞춘\n나만의 체크리스트를 만들어보세요!"/>
+            android:text="@string/info_chk_mine"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,20 +37,20 @@
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:textSize="16sp"
             android:lineHeight="26dp"
-            android:text="위급상황에 무엇이 가장 필요할까요?"/>
+            android:text="@string/info_chk_mineq"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ch_minerv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_checklist"
-        android:visibility="gone"/>
+        tools:listitem="@layout/list_checklist" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ch_mine_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="17dp"
         android:layout_marginBottom="11dp"
         android:background="#00FFFFFF"
         android:elevation="1dp"
