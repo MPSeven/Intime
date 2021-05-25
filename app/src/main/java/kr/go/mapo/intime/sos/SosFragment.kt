@@ -147,7 +147,7 @@ class SosFragment : Fragment() {
         val smsManager = SmsManager.getDefault()
 
         binding.btn119.setOnClickListener {
-            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?", ) {
+            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?") {
                 when (it) {
                     0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
                     1 -> {

@@ -182,4 +182,9 @@
         <item name="appWidgetBackgroundColor">@color/widgetbg</item>
         <item name="appWidgetTextColor">@color/black</item>
     </style>
+
+    <style name="CustomFullDialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
 </resources>

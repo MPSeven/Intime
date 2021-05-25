@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="wrap_content"
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp"
-    android:layout_marginTop="22dp"
+    android:layout_marginBottom="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <CheckBox
         android:id="@+id/cb_chk"
@@ -29,10 +29,9 @@
     <TextView
         android:id="@+id/cb_detail"
         android:layout_width="match_parent"
-        android:layout_height="17dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginBottom="22dp"
         android:textAppearance="@style/Body2"
         android:textColor="@color/gray400"
-        app:layout_constraintTop_toBottomOf="@id/cb_chk"/>
+        app:layout_constraintTop_toBottomOf="@id/cb_title"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

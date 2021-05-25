@@ -233,5 +233,14 @@
     <!--checklist-->
     <string name="info_chk_title">위급상황 준비물</string>
     <string name="info_chk_contents">위급상황이 생겼을 때 잊지 말고 챙길 \n체크리스트를 인타임 함께 확인해보세요!</string>
+    <string name="info_chk_child">어린이</string>
+    <string name="info_chk_women">여성</string>
+    <string name="info_chk_medicine">상비약</string>
+    <string name="info_chk_pet">반려동물</string>
+    <string name="info_chk_valuables">귀중품</string>
+    <string name="info_chk_clothing">의류</string>
+    <string name="info_chk_etc">기타</string>
+    <string name="info_chk_mine">위급상황에 나에게 딱 맞춘\n나만의 체크리스트를 만들어보세요!</string>
+    <string name="info_chk_mineq">위급상황에 무엇이 가장 필요할까요?</string>
 
 </resources>
