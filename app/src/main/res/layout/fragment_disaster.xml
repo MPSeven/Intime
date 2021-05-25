@@ -7,16 +7,18 @@
     tools:context=".info.FragmentDisaster">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameContainer2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/iv_bar_design"
+            android:contentDescription="@string/info_iv_bar_design"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:src="@drawable/info_iv_bar_design" />
 
         <LinearLayout
@@ -35,7 +37,7 @@
                 android:layout_gravity="start"
                 android:gravity="left|center_vertical"
                 android:backgroundTint="@color/white"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:letterSpacing="-0.01"
                 android:padding="0dp"
                 android:text="@string/info_tb_earthquake"
@@ -54,7 +56,7 @@
                 android:layout_gravity="start"
                 android:gravity="left|center_vertical"
                 android:backgroundTint="@color/white"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:letterSpacing="-0.01"
                 android:padding="0dp"
                 android:text="@string/info_tb_typhoon"
@@ -73,7 +75,7 @@
                 android:layout_gravity="start"
                 android:gravity="left|center_vertical"
                 android:backgroundTint="@color/white"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:letterSpacing="-0.01"
                 android:padding="0dp"
                 android:text="@string/info_tb_flood"
@@ -92,7 +94,7 @@
                 android:layout_gravity="start"
                 android:gravity="left|center_vertical"
                 android:backgroundTint="@color/white"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:letterSpacing="-0.01"
                 android:padding="0dp"
                 android:text="@string/info_tb_forrestfire"
@@ -111,7 +113,7 @@
                 android:layout_gravity="start"
                 android:gravity="left|center_vertical"
                 android:backgroundTint="@color/white"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:letterSpacing="-0.01"
                 android:padding="0dp"
                 android:text="@string/info_tb_fire"

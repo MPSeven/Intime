@@ -36,4 +36,10 @@ class FragmentEarthquake : Fragment(R.layout.fragment_earthquake) {
         _binding = null
         super.onDestroyView()
     }
+
+    companion object{
+        fun newInstance():FragmentEarthquake{
+            return FragmentEarthquake()
+        }
+    }
 }

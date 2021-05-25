@@ -5,8 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/iv_bar_design"
+        android:contentDescription="@string/info_iv_bar_design"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="51dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:src="@drawable/info_iv_bar_design"/>

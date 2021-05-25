@@ -2,11 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-
     <item
-        android:id="@+id/toolbar_btn"
-        android:icon="@drawable/ic_setting"
+        android:id="@+id/toolbarBackBtn"
+        android:icon="@drawable/ic_back"
         app:showAsAction="ifRoom"
-        android:title="@string/setting" />
+        android:title="" />
 </menu>

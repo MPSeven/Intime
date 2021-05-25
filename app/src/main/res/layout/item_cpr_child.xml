@@ -17,12 +17,36 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
-            <ImageView
+            <LinearLayout
                 android:id="@+id/info_iv_cpr_child_numbering"
                 android:layout_width="24dp"
                 android:layout_height="2208dp"
-                android:contentDescription="@string/info_iv_cpr_desc_numbering"
-                android:src="@drawable/info_iv_cpr_child_numbering" />
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_ellipse_1"
+                    android:layout_marginBottom="485dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_ellipse_2"
+                    android:layout_marginBottom="595dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_ellipse_3"
+                    android:layout_marginBottom="569dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_ellipse_4"
+                    android:layout_marginBottom="439dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_ellipse_5" />
+            </LinearLayout>
 
             <Space
                 android:layout_width="12dp"
@@ -299,12 +323,14 @@
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="56dp"/>
-                <ImageView
+                <TextView
                     android:id="@id/info_iv_copyright"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/info_iv_copyright"
-                    android:contentDescription="@string/info_iv_copyright"/>
+                    android:layout_width="341dp"
+                    android:layout_height="14dp"
+                    android:gravity="center_horizontal|top"
+                    android:textSize="12sp"
+                    android:textColor="#979797"
+                    android:text="@string/info_iv_copyright"/>
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="60dp"/>
