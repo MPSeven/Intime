@@ -1,138 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="visible"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_sectionChild"
+                    android:id="@+id/ch_extra_child"
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="24dp"
-                    android:padding="0dp"
-                    android:text="어린이"
-                    android:textAppearance="@style/Head3" />
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_child"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
 
-                <CheckBox
-                    android:id="@+id/extra_sectionChildMask"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_childrv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="마스크"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_sectionChildMilk"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="유아용 조제 분유"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_sectionChildBottle"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="젖병"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_sectionChildDiaper"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="기저귀"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_sectionChildTissue"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="30dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="물티슈 및 기저귀 발진 크림"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
+                    tools:listitem="@layout/list_checklist" />
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#4DEDEDED" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_sectionWomen"
+                    android:id="@+id/ch_extra_women"
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="24dp"
-                    android:padding="0dp"
-                    android:text="여성"
-                    android:textAppearance="@style/Head3" />
-
-                <CheckBox
-                    android:id="@+id/extra_sectionFeminineHygiene"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_women"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_womenrv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="여성 용품"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_sectionPersonalHygiene"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
                     android:layout_marginBottom="30dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="개인 위생 용품"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
+                    tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -141,94 +79,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_Medicine"
+                    android:id="@+id/ch_extra_medicine"
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="24dp"
-                    android:padding="0dp"
-                    android:text="상비약"
-                    android:textAppearance="@style/Head3" />
-
-                <CheckBox
-                    android:id="@+id/extra_MedicinePrescribed"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_medicine"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_medicinerv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="처방약"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_MedicineOTC"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="비처방약"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-                <TextView
-                    android:id="@+id/extra_MedicineOTCdetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="17dp"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginBottom="36dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="진통제, 설사약, 제산제, 완하제"
-                    android:textAppearance="@style/Body2"
-                    android:textColor="@color/gray400" />
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="#4DEDEDED" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
-                <TextView
-                    android:id="@+id/extra_pets"
-                    android:layout_width="match_parent"
-                    android:layout_height="22dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="24dp"
-                    android:padding="0dp"
-                    android:text="반려동물"
-                    android:textAppearance="@style/Head3" />
-
-                <CheckBox
-                    android:id="@+id/extra_petFood"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="사료"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_petWater"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
                     android:layout_marginBottom="30dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="사료"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
+                    tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -237,51 +107,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_valuables"
+                    android:id="@+id/ch_extra_pet"
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
-                    android:padding="0dp"
-                    android:text="귀중품"
-                    android:textAppearance="@style/Head3" />
-
-                <CheckBox
-                    android:id="@+id/extra_valuablesCash"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_pet"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_petrv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="현금, 수표"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_valuablesDocs"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="귀중 문서"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-                <TextView
-                    android:id="@+id/extra_valuablesDetails"
-                    android:layout_width="wrap_content"
-                    android:layout_height="66dp"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginBottom="23dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="보험 정책 사본, 신분증 및 은행 계좌 기록과 같은 중요한 가족 문서는 전자적으로 저장되거나 방수, 휴대용 용기에 저장"
-                    android:textAppearance="@style/Body2"
-                    android:textColor="@color/gray400" />
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
+                    android:layout_marginBottom="30dp"
+                    tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -290,52 +135,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_Clothing"
+                    android:id="@+id/ch_extra_valuables"
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
-                    android:padding="0dp"
-                    android:text="의류"
-                    android:textAppearance="@style/Head3" />
-
-                <CheckBox
-                    android:id="@+id/extra_Bedding"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_valuables"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_valuablesrv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="기후에 맞는 옷"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_Clothes"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="기후에 맞는 옷"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_Footwear"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="36dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="튼튼한 신발"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
+                    android:layout_marginBottom="30dp"
+                    tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -344,121 +163,56 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_misc"
+                    android:id="@+id/ch_extra_clothing"
                     android:layout_width="match_parent"
                     android:layout_height="22dp"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="16dp"
-                    android:padding="0dp"
-                    android:text="기타"
-                    android:textAppearance="@style/Head3" />
-
-                <CheckBox
-                    android:id="@+id/extra_disinfectant"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_clothing"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_clothingrv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="소독용품"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
+                    android:layout_marginBottom="30dp"
+                    tools:listitem="@layout/list_checklist"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#4DEDEDED" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/extra_disinfectantDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="17dp"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginBottom="22dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="비누, 손 소독제, 표면 소독 용 물티슈"
-                    android:textAppearance="@style/Body2"
-                    android:textColor="@color/gray400" />
-
-                <CheckBox
-                    android:id="@+id/extra_distinguisher"
+                    android:id="@+id/ch_extra_etc"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="소화기"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_waterproof"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/info_chk_etc"
+                    android:textAppearance="@style/Head3"
+                    android:textFontWeight="1100"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ch_extra_etcrv"
                     android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="방수용기"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_MathKit"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="메스 키트"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_tableware"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="식기"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-                <TextView
-                    android:id="@+id/extra_Utensils"
-                    android:layout_width="wrap_content"
-                    android:layout_height="17dp"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginBottom="22dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:text="종이컵, 접시, 종이타월, 플라스틱 식기"
-                    android:textAppearance="@style/Body2"
-                    android:textColor="@color/gray400" />
-                <CheckBox
-                    android:id="@+id/extra_stationary"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="종이, 연필"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
-
-                <CheckBox
-                    android:id="@+id/extra_Games"
-                    android:layout_width="match_parent"
-                    android:layout_height="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:button="@drawable/info_checklist_checkbox"
-                    android:paddingStart="12dp"
-                    android:text="책, 게임, 퍼즐"
-                    android:textAppearance="@style/Body1"
-                    android:textColor="@color/gray600" />
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
+                    android:layout_marginBottom="30dp"
+                    tools:listitem="@layout/list_checklist"/>
             </LinearLayout>
 
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

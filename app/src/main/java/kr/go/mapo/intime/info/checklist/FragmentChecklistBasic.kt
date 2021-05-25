@@ -26,7 +26,7 @@ class FragmentChecklistBasic : Fragment() {
         val root = binding.root
 
         recyclerview = binding.root.findViewById(R.id.ch_basic_rv)
-        val adapter = ChecklistAdapter(chbData(), this)
+        val adapter = ChecklistAdapter(chbData())
         recyclerview.apply {
             this.adapter = adapter
             this.layoutManager = LinearLayoutManager(binding.root.context,
