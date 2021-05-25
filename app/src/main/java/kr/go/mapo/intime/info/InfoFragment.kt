@@ -2,12 +2,13 @@ package kr.go.mapo.intime.info
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentInfoBinding
 import kr.go.mapo.intime.info.checklist.ChecklistActivity
-import kr.go.mapo.intime.info.checklist.FragmentChecklist
 
 class InfoFragment : Fragment(R.layout.fragment_info) {
     private var _binding:FragmentInfoBinding ?= null
@@ -51,29 +52,6 @@ class InfoFragment : Fragment(R.layout.fragment_info) {
                 startActivity(intent)
             }
         })
-    }
-
-    private fun replaceFragment(view: View) {
-        val replaceFragment = when (view.id) {
-            binding.ibHowToAed.id -> {
-                FragmentAed()
-            }
-            binding.ibHowToCpr.id -> {
-                FragmentCpr()
-            }
-            binding.ibHowToDisaster.id -> {
-                FragmentDisaster()
-            }
-            else -> {
-                FragmentChecklist()
-            }
-
-        }
-        val fragmentManager = activity?.supportFragmentManager
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.frameLayout, replaceFragment)
-        fragmentTransaction?.addToBackStack(null)
-        fragmentTransaction?.commit()
     }
 
     override fun onDestroyView() {
