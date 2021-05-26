@@ -2,17 +2,13 @@ package kr.go.mapo.intime.info
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -28,11 +24,11 @@ class AedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.aed_appbar))
-        supportActionBar?.title = "자동심장충격기 사용법"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        Log.i("SPAN", "calling clickableSpan")
         clickableSpanOne()
+
+        binding.infoAedBack.setOnClickListener {
+            onBackPressed()
+        }
 
 
     }
