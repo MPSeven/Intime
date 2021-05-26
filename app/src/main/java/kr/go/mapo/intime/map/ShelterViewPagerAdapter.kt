@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.viewmodel.R
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
@@ -128,17 +129,10 @@ class ShelterViewPagerAdapter(fragmentManager: FragmentManager) :
         private fun setLikeImage(isLike: Boolean) = with(binding){
             Log.d("viewPagerAdapter", "setLikeImage")
             if(isLike) {
-                val img: Drawable? =
-                    shelterBookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_on)
-                img?.setBounds(0, 0, 80, 80)
-                shelterBookMarkButton.setCompoundDrawables(img, null, null, null)
+                binding.shelterBookMarkButton.setBackgroundResource(kr.go.mapo.intime.R.drawable.map_bookmark_on)
 
             } else {
-                val img: Drawable? =
-                    shelterBookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_off)
-                img?.setBounds(0, 0, 80, 80)
-                binding.shelterBookMarkButton.setCompoundDrawables(img, null, null, null)
-
+                binding.shelterBookMarkButton.setBackgroundResource(kr.go.mapo.intime.R.drawable.map_bookmark_off)
             }
         }
     }
@@ -159,7 +153,7 @@ class ShelterViewPagerAdapter(fragmentManager: FragmentManager) :
 
     private fun bookmarkToast(string: String) {
         val toast = Toast.makeText(context, "$string", Toast.LENGTH_SHORT)
-        toast.setGravity(Gravity.BOTTOM, 0, 950)
+        toast.setGravity(Gravity.BOTTOM, 0, 550)
         toast.show()
     }
 

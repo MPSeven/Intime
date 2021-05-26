@@ -13,6 +13,15 @@ class ContactsAdapter(private val ContactsList: MutableList<Contacts>): Recycler
 
     override fun getItemCount() = ContactsList.size
 
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+    private lateinit var itemClickListener : OnItemClickListener
+
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ConHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_contact, parent,false)
         return ConHolder(view)
@@ -31,7 +40,6 @@ class ContactsAdapter(private val ContactsList: MutableList<Contacts>): Recycler
                 conChTxt.visibility = View.VISIBLE
             }
         }
-
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
@@ -40,14 +48,6 @@ class ContactsAdapter(private val ContactsList: MutableList<Contacts>): Recycler
         }
     }
 
-    interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
-    }
-    private lateinit var itemClickListener : OnItemClickListener
-
-    fun setItemClickListener(itemClickListener: OnItemClickListener) {
-        this.itemClickListener = itemClickListener
-    }
 
     inner class ConHolder(view: View): RecyclerView.ViewHolder(view) {
         val conName: TextView = itemView.findViewById(R.id.con_name)

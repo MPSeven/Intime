@@ -19,9 +19,9 @@
         <ImageButton
             android:background="#FFFFFFFF"
             android:id="@+id/naverMapButton"
-            android:layout_width="74dp"
-            android:layout_height="74dp"
-            android:layout_marginBottom="22dp"
+            android:layout_width="@dimen/map_download"
+            android:layout_height="@dimen/map_download"
+            android:layout_marginBottom="24dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/naver_map" />
@@ -48,9 +48,9 @@
         <ImageButton
             android:background="#FFFFFFFF"
             android:id="@+id/kakaoMapButton"
-            android:layout_width="74dp"
-            android:layout_height="74dp"
-            android:layout_marginBottom="22dp"
+            android:layout_width="@dimen/map_download"
+            android:layout_height="@dimen/map_download"
+            android:layout_marginBottom="24dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/kakao_map" />
