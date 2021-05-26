@@ -14,5 +14,10 @@ interface ChecklistDao {
     @Insert
     fun insert(vararg checklist: Checklist)
 
+    @Query("UPDATE checklist SET chk = 'true' WHERE id = :id")
+    fun updateTrue(id: Int)
+
+    @Query("UPDATE checklist SET chk = 'false' WHERE id = :id")
+    fun updateFalse(id: Int)
 
 }

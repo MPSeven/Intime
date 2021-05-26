@@ -5,12 +5,19 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentAddChecklistDialogBinding
+import kr.go.mapo.intime.info.checklist.database.ChecklistDatabase
+import kr.go.mapo.intime.info.checklist.model.Checklist
 
 class AddChecklistDialogFragment() : DialogFragment() {
     private lateinit var binding: FragmentAddChecklistDialogBinding
+    private var db: ChecklistDatabase? = null
+    private var chkList = mutableListOf<Checklist>()
+    private lateinit var addTitle: EditText
+    private lateinit var addCon: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +31,15 @@ class AddChecklistDialogFragment() : DialogFragment() {
     ): View? {
         binding = FragmentAddChecklistDialogBinding.inflate(inflater, container, false)
 
+        db = ChecklistDatabase.getInstance(requireContext())
+
+        addTitle = binding.chAddTitle
+        addCon = binding.chAddCon
+
         binding.chConfirm.setOnClickListener {
-            dialog?.dismiss()
+            val chk = Checklist(0, addTitle.text.toString(), addCon.text.toString(),8, false)
+            db?.checklistDao()?.insert(chk)
+            dismiss()
         }
 
         binding.chX.setOnClickListener {

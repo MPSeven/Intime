@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.ActivityAmbulanceBinding
-import kr.go.mapo.intime.databinding.DialogLocationPickerBinding
 import kr.go.mapo.intime.sos.model.Ambulance
 
 class AmbulanceActivity : AppCompatActivity() {

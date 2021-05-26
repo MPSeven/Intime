@@ -26,7 +26,7 @@ class AddChecklist : AppCompatActivity() {
         binding.chConfirm.setOnClickListener {
             val chk = Checklist(0, addTitle.text.toString(), addCon.text.toString(),8, false)
             db?.checklistDao()?.insert(chk)
-            finish()
+            onBackPressed()
         }
 
 
