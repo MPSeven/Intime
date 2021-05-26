@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="106dp"
+    android:layout_height="110dp"
     android:layout_marginHorizontal="24dp"
+    android:background="@drawable/map_recyclerview_border"
     android:paddingTop="16dp"
-    android:paddingBottom="12dp"
-    android:background="@drawable/map_recyclerview_border">
+    android:paddingBottom="12dp">
 
     <LinearLayout
         android:id="@+id/aedInfoText"
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/aedInfoButton"
-        app:layout_constraintHorizontal_weight="1.8"
+        app:layout_constraintHorizontal_weight="1.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="공덕역" />
 
@@ -68,9 +68,6 @@
         </LinearLayout>
 
 
-
-
-        
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,48 +82,28 @@
         app:layout_constraintStart_toEndOf="@+id/aedInfoText"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/aedInfoButton1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_marginEnd="6dp"
+        <android.widget.Button
+            android:id="@+id/shelterRecyclerViewCallButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/map_aed_button"
+            android:drawableStart="@drawable/map_call_symbol"
+            android:paddingLeft="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/findPathLinearLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toStartOf="@id/shelterRecyclerViewFindPathButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/shelterRecyclerViewCallButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/map_aed_button"
-                android:drawableStart="@drawable/map_call_symbol"
-                android:paddingLeft="12dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/findPathLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
+        <android.widget.Button
+            android:id="@+id/shelterRecyclerViewFindPathButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/map_aed_button"
+            android:drawableLeft="@drawable/map_find_way"
+            android:paddingLeft="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/aedInfoButton1"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <android.widget.Button
-                android:id="@+id/shelterRecyclerViewFindPathButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/map_aed_button"
-                android:drawableLeft="@drawable/map_find_way"
-                android:paddingLeft="12dp" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

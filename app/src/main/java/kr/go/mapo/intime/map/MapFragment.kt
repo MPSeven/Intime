@@ -141,7 +141,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         recyclerView.adapter = aedRecyclerAdapter
         viewPager.adapter = aedViewPagerAdapter
 
-        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
+//        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
 
         aedRecyclerAdapter.setItemClickListener( object : AedListAdapter.ItemClickListener{
             override fun onClick(view: View, position: Int) {
@@ -363,6 +363,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         mapView.onResume()
         Log.d(TAG, "ONRESUME!!!!")
 
+        setClickedAedButtonAppearance()
         fetchAedLocation(latitude, longitude, DISTANCE)
     }
 
@@ -735,28 +736,28 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         aedCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
 
         val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol_clicked)
-        img?.setBounds(0, 0, 60, 60)
+        img?.setBounds(0, 0, ICON, ICON)
         aedCategoryButton.setCompoundDrawables(img, null, null, null)
 
         shelterCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         shelterCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol)
-        img2?.setBounds(0, 0, 60, 60)
+        img2?.setBounds(0, 0, ICON, ICON)
         shelterCategoryButton.setCompoundDrawables(img2, null, null, null)
 
         emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol)
-        img3?.setBounds(0, 0, 60, 60)
+        img3?.setBounds(0, 0, ICON, ICON)
         emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
 
         pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol)
-        img4?.setBounds(0, 0, 60, 60)
+        img4?.setBounds(0, 0, ICON, ICON)
         pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
     }
 
@@ -767,28 +768,28 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         shelterCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
 
         val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol_clicked)
-        img?.setBounds(0, 0, 60, 60)
+        img?.setBounds(0, 0, ICON, ICON)
         shelterCategoryButton.setCompoundDrawables(img, null, null, null)
 
         aedCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         aedCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
-        val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol)
-        img2?.setBounds(0, 0, 60, 60)
+        val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol_fixed)
+        img2?.setBounds(0, 0, ICON, ICON)
         aedCategoryButton.setCompoundDrawables(img2, null, null, null)
 
         emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol)
-        img3?.setBounds(0, 0, 60, 60)
+        img3?.setBounds(0, 0, ICON, ICON)
         emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
 
         pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol)
-        img4?.setBounds(0, 0, 60, 60)
+        img4?.setBounds(0, 0, ICON, ICON)
         pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
     }
 
@@ -798,28 +799,28 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         aedCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol)
-        img?.setBounds(0, 0, 60, 60)
+        img?.setBounds(0, 0, ICON, ICON)
         aedCategoryButton.setCompoundDrawables(img, null, null, null)
 
         shelterCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         shelterCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol)
-        img2?.setBounds(0, 0, 60, 60)
+        img2?.setBounds(0, 0, ICON, ICON)
         shelterCategoryButton.setCompoundDrawables(img2, null, null, null)
 
         emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_emergency_room_button_clicked)
         emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
 
         val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol_clicked)
-        img3?.setBounds(0, 0, 60, 60)
+        img3?.setBounds(0, 0, ICON, ICON)
         emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
 
         pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol)
-        img4?.setBounds(0, 0, 60, 60)
+        img4?.setBounds(0, 0, ICON, ICON)
         pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
     }
 
@@ -829,28 +830,28 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         aedCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol)
-        img?.setBounds(0, 0, 60, 60)
+        img?.setBounds(0, 0, ICON, ICON)
         aedCategoryButton.setCompoundDrawables(img, null, null, null)
 
         shelterCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         shelterCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol)
-        img2?.setBounds(0, 0, 60, 60)
+        img2?.setBounds(0, 0, ICON, ICON)
         shelterCategoryButton.setCompoundDrawables(img2, null, null, null)
 
         emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
         emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
 
         val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol)
-        img3?.setBounds(0, 0, 60, 60)
+        img3?.setBounds(0, 0, ICON, ICON)
         emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
 
         pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_pharmacy_button_clicked)
         pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
 
         val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol_clicked)
-        img4?.setBounds(0, 0, 60, 60)
+        img4?.setBounds(0, 0, ICON, ICON)
         pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
     }
 
@@ -866,6 +867,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MapFragment"
         private const val DISTANCE = 0.6F
+        private const val ICON = 40
     }
 
 
