@@ -17,14 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize" />
 
-        <!--        <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    app:expandedTitleMarginEnd = "64dp"
-                    app:expandedTitleMarginStart = "48dp"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
--->
 
         <TextView
             android:id="@+id/info_tv_cpr_headline"
@@ -37,19 +29,6 @@
             android:textColor="@color/gray600"
             android:textSize="20sp"
             app:layout_collapseMode="parallax" />
-
-        <!--        <TextView
-                    android:id="@+id/info_tv_cpr_desc"
-                    android:layout_width="287dp"
-                    android:layout_height="52dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="128dp"
-                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="@string/info_tv_cpr_desc"
-                    android:textAppearance="@style/Body1_26"
-                    android:textColor="@color/gray600"
-                    android:textSize="16sp"
-                    app:layout_collapseMode="parallax" />-->
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/cpr_tabLayout"
