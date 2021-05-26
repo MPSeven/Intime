@@ -10,7 +10,7 @@
         android:id="@+id/cpr_appBar"
         android:layout_width="match_parent"
         android:layout_height="182dp"
-        android:background="#EDEDED">
+        android:background="#4DEDEDED">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/cpr_toolbar"

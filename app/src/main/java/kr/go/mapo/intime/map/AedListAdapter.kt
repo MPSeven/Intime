@@ -63,7 +63,6 @@ class AedListAdapter(fragmentManager: FragmentManager): ListAdapter<SortedAed, A
             callButton.setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${sortedAed.aed.tel}"))
                 it.context.startActivity(intent)
-                // todo ACTION_CALL
             }
         }
     }

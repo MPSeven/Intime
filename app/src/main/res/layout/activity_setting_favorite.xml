@@ -52,7 +52,7 @@
             android:id="@+id/setting_tab_layout"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginStart="@dimen/default_padding"
+            android:layout_marginHorizontal="@dimen/default_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -34,9 +34,23 @@ class SettingContactsActivity : AppCompatActivity() {
             }
         }
 
-        contactAdapter.setItemClickListener(object : ContactsAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
+        bindViews()
 
+        binding.settingConX.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        displayList()
+        bindViews()
+    }
+
+    private fun bindViews() {
+        contactAdapter.setItemClickListener(object : ContactsAdapter.OnItemClickListener{
+
+            override fun onClick(v: View, position: Int) {
                 val dialog = CommonDialogFragment("비상연락처 삭제", "비상연락처를 삭제 하시겠습니까? \n삭제하면 복구가 불가능합니다.") {
                     when (it) {
                         0 -> Toast.makeText(applicationContext,"삭제취소", Toast.LENGTH_SHORT).show()
@@ -52,20 +66,10 @@ class SettingContactsActivity : AppCompatActivity() {
                 dialog.show(supportFragmentManager, dialog.tag)
             }
         })
-
-
-        binding.settingConX.setOnClickListener {
-            onBackPressed()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        displayList()
     }
 
     private lateinit var contactAdapter: ContactsAdapter
+
     private fun displayList(){
         db = ContactsDatabase.getInstance(this)
 

@@ -2,19 +2,23 @@ package kr.go.mapo.intime.setting
 
 import android.content.Context
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.ItemFavoriteAedBinding
+import kr.go.mapo.intime.databinding.ItemFavoriteShelterBinding
+import kr.go.mapo.intime.map.model.Aed
 import kr.go.mapo.intime.map.model.Shelter
+import kr.go.mapo.intime.setting.database.DataBaseProvider
 import kotlin.coroutines.CoroutineContext
 
 class FavoriteShelterAdapter : ListAdapter<Shelter, FavoriteShelterAdapter.ItemViewHolder>(differ), CoroutineScope {
@@ -30,30 +34,46 @@ class FavoriteShelterAdapter : ListAdapter<Shelter, FavoriteShelterAdapter.ItemV
         context = recyclerView.context
     }
 
-    inner class ItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class ItemViewHolder(private val binding: ItemFavoriteShelterBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(shelter: Shelter) {
-            val titleFavoriteTextView = view.findViewById<TextView>(R.id.favoriteShelterPlaceTextView)
-
-            val bookmarkButton = view.findViewById<Button>(R.id.favoriteShelterBookmarkButton)
 
             Log.d("ItemViewHolder", "$shelter")
 
-            titleFavoriteTextView.text = shelter.placeName
+            binding.favoriteShelterPlaceTextView.text = shelter.placeName
 
-            bookmarkButton.setOnClickListener {
+            binding.favoriteShelterBookmarkButton.setOnClickListener {
+                deleteShelter(shelter)
+            }
+        }
 
+        private fun deleteShelter(shelter: Shelter) = launch {
+            withContext(Dispatchers.IO) {
+                val dao = DataBaseProvider.provideDB(context).bookmarkShelterDao()
+                dao.delete(shelter.lat)
+                Log.d("FavoriteAedAdapter", "delete aed")
+
+                withContext(Dispatchers.Main) {
+                    bookmarkToast("즐겨찾기가 해제되었습니다. ")
+                    binding.favoriteShelterBookmarkButton.setBackgroundResource(R.drawable.map_bookmark_off)
+                }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return ItemViewHolder(inflater.inflate(R.layout.item_favorite_shelter, parent, false))
+        val view = ItemFavoriteShelterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(currentList[position])
+    }
+
+    private fun bookmarkToast(string: String) {
+        val toast = Toast.makeText(context, "$string", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.BOTTOM, 0, 950)
+        toast.show()
     }
 
     companion object {

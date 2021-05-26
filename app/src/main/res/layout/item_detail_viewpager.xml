@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:maxLines="1"
-            android:textColor="@color/black"
+            android:textColor="@color/gray500"
             android:textSize="14sp"
             tools:text="서울특별시 마포구 성산로 128" />
 
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/gray500"
                 android:textSize="14sp"
                 tools:text="5층 로비" />
 
@@ -57,14 +57,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10sp"
                 android:text="|"
-                android:textColor="@color/black"
+                android:textColor="@color/gray500"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/distanceMarker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/gray500"
                 android:textSize="14sp"
                 tools:text="20m" />
 
@@ -102,11 +102,11 @@
                 android:textColor="@color/gray400"
                 android:textSize="14sp" />
 
-            <android.widget.Button
+            <ImageButton
                 android:id="@+id/bookMarkButton"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginHorizontal="8dp"
+                android:layout_marginStart="8dp"
                 android:background="@drawable/map_bookmark_off" />
 
         </LinearLayout>
@@ -122,47 +122,29 @@
             app:layout_constraintTop_toBottomOf="@+id/bookMarkLayout"
             app:layout_constraintVertical_weight="4">
 
-            <LinearLayout
-                android:id="@+id/infoButton1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:orientation="vertical"
+            <android.widget.Button
+                android:id="@+id/callNumber"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/map_aed_button"
+                android:drawableStart="@drawable/map_call_symbol"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/findPathLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintEnd_toStartOf="@+id/findPathButton"
+                android:layout_marginEnd="8dp"
+                android:paddingLeft="12dp" />
 
-                <android.widget.Button
-                    android:id="@+id/callNumber"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/map_aed_button"
-                    android:drawableStart="@drawable/map_call_symbol"
-                    android:paddingLeft="12dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/findPathLayout"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <android.widget.Button
+                android:id="@+id/findPathButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/map_aed_button"
+                android:drawableLeft="@drawable/map_find_way"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/infoButton1"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingLeft="12dp" />
 
-                <android.widget.Button
-                    android:id="@+id/findPathButton"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/map_aed_button"
-                    android:drawableLeft="@drawable/map_find_way"
-                    android:paddingLeft="12dp" />
-
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

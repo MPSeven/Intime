@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="106dp"
+    android:layout_height="110dp"
     android:layout_marginHorizontal="24dp"
     android:background="@drawable/map_recyclerview_border"
     android:paddingTop="16dp"
@@ -59,11 +59,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
-                android:layout_marginHorizontal="10sp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="10sp"
                 android:gravity="center"
-                android:text="|" />
+                android:text="|"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/distance"
@@ -90,48 +90,29 @@
         app:layout_constraintStart_toEndOf="@+id/aedInfoText"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/aedInfoButton1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="6dp"
-            android:gravity="center"
-            android:orientation="vertical"
+        <android.widget.Button
+            android:id="@+id/recyclerViewCallButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/map_aed_button_click"
+            android:drawableStart="@drawable/map_call_symbol"
+            android:paddingLeft="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/findPathLinearLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toStartOf="@id/recyclerViewFindPathButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/recyclerViewCallButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/map_aed_button_click"
-                android:drawableStart="@drawable/map_call_symbol"
-                android:paddingLeft="12dp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/findPathLinearLayout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
+        <android.widget.Button
+            android:id="@+id/recyclerViewFindPathButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/map_aed_button_click"
+            android:drawableLeft="@drawable/map_find_way"
+            android:paddingLeft="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/aedInfoButton1"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <android.widget.Button
-                android:id="@+id/recyclerViewFindPathButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/map_aed_button_click"
-                android:drawableLeft="@drawable/map_find_way"
-                android:paddingLeft="12dp" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
