@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cpr_appBar"
         android:layout_width="match_parent"
-        android:layout_height="182dp"
+        android:layout_height="251dp"
         android:background="#4DEDEDED"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +19,12 @@
             android:id="@+id/cpr_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:textAlignment="center"
+            app:titleCentered="true"
+            app:titleEnabled="true"
+            android:gravity="center"
+            android:padding="0dp"
+            app:titleTextAppearance="@style/Body1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,11 +48,18 @@
                 android:text="@string/info_tv_cpr_headline"
                 android:textColor="@color/gray600"
                 android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/gray600"
+                android:textAppearance="@style/Body1_26"
+                android:text="@string/info_tv_cpr_desc"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/cpr_tabLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="19dp"
                 android:background="#00FFFFFF"
