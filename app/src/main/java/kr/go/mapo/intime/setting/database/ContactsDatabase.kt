@@ -17,7 +17,9 @@ abstract class ContactsDatabase: RoomDatabase()  {
         @Synchronized
         fun getInstance(context: Context): ContactsDatabase? {
             if (instance == null) {
-                instance = Room.databaseBuilder(context.applicationContext, ContactsDatabase::class.java, "db-contacts").allowMainThreadQueries().build()
+                instance = Room.databaseBuilder(
+                    context.applicationContext, ContactsDatabase::class.java, "db-contacts")
+                    .allowMainThreadQueries().build()
             }
             return instance
         }

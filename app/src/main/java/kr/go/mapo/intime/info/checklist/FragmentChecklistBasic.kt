@@ -26,7 +26,7 @@ class FragmentChecklistBasic : Fragment() {
         val root = binding.root
 
         recyclerview = binding.root.findViewById(R.id.ch_basic_rv)
-        val adapter = ChecklistAdapter(chbData())
+        val adapter = ChecklistAdapter(chBasicData())
         recyclerview.apply {
             this.adapter = adapter
             this.layoutManager = LinearLayoutManager(binding.root.context,
@@ -36,7 +36,7 @@ class FragmentChecklistBasic : Fragment() {
         return root
     }
 
-    private fun chbData(): MutableList<Checklist>{
+    private fun chBasicData(): MutableList<Checklist>{
         val chbData = mutableListOf<Checklist>()
 
         chbData.add(Checklist(1, "물", "음료 및 위생을 위해 며칠 동안 1 인당 하루 3.785L", 0, false))

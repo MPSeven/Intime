@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import kr.go.mapo.intime.R
-import kr.go.mapo.intime.databinding.FragmentAddChecklistBinding
+import kr.go.mapo.intime.databinding.FragmentAddChecklistDialogBinding
 
-class AddChecklistFragment : DialogFragment() {
-    private lateinit var binding: FragmentAddChecklistBinding
+class AddChecklistDialogFragment() : DialogFragment() {
+    private lateinit var binding: FragmentAddChecklistDialogBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,11 @@ class AddChecklistFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddChecklistBinding.inflate(inflater, container, false)
+        binding = FragmentAddChecklistDialogBinding.inflate(inflater, container, false)
+
+        binding.chConfirm.setOnClickListener {
+            dialog?.dismiss()
+        }
 
         binding.chX.setOnClickListener {
             dismiss()

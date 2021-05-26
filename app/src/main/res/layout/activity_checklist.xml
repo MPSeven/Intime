@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/chklist_top"
         android:layout_width="match_parent"
-        android:layout_height="246dp"
+        android:layout_height="251dp"
         android:background="@drawable/info_bg_checklist"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,21 +66,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chklist_not" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/chklist_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/chklist_top"
+            app:tabGravity="center"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/gray400"
+            android:background="#00FFFFFF"
+            app:tabSelectedTextColor="@color/gray600"
+            app:tabTextAppearance="@style/Body1"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/chklist_tab"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/chklist_top"
-        app:tabGravity="center"
-        app:tabMode="fixed"
-        app:tabTextColor="@color/gray400"
-        android:background="#00FFFFFF"
-        app:tabSelectedTextColor="@color/gray600"
-        app:tabTextAppearance="@style/Body1"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/chklist_tabContent"
