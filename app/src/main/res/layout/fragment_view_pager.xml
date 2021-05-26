@@ -15,4 +15,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/default_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:ci_drawable_unselected="@drawable/radius"
+        app:ci_drawable="@drawable/radius_selected"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        -->

@@ -29,7 +29,6 @@ class CprActivity: AppCompatActivity () {
         setContentView(binding.root)
         init()
         setSupportActionBar(findViewById(R.id.cpr_toolbar))
-        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }

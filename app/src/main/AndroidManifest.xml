@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Intime"
         android:usesCleartextTraffic="true">
-        <activity android:name=".info.checklist.ChecklistActivity"></activity>
+        <activity android:name=".info.checklist.ChecklistActivity"/>
         <activity android:name=".sos.AmbulanceActivity" />
 
         <receiver android:name=".widget.IntimeWidget">

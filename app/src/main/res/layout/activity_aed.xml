@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/aed_appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-
-    <Space
-        android:id="@+id/layout_space"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintTop_toBottomOf="@id/aed_appbar"/>
+        app:titleCentered="true"
+        app:titleEnabled="true"
+        android:gravity="center"
+        android:padding="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/info_aed_layout"
@@ -23,7 +23,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_space">
+        app:layout_constraintTop_toBottomOf="@id/aed_appbar">
+
 
         <LinearLayout
             android:id="@+id/info_aed_wrapper"
@@ -31,7 +32,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-
+            <Space
+                android:id="@+id/layout_space"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                app:layout_constraintTop_toBottomOf="@id/info_aed_layout"/>
 
             <ImageView
                 android:id="@+id/iv_aed_picture"
@@ -42,7 +47,7 @@
                 android:src="@drawable/info_iv_aed_picture" />
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="68dp"/>
+                android:layout_height="46dp"/>
 
             <TextView
                 android:id="@+id/info_aed_title"

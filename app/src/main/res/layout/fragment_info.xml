@@ -6,91 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".info.InfoFragment">
 
-
-    <ScrollView
+<!--    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/top_app_bar" />-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Space
+            android:id="@+id/spacetop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_info_message"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:gravity="top"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/info_message"
+            android:textColor="@color/gray600"
+            android:textSize="20sp"
+            android:translationY="-4sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spacetop" />
 
-            <Space
-                android:id="@+id/spacetop"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:id="@+id/spacebelowmessage"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_info_message" />
 
-            <TextView
-                android:id="@+id/tv_info_message"
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:fontFamily="@font/spoqa_han_sans_neo_bold"
-                android:gravity="top"
-                android:letterSpacing="-0.02"
-                android:lineSpacingExtra="8sp"
-                android:text="@string/info_message"
-                android:textColor="@color/gray600"
-                android:textSize="20sp"
-                android:translationY="-4sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/spacetop" />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_how_to_aed"
+            android:layout_width="173dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/how_to_aed"
+            android:src="@drawable/info_ib_howtoaed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/ib_how_to_cpr"
+            app:layout_constraintTop_toBottomOf="@id/spacebelowmessage" />
 
-            <Space
-                android:id="@+id/spacebelowmessage"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_info_message" />
+        <ImageButton
+            android:id="@+id/ib_how_to_cpr"
+            android:layout_width="173dp"
+            android:layout_height="220dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/how_to_cpr"
+            android:src="@drawable/info_ib_howtocpr"
+            app:layout_constraintLeft_toRightOf="@id/ib_how_to_aed"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spacebelowmessage" />
 
-            <ImageButton
-                android:id="@+id/ib_how_to_aed"
-                android:layout_width="173dp"
-                android:layout_height="220dp"
-                android:background="@drawable/info_ib_howtoaed"
-                android:contentDescription="@string/how_to_aed"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/ib_how_to_cpr"
-                app:layout_constraintTop_toBottomOf="@id/spacebelowmessage" />
+        <ImageButton
+            android:id="@+id/ib_how_to_disaster"
+            android:layout_width="173dp"
+            android:layout_height="220dp"
+            android:contentDescription="@string/how_to_disaster"
+            android:src="@drawable/info_ib_disaster"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/ib_how_to_checklist"
+            app:layout_constraintTop_toBottomOf="@id/ib_how_to_aed" />
 
-            <ImageButton
-                android:id="@+id/ib_how_to_cpr"
-                android:layout_width="173dp"
-                android:layout_height="220dp"
-                android:background="@drawable/info_ib_howtocpr"
-                android:contentDescription="@string/how_to_cpr"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/ib_how_to_aed"
-                app:layout_constraintTop_toBottomOf="@id/spacebelowmessage" />
-
-            <ImageButton
-                android:id="@+id/ib_how_to_disaster"
-                android:layout_width="173dp"
-                android:layout_height="220dp"
-                android:background="@drawable/info_ib_disaster"
-                android:contentDescription="@string/how_to_disaster"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/ib_how_to_checklist"
-                app:layout_constraintTop_toBottomOf="@id/ib_how_to_aed" />
-
-            <ImageButton
-                android:id="@+id/ib_how_to_checklist"
-                android:layout_width="173dp"
-                android:layout_height="220dp"
-                android:background="@drawable/info_ib_checklist"
-                android:contentDescription="@string/how_to_cpr"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/ib_how_to_disaster"
-                app:layout_constraintTop_toBottomOf="@id/ib_how_to_cpr" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <ImageButton
+            android:id="@+id/ib_how_to_checklist"
+            android:layout_width="173dp"
+            android:layout_height="220dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/how_to_cpr"
+            android:src="@drawable/info_ib_checklist"
+            app:layout_constraintLeft_toRightOf="@id/ib_how_to_disaster"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_how_to_cpr" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
