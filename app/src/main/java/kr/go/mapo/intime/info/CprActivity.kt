@@ -3,13 +3,11 @@ package kr.go.mapo.intime.info
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.ActivityCprBinding
-import kr.go.mapo.intime.onboarding.ViewPagerAdapter
 
 class CprActivity: AppCompatActivity () {
     private val tabTextList = arrayListOf<String>("성인", "소아")
@@ -28,8 +26,9 @@ class CprActivity: AppCompatActivity () {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         init()
-        setSupportActionBar(findViewById(R.id.cpr_toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.infoCprBack.setOnClickListener {
+            onBackPressed()
+        }
 
     }
     private fun init(){
