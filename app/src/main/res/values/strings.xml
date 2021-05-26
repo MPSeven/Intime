@@ -242,5 +242,6 @@
     <string name="info_chk_etc">기타</string>
     <string name="info_chk_mine">위급상황에 나에게 딱 맞춘\n나만의 체크리스트를 만들어보세요!</string>
     <string name="info_chk_mineq">위급상황에 무엇이 가장 필요할까요?</string>
+    <string name="aed_picture">aed picture</string>
 
 </resources>

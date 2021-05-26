@@ -30,31 +30,27 @@ class OnBoardingOne : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentOnBoardingOneBinding.inflate(inflater, container, false)
 
         activity?.findViewById<ViewPager2>(R.id.vp)
-//        view.findViewById<Button>(R.id.onBoarding_tb_skip).setOnClickListener {
-//            findNavController().navigate(R.id.action_viewPagerFragment_to_mainActivity)
-//        }
-
-
-
-        binding.onBoardingTbSkip.setOnClickListener {
+        
+        // 건너뛰기 없어짐
+/*        binding.onBoardingTbSkip.setOnClickListener {
             findNavController().navigate(R.id.action_viewPagerFragment_to_mainActivity)
-        }
+        }*/
 
-        textOneSpan()
+/*        textOneSpan()*/
         return binding.root
 
     }
-
-    private fun textOneSpan(){
+//      볼드 텍스트 적용 필요 없게 됨: 
+/*    private fun textOneSpan(){
         spannableString = SpannableString("일상 속 예상치 못한 응급상황!\n미리 대비하세요!")
         val tfBold = StyleSpan(Typeface.BOLD)
         spannableString.setSpan(tfBold, 12, 23, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         binding.onBoardingTvSlideHeader.text = spannableString
-    }
+    }*/
 
 }
