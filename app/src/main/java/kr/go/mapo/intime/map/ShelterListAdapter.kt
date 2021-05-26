@@ -1,5 +1,6 @@
 package kr.go.mapo.intime.map
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +18,26 @@ import kr.go.mapo.intime.map.model.SortedShelter
 import java.lang.Exception
 import kotlin.math.roundToInt
 
-class ShelterListAdapter :
+class ShelterListAdapter(fragmentManager: FragmentManager) :
     ListAdapter<SortedShelter, ShelterListAdapter.ShelterItemViewHolder>(differ) {
+
+    private lateinit var context: Context
+    private var mFragmentManager: FragmentManager = fragmentManager
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
+    }
+
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    private lateinit var itemClickListener: ItemClickListener
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
 
     inner class ShelterItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -40,22 +60,8 @@ class ShelterListAdapter :
             }
 
             findPathButton.setOnClickListener {
-                try {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("nmap://route/walk?dlat=${sortedShelter.shelter.lat}&dlng=${sortedShelter.shelter.lon}&dname=${sortedShelter.shelter.placeName}")
-                    ).apply {
-                        `package` = "com.nhn.android.nmap"
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                    it.context.startActivity(intent)
-                } catch (e: Exception) {
-                    val intentPlayStore = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
-                    )
-                    it.context.startActivity(intentPlayStore)
-                }
+                val bottomSheetDialog = MapShelterBottomSheetDialog(sortedShelter)
+                bottomSheetDialog.show(mFragmentManager, bottomSheetDialog.tag)
             }
 
             callButton.setOnClickListener {
@@ -76,6 +82,9 @@ class ShelterListAdapter :
 
     override fun onBindViewHolder(holder: ShelterItemViewHolder, position: Int) {
         holder.bind(currentList[position])
+        holder.view.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
 
     companion object {
@@ -91,6 +100,5 @@ class ShelterListAdapter :
                 return oldItem == newItem
             }
         }
-        private const val NAVER_MAP_PACKAGE_NAME = "com.nhn.android.nmap"
     }
 }

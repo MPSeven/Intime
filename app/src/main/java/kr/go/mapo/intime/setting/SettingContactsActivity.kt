@@ -60,9 +60,16 @@ class SettingContactsActivity : AppCompatActivity() {
             onBackPressed()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        displayList()
+    }
+
     override fun onRestart(){
         super.onRestart()
-        finishAndRemoveTask()
+
     }
     private lateinit var contactAdapter: ContactsAdapter
     private fun displayList(){
@@ -70,6 +77,7 @@ class SettingContactsActivity : AppCompatActivity() {
 
         val savedContacts = db!!.contactsDao().getCon()
         if(savedContacts.isNotEmpty()){
+            conList.clear()
             conList.addAll(savedContacts)
         }
 //        Log.d("여기", conList.toString())

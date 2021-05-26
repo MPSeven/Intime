@@ -1,21 +1,39 @@
 package kr.go.mapo.intime.setting.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.*
 import kr.go.mapo.intime.R
+import kr.go.mapo.intime.databinding.FragmentFavoriteAedBinding
+import kr.go.mapo.intime.databinding.FragmentFavoriteAllBinding
+import kr.go.mapo.intime.setting.FavoriteAedAdapter
+import kr.go.mapo.intime.setting.database.DataBaseProvider
 import java.lang.reflect.Array.getInt
+import kotlin.coroutines.CoroutineContext
 
-class FavoriteAllFragment : Fragment() {
+class FavoriteAllFragment : Fragment(), CoroutineScope {
 
-    private lateinit var viewPager: ViewPager2
+    private val favoriteAedAdapterAll = FavoriteAedAdapter()
+
+    private val job: Job = Job()
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    private var _binding: FragmentFavoriteAllBinding? = null
+    private val binding get() = _binding!!
+
+    //private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,20 +45,35 @@ class FavoriteAllFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite_all, container, false)
+        _binding = FragmentFavoriteAllBinding.inflate(inflater, container, false)
+
+        init()
+
+        return binding.root
+    }
+
+    fun init() = with(binding) {
+        favoriteAedRecyclerViewAll.adapter = favoriteAedAdapterAll
+        favoriteAedRecyclerViewAll.layoutManager = LinearLayoutManager(activity)
+
+        LinearLayoutManager.VERTICAL
+
+
+        getAedFromDB()
+    }
+
+    private fun getAedFromDB() = launch {
+        withContext(Dispatchers.IO) {
+            val repository =
+                context?.let { DataBaseProvider.provideDB(it).bookmarkAedDao().getAll() }
+            Log.d("FavoriteAedFragment", "$repository")
+
+            withContext(Dispatchers.Main) {
+                favoriteAedAdapterAll.submitList(repository)
+            }
+        }
     }
 
 }
 
-//class FavoriteCollectionAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-//    override fun getItemCount(): Int = 100
-//
-//    override fun createFragment(position: Int): Fragment {
-//        val fragment = FavoriteObjectFragment()
-//        fragment.arguments = Bundle().apply {
-//            putInt(ARG_OBJECT, position + 1)
-//        }
-//        return fragment
-//    }
-//}
 

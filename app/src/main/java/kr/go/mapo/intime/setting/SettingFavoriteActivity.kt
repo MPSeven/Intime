@@ -22,7 +22,7 @@ class SettingFavoriteActivity : AppCompatActivity(){
 
     val binding by lazy { ActivitySettingFavoriteBinding.inflate(layoutInflater) }
 
-    private val tabTextList = arrayListOf("전체", "심장충격기", "대피소", "응급실")
+    private val tabTextList = arrayListOf("전체", "심장충격기", "대피소", "응급실", "24시 약국")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

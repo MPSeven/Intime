@@ -11,6 +11,14 @@
                 android:width="1dp"
                 android:color="@color/gray100" />
         </shape>
-
+    </item>
+    <item>
+        <selector>
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/gray100" />
+                </shape>
+            </item>
+        </selector>
     </item>
 </layer-list>
