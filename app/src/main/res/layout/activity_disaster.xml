@@ -21,7 +21,7 @@
 
     <ImageView
         android:id="@+id/iv_bar_design"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
         android:contentDescription="@string/info_iv_bar_design"
         android:src="@drawable/info_iv_bar_design"
@@ -40,7 +40,7 @@
         <Button
             android:id="@+id/infoTbEarthQuake"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:backgroundTint="@color/white"
@@ -59,7 +59,7 @@
         <Button
             android:id="@+id/infoTbTyphoon"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:backgroundTint="@color/white"
@@ -78,7 +78,7 @@
         <Button
             android:id="@+id/infoTbFlood"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:backgroundTint="@color/white"
@@ -97,7 +97,7 @@
         <Button
             android:id="@+id/infoTbForrestfire"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:backgroundTint="@color/white"
@@ -116,7 +116,7 @@
         <Button
             android:id="@+id/infoTBUrbanFire"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:backgroundTint="@color/white"
