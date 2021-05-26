@@ -172,6 +172,8 @@
     <style name="Theme.Intime.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
     <style name="Theme.Intime.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -181,5 +183,10 @@
     <style name="ThemeOverlay.Intime.AppWidgetContainer" parent="">
         <item name="appWidgetBackgroundColor">@color/widgetbg</item>
         <item name="appWidgetTextColor">@color/black</item>
+    </style>
+
+    <style name="CustomFullDialog">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">true</item>
     </style>
 </resources>

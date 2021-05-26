@@ -20,6 +20,11 @@ class FragmentChecklistMine : Fragment() {
         _binding = FragmentChecklistMineBinding.inflate(inflater, container, false)
         val root = binding.root
 
+        binding.chMineBtn.setOnClickListener {
+            val dialog: AddChecklistFragment = AddChecklistFragment()
+            dialog.show(childFragmentManager, dialog.tag)
+        }
+
         return root
     }
 }

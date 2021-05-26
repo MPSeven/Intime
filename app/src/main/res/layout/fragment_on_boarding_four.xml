@@ -55,13 +55,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/onBoarding_tv_slide_header4" />
 
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
-        android:layout_width="64dp"
-        android:layout_height="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/onBoarding_tv_slide_body4" />
     <ImageButton
         android:id="@+id/onboarding_ib_start"
         android:layout_width="80dp"

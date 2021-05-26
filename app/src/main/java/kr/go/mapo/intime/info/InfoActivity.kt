@@ -10,10 +10,10 @@ class InfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info2)
 
-        val toolbar = findViewById<Toolbar>(R.id.myToolbar)
+/*        val toolbar = findViewById<Toolbar>(R.id.myToolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "정보"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)*/
 
     }
 }

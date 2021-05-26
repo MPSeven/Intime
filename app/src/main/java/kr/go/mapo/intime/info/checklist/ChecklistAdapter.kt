@@ -10,8 +10,7 @@ import kr.go.mapo.intime.info.checklist.model.Checklist
 import kr.go.mapo.intime.sos.model.Ambulance
 
 class ChecklistAdapter(
-    private val ChecklistList: MutableList<Checklist>,
-    private val owner: FragmentChecklistBasic
+    private val ChecklistList: MutableList<Checklist>
 ): RecyclerView.Adapter<ChecklistAdapter.ChkHolder>() {
 
     interface OnItemClickListener{

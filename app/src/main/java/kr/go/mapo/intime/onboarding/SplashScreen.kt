@@ -1,7 +1,14 @@
 package kr.go.mapo.intime.onboarding
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.fragment_on_boarding_one.*
 import kr.go.mapo.intime.R
 
 class SplashScreen : AppCompatActivity() {
@@ -9,16 +16,12 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         supportActionBar?.hide()
-/*        @Suppress("DEPRECATION")
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        Handler().postDelayed({
-            val intent = Intent(this,MainActivity::class.java )
-            startActivity(intent)
-            finish()
-        },3000)
-    */
+//        getWindow().setStatusBarColor(Color.WHITE);
+
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
+        finish()
     }
 }
