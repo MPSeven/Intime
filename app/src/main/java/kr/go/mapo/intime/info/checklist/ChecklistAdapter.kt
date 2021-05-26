@@ -3,6 +3,7 @@ package kr.go.mapo.intime.info.checklist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.R
@@ -36,6 +37,9 @@ class ChecklistAdapter(
         with(holder){
             title.text = chbData.contents
             desc.text = chbData.description
+            if(chbData.chk){
+                chk.isChecked = chbData.chk
+            }
         }
     }
 
@@ -43,5 +47,6 @@ class ChecklistAdapter(
 
         val title: TextView = itemView.findViewById(R.id.cb_title)
         val desc: TextView = itemView.findViewById(R.id.cb_detail)
+        val chk: CheckBox = itemView.findViewById(R.id.cb_chk)
     }
 }

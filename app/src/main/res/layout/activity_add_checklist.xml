@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/info_bg_chk"
-    tools:context=".info.checklist.AddChecklistFragment" >
+    app:layout_constraintBottom_toBottomOf="parent"
+    tools:context=".info.checklist.AddChecklist">
 
     <EditText
         android:id="@+id/ch_add_title"
@@ -15,7 +16,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="48dp"
-        android:background="@null"
         android:inputType="text"
         android:maxLength="20"
         android:hint="내용을 입력하세요."
@@ -23,10 +23,9 @@
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         android:textFontWeight="900"
         android:textColor="@color/gray600"
+        android:background="@null"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    <requestFocus />
-    </EditText>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/ch_add_con"
