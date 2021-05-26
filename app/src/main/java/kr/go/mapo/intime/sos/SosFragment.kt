@@ -4,12 +4,15 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import kr.go.mapo.intime.R
 import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.setting.database.ContactsDatabase
@@ -131,6 +135,7 @@ class SosFragment : Fragment() {
         } else {
             userAddress = "gps 연결을 확인해주세요"
         }
+
         return userAddress
     }
 
@@ -138,7 +143,11 @@ class SosFragment : Fragment() {
     private fun sendSms() {
 
         var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ getAddress()
-        binding.txtSms.setText(smsContents)
+        val spannableString = SpannableString(smsContents)
+        val tBold = StyleSpan(Typeface.BOLD)
+        spannableString.setSpan(tBold, 28, spannableString.length, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
+        binding.txtSms.text = spannableString
+        binding.txtSms.setText(spannableString)
 
         db = ContactsDatabase.getInstance(requireContext())
         var phoneNum = db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()

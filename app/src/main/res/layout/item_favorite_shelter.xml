@@ -9,16 +9,16 @@
     android:padding="8dp">
 
     <LinearLayout
-        android:id="@+id/favoriteAedDetaillayout"
+        android:id="@+id/favoriteShelterDetaillayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/favoriteAedDistanceTextView">
+        app:layout_constraintEnd_toStartOf="@+id/favoriteShelterDistanceTextView">
 
         <TextView
-            android:id="@+id/favoriteAedPlaceTextView"
+            android:id="@+id/favoriteShelterPlaceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="공덕역"
@@ -33,24 +33,24 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/favoriteAedDistanceTextView"
+        android:id="@+id/favoriteShelterDistanceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3분"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/favoriteAedDetaillayout"
-        app:layout_constraintEnd_toStartOf="@+id/favoriteAedBookmarkButton"
+        app:layout_constraintStart_toEndOf="@+id/favoriteShelterDetaillayout"
+        app:layout_constraintEnd_toStartOf="@+id/favoriteShelterBookmarkButton"
         android:layout_marginHorizontal="10dp"
         android:textColor="@color/black"
         />
 
     <android.widget.Button
-        android:id="@+id/favoriteAedBookmarkButton"
+        android:id="@+id/favoriteShelterBookmarkButton"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginHorizontal="10dp"
-        app:layout_constraintStart_toEndOf="@+id/favoriteAedDistanceTextView"
+        app:layout_constraintStart_toEndOf="@+id/favoriteShelterDistanceTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

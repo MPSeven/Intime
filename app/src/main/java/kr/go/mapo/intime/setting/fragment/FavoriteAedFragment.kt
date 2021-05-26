@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.*
 import kr.go.mapo.intime.R
@@ -16,7 +17,7 @@ import kr.go.mapo.intime.setting.database.DataBaseProvider
 import kotlin.coroutines.CoroutineContext
 
 
-class FavoriteAedFragment : Fragment(), CoroutineScope{
+class FavoriteAedFragment : Fragment(), CoroutineScope {
 
     private val favoriteAedAdapter = FavoriteAedAdapter()
 
@@ -49,6 +50,8 @@ class FavoriteAedFragment : Fragment(), CoroutineScope{
         favoriteAedRecyclerView.adapter = favoriteAedAdapter
         favoriteAedRecyclerView.layoutManager = LinearLayoutManager(activity)
 
+
+
         getAedFromDB()
     }
 
@@ -59,10 +62,21 @@ class FavoriteAedFragment : Fragment(), CoroutineScope{
             Log.d("FavoriteAedFragment", "$repository")
 
             withContext(Dispatchers.Main) {
+
+                if (repository?.size == 0) {
+                    binding.favoriteAedRecyclerView.visibility = View.GONE
+                    binding.favoriteAedTitle.isVisible = false
+                    binding.favoriteNoAedTextView.visibility = View.VISIBLE
+                } else {
+                    binding.favoriteAedTitle.isVisible = true
+                    binding.favoriteAedRecyclerView.isVisible = true
+                    binding.favoriteNoAedTextView.isVisible = false
+                }
+
                 favoriteAedAdapter.submitList(repository)
+
             }
         }
-
     }
 
 }
