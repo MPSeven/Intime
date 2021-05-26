@@ -82,6 +82,7 @@
     <string name="setting_add_con_no">비상문자를 보낼 \n비상 연락처를 등록해 주세요.</string>
 
     <!--How to CPR page texts:-->
+
     <string name="info_iv_cpr_desc_numbering">info_iv_cpr_desc_numbering</string>
     <string name="info_tv_cpr_step1_header">의식확인</string>
     <string name="info_iv_cpr_step1">info_iv_cpr_step1</string>
@@ -253,5 +254,6 @@
     <string name="ellipseThree">ellipseThree</string>
     <string name="ellipseTwo">ellipseTwo</string>
     <string name="ellipseOne">ellipseOne</string>
+    <string name="info_iv_prevention">예방법</string>
 
 </resources>
