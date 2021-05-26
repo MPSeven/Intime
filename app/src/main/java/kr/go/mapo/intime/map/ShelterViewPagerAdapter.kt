@@ -1,23 +1,38 @@
 package kr.go.mapo.intime.map
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kr.go.mapo.intime.databinding.ItemShelterDetailViewpagerBinding
+import kr.go.mapo.intime.map.model.Aed
+import kr.go.mapo.intime.map.model.Shelter
 import kr.go.mapo.intime.map.model.SortedShelter
+import kr.go.mapo.intime.setting.database.DataBaseProvider
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
-class ShelterViewPagerAdapter :
+class ShelterViewPagerAdapter(fragmentManager: FragmentManager) :
     androidx.recyclerview.widget.ListAdapter<SortedShelter, ShelterViewPagerAdapter.ShelterItemViewHolder>(
         differ
     ), CoroutineScope {
+
+    private lateinit var context: Context
+    private var mFragmentManager: FragmentManager = fragmentManager
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
+    }
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + Job()
@@ -33,81 +48,99 @@ class ShelterViewPagerAdapter :
             shelterCategoryMarker.text = sortedShelter.shelter.shelterCategory
             shelterDistanceMarker.text = "${(sortedShelter.distance * 1000).roundToInt()}m"
 
-            if(sortedShelter.shelter.checked) {
-                shelterFindPathButton
+            launch {
+                Log.d("viewPagerAdapter", "setLikeState")
+                withContext(Dispatchers.IO) {
+                    val repository = DataBaseProvider.provideDB(context).bookmarkShelterDao().getShelter(sortedShelter.shelter.lat)
+                    Log.d("viewPagerAdapter", "repository: $repository")
+                    val isLike = repository != null
+                    Log.d("viewPagerAdapter", "isLike: $isLike")
+                    withContext(Dispatchers.Main) {
+                        setLikeImage(isLike)
+                    }
+                }
             }
 
         }
 
         fun bindViews(sortedShelter: SortedShelter) {
             binding.shelterFindPathButton.setOnClickListener {
-                try {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("nmap://route/walk?dlat=${sortedShelter.shelter.lat}&dlng=${sortedShelter.shelter.lon}&dname=${sortedShelter.shelter.placeName}")
-                    ).apply {
-                        `package` = "com.nhn.android.nmap"
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                    it.context.startActivity(intent)
-                } catch (e: Exception) {
-                    val intentPlayStore = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
-                    )
-                    it.context.startActivity(intentPlayStore)
-                }
+                val bottomSheetDialog = MapShelterBottomSheetDialog(sortedShelter)
+                bottomSheetDialog.show(mFragmentManager, bottomSheetDialog.tag)
             }
 
             binding.shelterCallNumber.setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${sortedShelter.shelter.capacityArea}"))
                 it.context.startActivity(intent)
-                // todo ACTION_CALL
-//                val permissionCheck = ContextCompat.checkSelfPermission(it.context, Manifest.permission.CALL_PHONE)
-//                if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-//                    ActivityCompat.requestPermissions()
-//                    Toast.makeText(it.context, "permissionDenied!", Toast.LENGTH_SHORT).show()
-//                } else {
-//
-//                }
             }
 
-//            binding.bookMarkButton.setOnClickListener {
-//                // TODO DB
-//                if (!sortedAed.aed.checked) {
-//                    sortedAed.aed.checked = true
-//                    val img: Drawable? =
-//                        it.context.resources.getDrawable(R.drawable.map_bookmark_on)
-//                    img?.setBounds(0, 0, 60, 60)
-//                    binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
-//
-//                    CoroutineScope(Dispatchers.IO).launch {
-//                        DataBaseProvider.provideDB(it.context).bookmarkAedDao()
-//                            .insertAed(sortedAed.aed)
-//
-//                        val aedRepo =
-//                            DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
-//                        Log.d("ViewPagerAdapter", aedRepo.toString())
-//                    }
-//                } else {
-//                    sortedAed.aed.checked = false
-//                    val img: Drawable? =
-//                        it.context.resources.getDrawable(R.drawable.map_bookmark_off)
-//                    img?.setBounds(0, 0, 60, 60)
-//                    binding.bookMarkButton.setCompoundDrawables(img, null, null, null)
-//
-//                    CoroutineScope(Dispatchers.IO).launch {
-//                        DataBaseProvider.provideDB(it.context).bookmarkAedDao()
-//                            .delete(sortedAed.aed.lat)
-//
-//                        val aedRepo =
-//                            DataBaseProvider.provideDB(it.context).bookmarkAedDao().getAll()
-//                        Log.d("ViewPagerAdapter", aedRepo.toString())
-//                    }
-//                }
-//            }
+            binding.shelterBookMarkButton.setOnClickListener {
+                // TODO DB
+                setLikeState(sortedShelter.shelter)
+            }
         }
 
+        private fun setLikeState(shelter: Shelter) = launch {
+            Log.d("viewPagerAdapter", "setLikeState")
+            withContext(Dispatchers.IO) {
+                val repository = DataBaseProvider.provideDB(context).bookmarkShelterDao().getShelter(shelter.lat)
+                Log.d("viewPagerAdapter", "repository: $repository")
+                val isLike = repository != null
+                Log.d("viewPagerAdapter", "isLike: $isLike")
+
+                likeRepository(shelter, isLike)
+
+                withContext(Dispatchers.Main) {
+                    setLikeImage(isLike)
+                }
+            }
+        }
+
+        private fun likeRepository(shelter: Shelter, isLike: Boolean) = launch {
+            Log.d("viewpageradapter", "LikeRepository")
+            withContext(Dispatchers.IO) {
+                val dao = DataBaseProvider.provideDB(context).bookmarkShelterDao()
+                if(isLike) {
+                    dao.delete(shelter.lat)
+                    Log.d("viewPagerAdapter", "delete aed")
+                    val db = dao.getAll()
+                    Log.d("viewPagerAdapter", "$db")
+
+                    withContext(Dispatchers.Main) {
+                        bookmarkToast("즐겨찾기가 해제되었습니다. ")
+                    }
+                } else {
+                    dao.insertShelter(shelter)
+                    Log.d("viewPagerAdapter", "insert aed")
+                    val db = dao.getAll()
+                    Log.d("viewPagerAdapter", "$db")
+
+                    withContext(Dispatchers.Main) {
+                        bookmarkToast("즐겨찾기에 추가되었습니다. ")
+                    }
+                }
+                withContext(Dispatchers.Main) {
+                    setLikeImage(isLike.not())
+                }
+            }
+        }
+
+        private fun setLikeImage(isLike: Boolean) = with(binding){
+            Log.d("viewPagerAdapter", "setLikeImage")
+            if(isLike) {
+                val img: Drawable? =
+                    shelterBookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_on)
+                img?.setBounds(0, 0, 80, 80)
+                shelterBookMarkButton.setCompoundDrawables(img, null, null, null)
+
+            } else {
+                val img: Drawable? =
+                    shelterBookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_off)
+                img?.setBounds(0, 0, 80, 80)
+                binding.shelterBookMarkButton.setCompoundDrawables(img, null, null, null)
+
+            }
+        }
     }
 
     override fun onCreateViewHolder(
@@ -124,19 +157,21 @@ class ShelterViewPagerAdapter :
         holder.bindViews(currentList[position])
     }
 
+    private fun bookmarkToast(string: String) {
+        val toast = Toast.makeText(context, "$string", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.BOTTOM, 0, 950)
+        toast.show()
+    }
+
     companion object {
         val differ = object : DiffUtil.ItemCallback<SortedShelter>() {
             override fun areItemsTheSame(oldItem: SortedShelter, newItem: SortedShelter): Boolean {
                 return oldItem.distance == newItem.distance
             }
-
             override fun areContentsTheSame(oldItem: SortedShelter, newItem: SortedShelter): Boolean {
                 return oldItem == newItem
             }
-
         }
-
-        private const val NAVER_MAP_PACKAGE_NAME = "com.nhn.android.nmap"
     }
 
 }

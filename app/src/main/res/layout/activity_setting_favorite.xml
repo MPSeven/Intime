@@ -50,8 +50,9 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/setting_tab_layout"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:layout_marginStart="@dimen/default_padding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +62,7 @@
             android:background="#00FFFFFF"
             app:tabSelectedTextColor="@color/gray600"
             app:tabTextAppearance="@style/Body1"
-            app:tabMode="fixed"/>
+            app:tabMode="scrollable"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

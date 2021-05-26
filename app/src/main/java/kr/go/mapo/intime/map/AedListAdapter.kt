@@ -55,31 +55,9 @@ class AedListAdapter(fragmentManager: FragmentManager): ListAdapter<SortedAed, A
             addressDetailTextView.text = sortedAed.aed.addressDetail
             distanceTextView.text = "${(sortedAed.distance * 1000).roundToInt()}m"
 
-            view.setOnClickListener {
-                Log.d("View setOnClickListener", "${getItem(adapterPosition)}")
-            }
-
             findPathButton.setOnClickListener {
-
                 val bottomSheetDialog = MapBottomSheetDialog(sortedAed)
                 bottomSheetDialog.show(mFragmentManager, bottomSheetDialog.tag)
-
-//                try {
-//                    val intent = Intent(
-//                        Intent.ACTION_VIEW,
-//                        Uri.parse("nmap://route/walk?dlat=${sortedAed.aed.lat}&dlng=${sortedAed.aed.lon}&dname=${sortedAed.aed.org}")
-//                    ).apply {
-//                        `package` = "com.nhn.android.nmap"
-//                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//                    }
-//                    it.context.startActivity(intent)
-//                } catch (e: Exception) {
-//                    val intentPlayStore = Intent(
-//                        Intent.ACTION_VIEW,
-//                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
-//                    )
-//                    it.context.startActivity(intentPlayStore)
-//                }
             }
 
             callButton.setOnClickListener {
@@ -112,6 +90,5 @@ class AedListAdapter(fragmentManager: FragmentManager): ListAdapter<SortedAed, A
                 return oldItem == newItem
             }
         }
-        private const val NAVER_MAP_PACKAGE_NAME = "com.nhn.android.nmap"
     }
 }

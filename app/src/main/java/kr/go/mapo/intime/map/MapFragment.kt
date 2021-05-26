@@ -63,9 +63,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     private var myAddress: String = "init"
     private lateinit var addressTextView: TextView
     private lateinit var aedRecyclerAdapter: AedListAdapter
-    private val shelterRecyclerAdapter = ShelterListAdapter()
-    private val aedViewPagerAdapter = AedViewPagerAdapter()
-    private val shelterViewPagerAdapter = ShelterViewPagerAdapter()
+    private lateinit var aedViewPagerAdapter: AedViewPagerAdapter
+    private lateinit var shelterViewPagerAdapter: ShelterViewPagerAdapter
+    private lateinit var shelterRecyclerAdapter: ShelterListAdapter
     private lateinit var aedNumberTextView: TextView
     private lateinit var spannableString: SpannableString
     private lateinit var rootView: View
@@ -133,9 +133,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         manager = (context as FragmentActivity).supportFragmentManager
 
         aedRecyclerAdapter = AedListAdapter(manager)
+        aedViewPagerAdapter = AedViewPagerAdapter(manager)
+
+        shelterViewPagerAdapter = ShelterViewPagerAdapter(manager)
+        shelterRecyclerAdapter = ShelterListAdapter(manager)
 
         recyclerView.adapter = aedRecyclerAdapter
         viewPager.adapter = aedViewPagerAdapter
+
+        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
 
         aedRecyclerAdapter.setItemClickListener( object : AedListAdapter.ItemClickListener{
             override fun onClick(view: View, position: Int) {
@@ -156,6 +162,33 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                         LatLng(
                             selectedModel.aed.lat,
                             selectedModel.aed.lon
+                        )
+                    )
+                        .animate(CameraAnimation.Easing)
+
+                naverMap.moveCamera(cameraUpdate)
+            }
+        })
+
+        shelterRecyclerAdapter.setItemClickListener( object : ShelterListAdapter.ItemClickListener{
+            override fun onClick(view: View, position: Int) {
+                Log.d(TAG, "$position 번 선택")
+
+                viewPager.visibility = View.VISIBLE
+                listViewButton.visibility = View.GONE
+                recyclerViewHidden()
+
+                val selectedModel = shelterViewPagerAdapter.currentList[position]
+
+                viewPager.currentItem = position
+
+                Log.d(TAG, "$selectedModel")
+
+                val cameraUpdate =
+                    CameraUpdate.scrollTo(
+                        LatLng(
+                            selectedModel.shelter.lat,
+                            selectedModel.shelter.lon
                         )
                     )
                         .animate(CameraAnimation.Easing)
@@ -215,7 +248,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
 
     private fun bindViews() = with(binding) {
-
         binding.bottomSheetDialog.aedCategoryButton.setOnClickListener {
             Log.d(TAG, "aedCategoryButton onClick!!!")
             resetMarkerList()
@@ -329,6 +361,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+        Log.d(TAG, "ONRESUME!!!!")
+
+        fetchAedLocation(latitude, longitude, DISTANCE)
     }
 
     override fun onPause() {
@@ -546,8 +581,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                 val marker = Marker()
                 marker.tag = sortedAed
                 val latLng = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
-                marker.position = latLng
 
+                getOverlay(R.drawable.map_aed_overlay)
+
+                marker.position = latLng
                 marker.icon = OverlayImage.fromResource(R.drawable.map_aed_marker)
                 marker.width = 150
                 marker.height = 150
@@ -605,9 +642,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             Log.d(TAG, "No Address!")
             return ""
         }
-
-        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
-
         return list[0].getAddressLine(0).toString().substring(4)
     }
 

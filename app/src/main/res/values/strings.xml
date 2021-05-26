@@ -235,5 +235,6 @@
     <string name="info_chk_contents">위급상황이 생겼을 때 잊지 말고 챙길 \n체크리스트를 인타임 함께 확인해보세요!</string>
     <string name="naverMapTextView">네이버 지도로 길찾기</string>
     <string name="kakaoMapTextView">카카오맵으로 길찾기</string>
+    <string name="servicePrepare">서비스 준비중입니다</string>
 
 </resources>
