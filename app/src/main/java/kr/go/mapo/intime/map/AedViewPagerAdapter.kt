@@ -6,9 +6,12 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.renderscript.ScriptGroup
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
@@ -22,11 +25,12 @@ import kr.go.mapo.intime.setting.dao.BookmarkAedDao
 import kotlin.coroutines.CoroutineContext
 import kotlin.math.roundToInt
 
-class AedViewPagerAdapter :
+class AedViewPagerAdapter(fragmentManager: FragmentManager) :
     androidx.recyclerview.widget.ListAdapter<SortedAed, AedViewPagerAdapter.ItemViewHolder>(differ),
     CoroutineScope {
 
     private lateinit var context: Context
+    private var mFragmentManager: FragmentManager = fragmentManager
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -62,35 +66,13 @@ class AedViewPagerAdapter :
 
         fun bindViews(sortedAed: SortedAed) {
             binding.findPathButton.setOnClickListener {
-                try {
-                    val intent = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("nmap://route/walk?dlat=${sortedAed.aed.lat}&dlng=${sortedAed.aed.lon}&dname=${sortedAed.aed.org}")
-                    ).apply {
-                        `package` = "com.nhn.android.nmap"
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                    it.context.startActivity(intent)
-                } catch (e: Exception) {
-                    val intentPlayStore = Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("market://details?id=$NAVER_MAP_PACKAGE_NAME")
-                    )
-                    it.context.startActivity(intentPlayStore)
-                }
+                val bottomSheetDialog = MapBottomSheetDialog(sortedAed)
+                bottomSheetDialog.show(mFragmentManager, bottomSheetDialog.tag)
             }
 
             binding.callNumber.setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${sortedAed.aed.tel}"))
                 it.context.startActivity(intent)
-                // todo ACTION_CALL
-//                val permissionCheck = ContextCompat.checkSelfPermission(it.context, Manifest.permission.CALL_PHONE)
-//                if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-//                    ActivityCompat.requestPermissions()
-//                    Toast.makeText(it.context, "permissionDenied!", Toast.LENGTH_SHORT).show()
-//                } else {
-//
-//                }
             }
 
             binding.bookMarkButton.setOnClickListener {
@@ -124,11 +106,19 @@ class AedViewPagerAdapter :
                     Log.d("viewPagerAdapter", "delete aed")
                     val db = dao.getAll()
                     Log.d("viewPagerAdapter", "$db")
+
+                    withContext(Dispatchers.Main) {
+                        bookmarkToast("즐겨찾기가 해제되었습니다. ")
+                    }
                 } else {
                     dao.insertAed(aed)
                     Log.d("viewPagerAdapter", "insert aed")
                     val db = dao.getAll()
                     Log.d("viewPagerAdapter", "$db")
+
+                    withContext(Dispatchers.Main) {
+                        bookmarkToast("즐겨찾기에 추가되었습니다. ")
+                    }
                 }
                 withContext(Dispatchers.Main) {
                     setLikeImage(isLike.not())
@@ -143,6 +133,7 @@ class AedViewPagerAdapter :
                     bookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_on)
                 img?.setBounds(0, 0, 80, 80)
                 bookMarkButton.setCompoundDrawables(img, null, null, null)
+
             } else {
                 val img: Drawable? =
                     bookMarkButton.context.resources.getDrawable(kr.go.mapo.intime.R.drawable.map_bookmark_off)
@@ -168,6 +159,11 @@ class AedViewPagerAdapter :
         holder.bindViews(currentList[position])
     }
 
+    private fun bookmarkToast(string: String) {
+        val toast = Toast.makeText(context, "$string", Toast.LENGTH_SHORT)
+        toast.setGravity(Gravity.BOTTOM, 0, 950)
+        toast.show()
+    }
 
 
     companion object {
@@ -180,7 +176,6 @@ class AedViewPagerAdapter :
                 return oldItem == newItem
             }
         }
-        private const val NAVER_MAP_PACKAGE_NAME = "com.nhn.android.nmap"
     }
 
 }

@@ -8,6 +8,8 @@
     <dimen name="h1height">24dp</dimen>
     <dimen name="default_padding">24dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="button_height">37dp</dimen>
+    <dimen name="button_vertical_padding">4dp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

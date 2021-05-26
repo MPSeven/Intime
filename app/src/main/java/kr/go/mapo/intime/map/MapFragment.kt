@@ -10,12 +10,17 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -57,15 +62,17 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     private lateinit var geoCoder: Geocoder
     private var myAddress: String = "init"
     private lateinit var addressTextView: TextView
-    private val aedRecyclerAdapter = AedListAdapter()
-    private val shelterRecyclerAdapter = ShelterListAdapter()
-    private val aedViewPagerAdapter = AedViewPagerAdapter()
-    private val shelterViewPagerAdapter = ShelterViewPagerAdapter()
+    private lateinit var aedRecyclerAdapter: AedListAdapter
+    private lateinit var aedViewPagerAdapter: AedViewPagerAdapter
+    private lateinit var shelterViewPagerAdapter: ShelterViewPagerAdapter
+    private lateinit var shelterRecyclerAdapter: ShelterListAdapter
     private lateinit var aedNumberTextView: TextView
     private lateinit var spannableString: SpannableString
     private lateinit var rootView: View
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
+
+    private lateinit var manager: FragmentManager
 
     private val job: Job = Job()
 
@@ -85,6 +92,12 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     private val shelterCategoryButton: Button by lazy {
         rootView.findViewById(R.id.shelterCategoryButton)
     }
+    private val emergencyCategoryButton: Button by lazy {
+        rootView.findViewById(R.id.emergencyRoomCategoryButton)
+    }
+    private val pharmacyCategoryButton: Button by lazy {
+        rootView.findViewById(R.id.pharmacyCategoryButton)
+    }
     private val viewPager: ViewPager2 by lazy {
         rootView.findViewById(R.id.viewPager)
     }
@@ -95,7 +108,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     private val emptyResultTextView: TextView by lazy {
         rootView.findViewById(R.id.emptyResultTextView)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,8 +130,72 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         aedNumberTextView = rootView.findViewById(R.id.aedNumber)
         locationButtonView = rootView.findViewById(R.id.location)
 
+        manager = (context as FragmentActivity).supportFragmentManager
+
+        aedRecyclerAdapter = AedListAdapter(manager)
+        aedViewPagerAdapter = AedViewPagerAdapter(manager)
+
+        shelterViewPagerAdapter = ShelterViewPagerAdapter(manager)
+        shelterRecyclerAdapter = ShelterListAdapter(manager)
+
         recyclerView.adapter = aedRecyclerAdapter
         viewPager.adapter = aedViewPagerAdapter
+
+        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
+
+        aedRecyclerAdapter.setItemClickListener( object : AedListAdapter.ItemClickListener{
+            override fun onClick(view: View, position: Int) {
+                Log.d(TAG, "$position 번 선택")
+
+                viewPager.visibility = View.VISIBLE
+                listViewButton.visibility = View.GONE
+                recyclerViewHidden()
+
+                val selectedModel = aedViewPagerAdapter.currentList[position]
+
+                viewPager.currentItem = position
+
+                Log.d(TAG, "$selectedModel")
+
+                val cameraUpdate =
+                    CameraUpdate.scrollTo(
+                        LatLng(
+                            selectedModel.aed.lat,
+                            selectedModel.aed.lon
+                        )
+                    )
+                        .animate(CameraAnimation.Easing)
+
+                naverMap.moveCamera(cameraUpdate)
+            }
+        })
+
+        shelterRecyclerAdapter.setItemClickListener( object : ShelterListAdapter.ItemClickListener{
+            override fun onClick(view: View, position: Int) {
+                Log.d(TAG, "$position 번 선택")
+
+                viewPager.visibility = View.VISIBLE
+                listViewButton.visibility = View.GONE
+                recyclerViewHidden()
+
+                val selectedModel = shelterViewPagerAdapter.currentList[position]
+
+                viewPager.currentItem = position
+
+                Log.d(TAG, "$selectedModel")
+
+                val cameraUpdate =
+                    CameraUpdate.scrollTo(
+                        LatLng(
+                            selectedModel.shelter.lat,
+                            selectedModel.shelter.lon
+                        )
+                    )
+                        .animate(CameraAnimation.Easing)
+
+                naverMap.moveCamera(cameraUpdate)
+            }
+        })
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
@@ -128,7 +204,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         )
 
         behavior.isFitToContents = false
-        behavior.halfExpandedRatio = 0.35F
+        behavior.halfExpandedRatio = 0.45F
         behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
 
         behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -147,10 +223,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 Log.d(TAG, "offset: $slideOffset")
+
             }
         })
 
-        setClickedAedButtonAppearance()
         initViews()
         bindViews()
 
@@ -172,13 +248,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
 
     private fun bindViews() = with(binding) {
-
         binding.bottomSheetDialog.aedCategoryButton.setOnClickListener {
             Log.d(TAG, "aedCategoryButton onClick!!!")
             resetMarkerList()
             setClickedAedButtonAppearance()
 
             fetchAedLocation(latitude, longitude, DISTANCE)
+
+
+            getOverlay(R.drawable.map_aed_overlay)
 
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -204,11 +282,14 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         }
 
 
+
         binding.bottomSheetDialog.shelterCategoryButton.setOnClickListener {
             Log.d(TAG, "shelterCategoryButton onClick!!!")
             resetMarkerList()
             setClickedShelterButtonAppearance()
             fetchShelterLocation(latitude, longitude, DISTANCE)
+
+            getOverlay(R.drawable.map_shelter_overlay)
 
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -231,6 +312,34 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             })
         }
 
+        binding.bottomSheetDialog.emergencyRoomCategoryButton.setOnClickListener {
+            setClickedEmergencyButtonAppearance()
+            resetMarkerList()
+
+            getOverlay(R.drawable.map_emergency_overlay)
+
+            emptyResultTextView.visibility = View.VISIBLE
+            recyclerView.visibility = View.INVISIBLE
+
+            emptyResultTextView.text = "서비스 준비중입니다"
+
+            getCustomEmergencyRoomInfo(0)
+        }
+
+        binding.bottomSheetDialog.pharmacyCategoryButton.setOnClickListener {
+            setClickedPharmacyButtonAppearance()
+            resetMarkerList()
+
+            getOverlay(R.drawable.map_pharmacy_overlay)
+
+            emptyResultTextView.visibility = View.VISIBLE
+            recyclerView.visibility = View.INVISIBLE
+
+            emptyResultTextView.text = "서비스 준비중입니다"
+
+            getCustomPharmacyInfo(0)
+
+        }
 
         binding.listViewButton.setOnClickListener {
             val behavior = BottomSheetBehavior.from(
@@ -239,6 +348,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
             listViewButton.visibility = View.GONE
+
+            emptyResultTextView.text = "서비스 준비중입니다"
         }
     }
 
@@ -250,6 +361,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+        Log.d(TAG, "ONRESUME!!!!")
+
+        fetchAedLocation(latitude, longitude, DISTANCE)
     }
 
     override fun onPause() {
@@ -288,6 +402,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
         initMap()
+        setClickedAedButtonAppearance()
 
         locationButtonView.map = naverMap
 
@@ -314,8 +429,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     }
 
     private fun initMap() {
-        val locationOverlay = naverMap.locationOverlay
-        locationOverlay.isVisible = true
+        getOverlay(R.drawable.map_aed_overlay)
 
         val uiSettings: UiSettings = naverMap.uiSettings
         uiSettings.isLocationButtonEnabled = false
@@ -332,7 +446,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         val selectedModel = aedViewPagerAdapter.currentList.firstOrNull {
             it == overlay.tag
         }
-
         val selectedShelterModel = shelterViewPagerAdapter.currentList.firstOrNull {
             it == overlay.tag
         }
@@ -468,8 +581,10 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                 val marker = Marker()
                 marker.tag = sortedAed
                 val latLng = LatLng(sortedAed.aed.lat, sortedAed.aed.lon)
-                marker.position = latLng
 
+                getOverlay(R.drawable.map_aed_overlay)
+
+                marker.position = latLng
                 marker.icon = OverlayImage.fromResource(R.drawable.map_aed_marker)
                 marker.width = 150
                 marker.height = 150
@@ -527,7 +642,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             Log.d(TAG, "No Address!")
             return ""
         }
-
         return list[0].getAddressLine(0).toString().substring(4)
     }
 
@@ -569,6 +683,44 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         aedNumberTextView.text = spannableString
     }
 
+    private fun getCustomEmergencyRoomInfo(size: Int) {
+        val info = "나와 가장 가까운 대피소가 ${size}개 있습니다"
+
+        var word = size.toString()
+        val start = info.indexOf(word)
+        val end = start + word.length
+
+        spannableString = SpannableString(info)
+
+        spannableString.setSpan(
+            ForegroundColorSpan(Color.parseColor("#FFBC16")),
+            start,
+            end,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        aedNumberTextView.text = spannableString
+    }
+
+    private fun getCustomPharmacyInfo(size: Int) {
+        val info = "나와 가장 가까운 24시 약국이 ${size}개 있습니다"
+
+        var word = size.toString()
+        val start = info.indexOf(word)
+        val end = start + word.length
+
+        spannableString = SpannableString(info)
+
+        spannableString.setSpan(
+            ForegroundColorSpan(Color.parseColor("#1EA849")),
+            start,
+            end,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        aedNumberTextView.text = spannableString
+    }
+
     private fun recyclerViewHidden() {
         val behavior = BottomSheetBehavior.from(
             rootView.findViewById(R.id.bottomSheetDialog)
@@ -592,6 +744,20 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol)
         img2?.setBounds(0, 0, 60, 60)
         shelterCategoryButton.setCompoundDrawables(img2, null, null, null)
+
+        emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol)
+        img3?.setBounds(0, 0, 60, 60)
+        emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
+
+        pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol)
+        img4?.setBounds(0, 0, 60, 60)
+        pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables", "UseCompatLoadingForColorStateLists")
@@ -610,6 +776,89 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol)
         img2?.setBounds(0, 0, 60, 60)
         aedCategoryButton.setCompoundDrawables(img2, null, null, null)
+
+        emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol)
+        img3?.setBounds(0, 0, 60, 60)
+        emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
+
+        pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol)
+        img4?.setBounds(0, 0, 60, 60)
+        pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables", "UseCompatLoadingForColorStateLists")
+    private fun setClickedEmergencyButtonAppearance() {
+        aedCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        aedCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol)
+        img?.setBounds(0, 0, 60, 60)
+        aedCategoryButton.setCompoundDrawables(img, null, null, null)
+
+        shelterCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        shelterCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol)
+        img2?.setBounds(0, 0, 60, 60)
+        shelterCategoryButton.setCompoundDrawables(img2, null, null, null)
+
+        emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_emergency_room_button_clicked)
+        emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
+
+        val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol_clicked)
+        img3?.setBounds(0, 0, 60, 60)
+        emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
+
+        pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol)
+        img4?.setBounds(0, 0, 60, 60)
+        pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables", "UseCompatLoadingForColorStateLists")
+    private fun setClickedPharmacyButtonAppearance() {
+        aedCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        aedCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img: Drawable? = context?.resources?.getDrawable(R.drawable.map_aed_symbol)
+        img?.setBounds(0, 0, 60, 60)
+        aedCategoryButton.setCompoundDrawables(img, null, null, null)
+
+        shelterCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        shelterCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img2: Drawable? = context?.resources?.getDrawable(R.drawable.map_shelter_symbol)
+        img2?.setBounds(0, 0, 60, 60)
+        shelterCategoryButton.setCompoundDrawables(img2, null, null, null)
+
+        emergencyCategoryButton.background = resources.getDrawable(R.drawable.map_category_button)
+        emergencyCategoryButton.setTextColor(resources.getColorStateList(R.color.black))
+
+        val img3: Drawable? = context?.resources?.getDrawable(R.drawable.map_emergency_room_symbol)
+        img3?.setBounds(0, 0, 60, 60)
+        emergencyCategoryButton.setCompoundDrawables(img3, null, null, null)
+
+        pharmacyCategoryButton.background = resources.getDrawable(R.drawable.map_category_pharmacy_button_clicked)
+        pharmacyCategoryButton.setTextColor(resources.getColorStateList(R.color.white))
+
+        val img4: Drawable? = context?.resources?.getDrawable(R.drawable.map_pharmacy_symbol_clicked)
+        img4?.setBounds(0, 0, 60, 60)
+        pharmacyCategoryButton.setCompoundDrawables(img4, null, null, null)
+    }
+
+    private fun getOverlay(res: Int){
+        val locationOverlay = naverMap.locationOverlay
+        locationOverlay.icon = OverlayImage.fromResource(res)
+        locationOverlay.iconWidth = 80
+        locationOverlay.iconHeight = 80
     }
 
 
