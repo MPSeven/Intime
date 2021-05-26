@@ -16,7 +16,7 @@ class DisasterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.disaster_appbar))
-        supportActionBar?.title = "재난상황 대처 방법"
+        supportActionBar?.title = "재난상황 대처법"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.infoTbEarthQuake.setOnClickListener {

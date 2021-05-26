@@ -74,9 +74,10 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="203dp" />
+                android:layout_height="88dp" />
 
             <ImageView
+                android:contentDescription="@string/info_iv_prevention"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
                 android:src="@drawable/info_btn_whenoccur" />
