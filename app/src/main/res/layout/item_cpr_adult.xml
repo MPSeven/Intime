@@ -398,6 +398,7 @@
                 android:layout_height="14dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
+                android:layout_marginBottom="200dp"
                 android:gravity="center_horizontal|top"
                 android:text="@string/info_iv_copyright"
                 android:textColor="#979797"

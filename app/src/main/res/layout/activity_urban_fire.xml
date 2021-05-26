@@ -44,7 +44,8 @@
                 android:id="@+id/info_tv_urbanfire_header"
                 style="@style/disaster"
                 android:layout_width="wrap_content"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:text="@string/info_tb_fire" />
@@ -89,7 +90,8 @@
                 style="@style/disaster_body"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/info_tv_fire_body2" />
+                android:text="@string/info_tv_fire_body2"
+                android:layout_marginBottom="200dp"/>
 
 
         </LinearLayout>
