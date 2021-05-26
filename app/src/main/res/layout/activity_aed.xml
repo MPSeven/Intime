@@ -108,13 +108,38 @@
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp">
 
-                <ImageView
+                <LinearLayout
                     android:id="@+id/info_iv_aed_desc_number"
                     android:layout_width="24dp"
                     android:layout_height="1118dp"
                     android:adjustViewBounds="true"
-                    android:contentDescription="@string/info_iv_aed_desc_number"
-                    android:src="@drawable/info_iv_aed_desc_number" />
+                    android:contentDescription="@string/info_iv_aed_desc_number">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="190dp"
+                        android:contentDescription="@string/ellipseOne"
+                        android:src="@drawable/ic_ellipse_1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="388dp"
+                        android:contentDescription="@string/ellipseTwo"
+                        android:src="@drawable/ic_ellipse_2" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="444dp"
+                        android:contentDescription="@string/disclaimer"
+                        android:src="@drawable/ic_disclaimer" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/ellipseThree"
+                        android:src="@drawable/ic_ellipse_3" />
+                </LinearLayout>
                 <Space
                     android:layout_width="12dp"
                     android:layout_height="1181dp"/>
@@ -279,12 +304,12 @@
                 </LinearLayout>
 
             </LinearLayout>
-            <ImageView
+            <TextView
                 android:id="@+id/info_iv_copyright"
                 android:contentDescription="@string/info_iv_copyright"
                 android:layout_width="341dp"
                 android:layout_height="14dp"
-                android:src="@drawable/info_iv_copyright"
+                android:text="@string/info_iv_copyright"
                 android:layout_gravity="center_horizontal" />
             <Space
                 android:layout_width="match_parent"
