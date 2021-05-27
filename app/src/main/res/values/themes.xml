@@ -36,7 +36,7 @@
 
     <!-- FONT STYLES -->
     <style name="Head0" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/gray600</item>
         <item name="android:textSize">24sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -45,7 +45,7 @@
     </style>
 
     <style name="Head1" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/gray600</item>
         <item name="android:textSize">20sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -54,7 +54,7 @@
     </style>
 
     <style name="Head1_32" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/gray600</item>
         <item name="android:textSize">20sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -63,15 +63,15 @@
     </style>
 
     <style name="Head2" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">-0.03</item>
         <item name="lineHeight">17sp</item>
     </style>
 
-    <style name="Head3" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+    <style name="Head3" parent="TextAppearance.AppCompat.Headline">
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -79,7 +79,7 @@
     </style>
 
     <style name="Head4" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -87,7 +87,7 @@
     </style>
 
     <style name="Body1" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">-0.03</item>
@@ -96,7 +96,7 @@
     </style>
 
     <style name="Body1_26" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">-0.03</item>
@@ -106,7 +106,7 @@
     </style>
 
     <style name="Body2" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">-0.03</item>
@@ -114,7 +114,7 @@
     </style>
 
     <style name="Body3" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">-0.03</item>
@@ -122,7 +122,7 @@
     </style>
 
     <style name="Caption1" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -130,7 +130,7 @@
     </style>
 
     <style name="Caption2" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">10sp</item>
         <item name="android:letterSpacing">-0.02</item>
@@ -138,7 +138,7 @@
     </style>
 
     <style name="disaster" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_bold</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_bold</item>
         <item name="lineHeight">38sp</item>
         <item name="android:textSize">32sp</item>
         <item name="android:letterSpacing">-0.01</item>
@@ -148,7 +148,7 @@
     </style>
 
     <style name="disaster_body" parent="TextAppearance.AppCompat">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="lineHeight">26sp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">-0.03</item>
@@ -160,7 +160,7 @@
     </style>
 
     <style name="TextButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
-        <item name="font">@font/spoqa_han_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:letterSpacing">-0.03</item>
