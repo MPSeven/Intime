@@ -52,7 +52,7 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_gravity="bottom"
         android:visibility="gone"
         tools:visibility="visible"

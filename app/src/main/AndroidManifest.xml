@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Intime"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:name=".IntimeApplication">
         <activity android:name=".info.checklist.AddChecklist"></activity>
         <activity android:name=".info.checklist.ChecklistActivity" />
         <activity android:name=".sos.AmbulanceActivity" />

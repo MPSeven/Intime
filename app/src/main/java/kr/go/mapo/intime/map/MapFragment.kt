@@ -141,7 +141,27 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
         recyclerView.adapter = aedRecyclerAdapter
         viewPager.adapter = aedViewPagerAdapter
 
-//        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Log.d(TAG, "$position")
+
+                if (aedViewPagerAdapter.currentList.size > position) {
+                    val selectedModel = aedViewPagerAdapter.currentList[position]
+
+                    val cameraUpdate =
+                        CameraUpdate.scrollTo(
+                            LatLng(
+                                selectedModel.aed.lat,
+                                selectedModel.aed.lon
+                            )
+                        )
+                            .animate(CameraAnimation.Easing)
+
+                    naverMap.moveCamera(cameraUpdate)
+                }
+            }
+        })
 
         aedRecyclerAdapter.setItemClickListener( object : AedListAdapter.ItemClickListener{
             override fun onClick(view: View, position: Int) {
@@ -263,7 +283,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                     super.onPageSelected(position)
                     Log.d(TAG, "$position")
 
-                    if (aedViewPagerAdapter.currentList.size >= position) {
+                    if (aedViewPagerAdapter.currentList.size > position) {
                         val selectedModel = aedViewPagerAdapter.currentList[position]
 
                         val cameraUpdate =
