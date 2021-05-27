@@ -53,14 +53,7 @@ class MainActivity : AppCompatActivity(){
         return super.onOptionsItemSelected(item)
     }
 
-//    네비바 컨트롤
-    private fun fragmentManager(){
-        val fragManager = supportFragmentManager
-        fragManager.beginTransaction().apply {
-        }
-    }
 
-//    바텀네비바
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
