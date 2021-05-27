@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity(){
         bottomNavigationView.menu.getItem(1).isChecked = true
         replaceFragment(mapFragment)
 
-        binding.toolbar.title = "INTIME"
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
     }
 
 
@@ -53,14 +55,7 @@ class MainActivity : AppCompatActivity(){
         return super.onOptionsItemSelected(item)
     }
 
-//    네비바 컨트롤
-    private fun fragmentManager(){
-        val fragManager = supportFragmentManager
-        fragManager.beginTransaction().apply {
-        }
-    }
 
-//    바텀네비바
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {

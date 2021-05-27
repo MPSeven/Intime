@@ -18,6 +18,13 @@
         tools:text = "재난상황 대처 방법"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
+<!--        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/back"/>-->
     </com.google.android.material.appbar.MaterialToolbar>
     <ImageView
         android:id="@+id/iv_bar_design"

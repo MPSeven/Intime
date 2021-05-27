@@ -58,15 +58,6 @@
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:textSize="12sp"/>
 
-        <ImageButton
-            android:id="@+id/widget_refresh"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:src="@drawable/widget_refresh"
-            android:contentDescription="@string/widget_refresh" />
-
     </LinearLayout>
 
     <LinearLayout

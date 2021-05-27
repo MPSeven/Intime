@@ -140,8 +140,30 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
 
         recyclerView.adapter = aedRecyclerAdapter
         viewPager.adapter = aedViewPagerAdapter
+        viewPager.isUserInputEnabled = false
+        viewPager.setPageTransformer(null)
 
-//        context?.let { MapToast.createToast(it, "이 위치가 맞으신가요?")?.show() }
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Log.d(TAG, "$position")
+
+                if (aedViewPagerAdapter.currentList.size > position) {
+                    val selectedModel = aedViewPagerAdapter.currentList[position]
+
+                    val cameraUpdate =
+                        CameraUpdate.scrollTo(
+                            LatLng(
+                                selectedModel.aed.lat,
+                                selectedModel.aed.lon
+                            )
+                        )
+                            .animate(CameraAnimation.Easing)
+
+                    naverMap.moveCamera(cameraUpdate)
+                }
+            }
+        })
 
         aedRecyclerAdapter.setItemClickListener( object : AedListAdapter.ItemClickListener{
             override fun onClick(view: View, position: Int) {
@@ -263,7 +285,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
                     super.onPageSelected(position)
                     Log.d(TAG, "$position")
 
-                    if (aedViewPagerAdapter.currentList.size >= position) {
+                    if (aedViewPagerAdapter.currentList.size > position) {
                         val selectedModel = aedViewPagerAdapter.currentList[position]
 
                         val cameraUpdate =
@@ -866,7 +888,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
         private const val TAG = "MapFragment"
-        private const val DISTANCE = 0.6F
+        private const val DISTANCE = 0.5F
         private const val ICON = 40
     }
 

@@ -44,13 +44,11 @@ class IntimeWidget : AppWidgetProvider() {
                     "tel:${db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()}")), 0
             )
             val intentCpr: PendingIntent
-            val intentRefresh: PendingIntent
             val views: RemoteViews = RemoteViews(context.packageName, R.layout.intime_widget)
             views.setOnClickPendingIntent(R.id.widget_119, intent119)
             views.setOnClickPendingIntent(R.id.widget_112, intent112)
             views.setOnClickPendingIntent(R.id.widget_fav, intentFav)
 //            views.setOnClickPendingIntent(R.id.widget_cpr, intentCpr)
-//            views.setOnClickPendingIntent(R.id.widget_refresh, intentRefresh)
 
             appWidgetManager.updateAppWidget(it, views)
         }

@@ -16,7 +16,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/aedInfoButton"
-        app:layout_constraintHorizontal_weight="1.9"
+        app:layout_constraintHorizontal_weight="1.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
