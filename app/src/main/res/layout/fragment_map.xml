@@ -54,6 +54,7 @@
         android:layout_height="150dp"
         android:orientation="vertical"
         android:layout_gravity="bottom"
+        android:overScrollMode="never"
         android:visibility="gone"
         tools:visibility="visible"
         android:animateLayoutChanges="true"/>

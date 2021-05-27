@@ -3,6 +3,7 @@ package kr.go.mapo.intime.setting
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_setting_favorite.*
 import kotlinx.coroutines.*
@@ -65,6 +66,11 @@ class SettingFavoriteActivity : AppCompatActivity(), CoroutineScope{
 
             withContext(Dispatchers.Main) {
                 binding.settingFavCnt.text = "총 ${itemCount}개"
+
+                if (itemCount == 0) {
+                    binding.noItemTextView.isVisible = true
+                    binding.containerFavorite.isVisible = false
+                }
             }
         }
     }

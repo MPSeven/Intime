@@ -37,6 +37,8 @@ class AedViewPagerAdapter(fragmentManager: FragmentManager) :
         context = recyclerView.context
     }
 
+
+
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + Job()
 
@@ -85,9 +87,7 @@ class AedViewPagerAdapter(fragmentManager: FragmentManager) :
             Log.d("viewPagerAdapter", "setLikeState")
             withContext(Dispatchers.IO) {
                 val repository = DataBaseProvider.provideDB(context).bookmarkAedDao().getAed(aed.lat)
-                Log.d("viewPagerAdapter", "repository: $repository")
                 val isLike = repository != null
-                Log.d("viewPagerAdapter", "isLike: $isLike")
 
                 likeRepository(aed, isLike)
 
@@ -103,19 +103,11 @@ class AedViewPagerAdapter(fragmentManager: FragmentManager) :
                 val dao = DataBaseProvider.provideDB(context).bookmarkAedDao()
                 if(isLike) {
                     dao.delete(aed.lat)
-                    Log.d("viewPagerAdapter", "delete aed")
-                    val db = dao.getAll()
-                    Log.d("viewPagerAdapter", "$db")
-
                     withContext(Dispatchers.Main) {
                         bookmarkToast("즐겨찾기가 해제되었습니다. ")
                     }
                 } else {
                     dao.insertAed(aed)
-                    Log.d("viewPagerAdapter", "insert aed")
-                    val db = dao.getAll()
-                    Log.d("viewPagerAdapter", "$db")
-
                     withContext(Dispatchers.Main) {
                         bookmarkToast("즐겨찾기에 추가되었습니다. ")
                     }
