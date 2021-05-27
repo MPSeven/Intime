@@ -12,7 +12,8 @@ class FragmentCprChild : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.item_cpr_child, container, false)
+        val view =  inflater.inflate(R.layout.item_cpr_child, container, false)
+        return view
     }
 
 }

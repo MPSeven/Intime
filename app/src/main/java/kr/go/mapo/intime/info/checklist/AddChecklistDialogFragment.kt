@@ -45,7 +45,6 @@ class AddChecklistDialogFragment() : DialogFragment() {
         binding.chX.setOnClickListener {
             dismiss()
         }
-
         return binding.root
     }
 
