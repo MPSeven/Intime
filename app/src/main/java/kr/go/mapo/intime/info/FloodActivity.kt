@@ -16,5 +16,6 @@ class FloodActivity :AppCompatActivity(){
         setSupportActionBar(toolbar)
         supportActionBar?.title = "재난상황 대처 방법"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
     }
 }
