@@ -103,18 +103,12 @@ class ShelterViewPagerAdapter(fragmentManager: FragmentManager) :
                 val dao = DataBaseProvider.provideDB(context).bookmarkShelterDao()
                 if(isLike) {
                     dao.delete(shelter.lat)
-                    Log.d("viewPagerAdapter", "delete aed")
-                    val db = dao.getAll()
-                    Log.d("viewPagerAdapter", "$db")
 
                     withContext(Dispatchers.Main) {
                         bookmarkToast("즐겨찾기가 해제되었습니다. ")
                     }
                 } else {
                     dao.insertShelter(shelter)
-                    Log.d("viewPagerAdapter", "insert aed")
-                    val db = dao.getAll()
-                    Log.d("viewPagerAdapter", "$db")
 
                     withContext(Dispatchers.Main) {
                         bookmarkToast("즐겨찾기에 추가되었습니다. ")
