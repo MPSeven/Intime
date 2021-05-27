@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Intime"
         android:usesCleartextTraffic="true">
-        <activity android:name=".info.checklist.AddChecklist"></activity>
+        <activity android:name=".info.checklist.AddChecklist"/>
         <activity android:name=".info.checklist.ChecklistActivity" />
         <activity android:name=".sos.AmbulanceActivity" />
 
@@ -41,8 +41,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Under Info: -->
-        <activity android:name=".info.DisasterActivity" />
+        </activity>
+        <!-- Under Disaster: -->
+        <activity android:name=".info.DisasterActivity"/>
         <activity
             android:name=".info.EarthquakeActivity"
             android:parentActivityName=".info.DisasterActivity" />
@@ -58,8 +59,11 @@
         <activity
             android:name=".info.UrbanFireActivity"
             android:parentActivityName=".info.DisasterActivity" />
-        <activity android:name=".info.AedActivity" />
-        <activity android:name=".info.CprActivity" /> <!-- Settings: -->
+        <activity android:name=".info.AedActivity"
+            android:theme="@style/Theme.Intime.NoActionBar"/>
+        <activity android:name=".info.CprActivity"
+            android:theme="@style/Theme.Intime.NoActionBar"/>
+        <!-- Settings: -->
         <activity android:name=".setting.SettingAddContact" />
         <activity android:name=".setting.SettingFavoriteActivity" />
         <activity android:name=".setting.SettingContactsActivity" />

@@ -14,6 +14,7 @@ class EarthquakeActivity :AppCompatActivity(){
 
         setSupportActionBar(findViewById(R.id.earthquake_appbar))
         supportActionBar?.title = "재난상황 대처 방법"
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
