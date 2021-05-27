@@ -15,6 +15,7 @@
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
 <!--        <item name="fontFamily">@font/fonts</item>-->
+        <item name="android:splitMotionEvents">false</item>
     </style>
 
     <style name="Text.BoldStyle" parent="android:TextAppearance">

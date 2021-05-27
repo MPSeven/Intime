@@ -17,13 +17,19 @@ import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentFavoriteAedBinding
 import kr.go.mapo.intime.databinding.FragmentFavoriteAllBinding
 import kr.go.mapo.intime.setting.FavoriteAedAdapter
+import kr.go.mapo.intime.setting.FavoriteShelterAdapter
+import kr.go.mapo.intime.setting.ItemCountEvent
 import kr.go.mapo.intime.setting.database.DataBaseProvider
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.lang.reflect.Array.getInt
 import kotlin.coroutines.CoroutineContext
 
 class FavoriteAllFragment : Fragment(), CoroutineScope {
 
     private val favoriteAedAdapterAll = FavoriteAedAdapter()
+    private val favoriteShelterAdapterAll = FavoriteShelterAdapter()
 
     private val job: Job = Job()
 
@@ -39,6 +45,7 @@ class FavoriteAllFragment : Fragment(), CoroutineScope {
         super.onCreate(savedInstanceState)
 
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,10 +63,13 @@ class FavoriteAllFragment : Fragment(), CoroutineScope {
         favoriteAedRecyclerViewAll.adapter = favoriteAedAdapterAll
         favoriteAedRecyclerViewAll.layoutManager = LinearLayoutManager(activity)
 
+        favoriteShelterRecyclerViewAll.adapter = favoriteShelterAdapterAll
+        favoriteShelterRecyclerViewAll.layoutManager = LinearLayoutManager(activity)
+
         LinearLayoutManager.VERTICAL
 
-
         getAedFromDB()
+        getShelterFromDB()
     }
 
     private fun getAedFromDB() = launch {
@@ -70,6 +80,18 @@ class FavoriteAllFragment : Fragment(), CoroutineScope {
 
             withContext(Dispatchers.Main) {
                 favoriteAedAdapterAll.submitList(repository)
+            }
+        }
+    }
+
+    private fun getShelterFromDB() = launch {
+        withContext(Dispatchers.IO) {
+            val repository =
+                context?.let { DataBaseProvider.provideDB(it).bookmarkShelterDao().getAll() }
+            Log.d("FavoriteAedFragment", "$repository")
+
+            withContext(Dispatchers.Main) {
+                favoriteShelterAdapterAll.submitList(repository)
             }
         }
     }
