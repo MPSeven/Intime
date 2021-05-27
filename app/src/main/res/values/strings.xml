@@ -79,9 +79,10 @@
     <string name="setting_plus">연락처 추가</string>
     <string name="setting_add_con">비상연락처 등록</string>
     <string name="setting_sms_con">대표연락처</string>
-    <string name="setting_add_con_no">비상문자를 보낼 \n비상 연락처를 등록해 주세요.</string>
+    <string name="setting_add_con_no">긴급 문자를 보낼 \n비상 연락처를 등록해 주세요.</string>
 
     <!--How to CPR page texts:-->
+
     <string name="info_iv_cpr_desc_numbering">info_iv_cpr_desc_numbering</string>
     <string name="info_tv_cpr_step1_header">의식확인</string>
     <string name="info_iv_cpr_step1">info_iv_cpr_step1</string>
@@ -253,5 +254,6 @@
     <string name="ellipseThree">ellipseThree</string>
     <string name="ellipseTwo">ellipseTwo</string>
     <string name="ellipseOne">ellipseOne</string>
+    <string name="info_iv_prevention">예방법</string>
 
 </resources>

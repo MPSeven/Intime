@@ -15,10 +15,9 @@ class DisasterActivity : AppCompatActivity() {
         binding = ActivityDisasterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.disaster_appbar))
-        supportActionBar?.title = "재난상황 대처 방법"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        binding.infoDisBack.setOnClickListener {
+            onBackPressed()
+        }
         binding.infoTbEarthQuake.setOnClickListener {
             Log.e("TAG:", "click")
             val intent = Intent(this, EarthquakeActivity::class.java)

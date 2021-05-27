@@ -6,27 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".sos.SosFragment">
 
-    <TextView
-        android:id="@+id/gps_address"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/myAddress"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="8dip"
-        android:fontFamily="@font/spoqa_han_sans_neo_regular"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:drawableStartCompat="@drawable/sos_img_sos_gps" />
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gps_address"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/gps_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:lines="1"
+            android:text="서울특별시"
+            android:textColor="@color/black"
+            app:drawableStartCompat="@drawable/sos_img_sos_gps" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="0dp"
@@ -36,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/space">
+        app:layout_constraintTop_toBottomOf="@id/myAddress">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

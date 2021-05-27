@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +14,7 @@
         app:titleEnabled="true"
         android:gravity="center"
         android:padding="0dp"
+        app:titleTextAppearance="@style/Body1"
         tools:text = "재난상황 대처 방법"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
@@ -30,7 +32,8 @@
         android:id="@+id/layout_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_bar_design">
+        app:layout_constraintTop_toBottomOf="@id/iv_bar_design"
+        app:layout_constraintLeft_toLeftOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +43,8 @@
             <TextView
                 android:id="@+id/info_tv_flood_header"
                 android:layout_width="wrap_content"
-                android:layout_height="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 android:gravity="center_vertical"
                 style="@style/disaster"
                 android:fontFamily="@font/spoqa_han_sans_neo_bold"
@@ -62,7 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/disaster_body"
-                android:text="@string/info_tv_flood_body"/>
+                android:text="@string/info_tv_flood_body"
+                android:layout_marginBottom="200dp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

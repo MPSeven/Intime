@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.telephony.SmsManager
 import android.text.SpannableString
 import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import kr.go.mapo.intime.R
 import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.setting.database.ContactsDatabase
@@ -151,7 +149,6 @@ class SosFragment : Fragment() {
 
         db = ContactsDatabase.getInstance(requireContext())
         var phoneNum = db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()
-        Log.d("여기", phoneNum)
 
         val smsManager = SmsManager.getDefault()
 

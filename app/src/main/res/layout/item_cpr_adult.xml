@@ -103,7 +103,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step1"
-                        android:src="@drawable/info_iv_cpr_step1" />
+                        android:src="@drawable/ic_info_iv_cpr_step1" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step2"
-                        android:src="@drawable/info_iv_cpr_step2" />
+                        android:src="@drawable/ic_info_iv_cpr_step2" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/info_iv_cpr_step3"
-                        android:src="@drawable/info_iv_cpr_step3" />
+                        android:src="@drawable/ic_info_iv_cpr_step3" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -237,7 +237,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step4"
-                        android:src="@drawable/info_iv_cpr_step4" />
+                        android:src="@drawable/ic_info_iv_cpr_step4" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -282,7 +282,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step5"
-                        android:src="@drawable/info_iv_cpr_step5" />
+                        android:src="@drawable/ic_info_iv_cpr_step5" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -398,6 +398,7 @@
                 android:layout_height="14dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
+                android:layout_marginBottom="200dp"
                 android:gravity="center_horizontal|top"
                 android:text="@string/info_iv_copyright"
                 android:textColor="#979797"
@@ -405,7 +406,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="64dp" />
+                android:layout_height="60dp" />
         </LinearLayout>
 
 

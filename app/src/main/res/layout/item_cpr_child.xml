@@ -89,7 +89,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step1"
-                        android:src="@drawable/info_iv_cpr_step1" />
+                        android:src="@drawable/ic_info_iv_cpr_step1" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -290,7 +290,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step4"
-                        android:src="@drawable/info_iv_cpr_step4" />
+                        android:src="@drawable/ic_info_iv_cpr_step4" />
 
                     <Space
                         android:layout_width="match_parent"
@@ -335,7 +335,7 @@
                         android:layout_width="165dp"
                         android:layout_height="140dp"
                         android:contentDescription="@string/info_iv_cpr_step5"
-                        android:src="@drawable/info_iv_cpr_step5" />
+                        android:src="@drawable/ic_info_iv_cpr_step5" />
 
                     <Space
                         android:layout_width="match_parent"
