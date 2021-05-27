@@ -47,6 +47,8 @@ class FavoriteAedAdapter: ListAdapter<Aed, FavoriteAedAdapter.ItemViewHolder>(di
             Log.d("ItemViewHolder", "$aed")
 
             titleFavoriteTextView.text = aed.org
+            binding.favoriteAedAddress.text = aed.address
+            binding.favorriteAedAddressDetail.text = aed.addressDetail
 
             bookmarkButton.setOnClickListener {
                 deleteAed(aed)

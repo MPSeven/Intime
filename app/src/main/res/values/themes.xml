@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Theme.Intime" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-
         <item name="colorPrimary">@color/red</item>
         <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorPrimaryDark">@color/white</item>
@@ -12,6 +11,7 @@
         <!-- Customize your theme here. -->
 <!--        <item name="fontFamily">@font/fonts</item>-->
         <item name="android:splitMotionEvents">false</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
     <style name="Text.BoldStyle" parent="android:TextAppearance">
@@ -185,5 +185,15 @@
     <style name="CustomFullDialog">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/map_top_radius_white_background</item>
     </style>
 </resources>

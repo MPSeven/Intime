@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity(){
                 R.id.menu_map -> {
 
                     replaceFragment(MapFragment())
+                    binding.toolbar.title = "INTIME"
                     binding.toolbarMain.text = ""
                     return@OnNavigationItemSelectedListener true
                 }

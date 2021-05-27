@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_setting_favorite.*
 import kotlinx.coroutines.*
 import kr.go.mapo.intime.databinding.ActivitySettingFavoriteBinding
 import kr.go.mapo.intime.setting.database.DataBaseProvider

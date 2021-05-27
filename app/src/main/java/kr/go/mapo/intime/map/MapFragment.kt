@@ -32,7 +32,6 @@ import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.widget.LocationButtonView
-import kotlinx.android.synthetic.main.item_detail_viewpager.view.*
 import kotlinx.coroutines.*
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.map.api.AedService
@@ -435,7 +434,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             recyclerViewHidden()
         }
 
-
         naverMap.addOnLocationChangeListener { location ->
             if (isFirstLocation) {
                 val initializePosition = LatLng(location.latitude, location.longitude)
@@ -447,7 +445,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener, Cor
             }
             isFirstLocation = false
         }
-
         fetchAedLocation(latitude, longitude, DISTANCE)
     }
 

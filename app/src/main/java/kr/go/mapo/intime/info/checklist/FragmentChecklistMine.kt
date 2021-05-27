@@ -31,10 +31,10 @@ class FragmentChecklistMine : Fragment() {
         listSet()
 
         binding.chMineBtn.setOnClickListener {
-//            val dialog: AddChecklistDialogFragment = AddChecklistDialogFragment()
-//            dialog.show(childFragmentManager, dialog.tag)
-            val intent = Intent(context, AddChecklist::class.java)
-            startActivity(intent)
+            val dialog: AddChecklistDialogFragment = AddChecklistDialogFragment()
+            dialog.show(childFragmentManager, dialog.tag)
+//            val intent = Intent(context, AddChecklist::class.java)
+//            startActivity(intent)
 
         }
 
@@ -45,6 +45,8 @@ class FragmentChecklistMine : Fragment() {
         super.onResume()
         listSet()
     }
+
+
     private lateinit var chkAdapter: ChecklistAdapter
     private fun listSet(){
         db = ChecklistDatabase.getInstance(requireContext())
