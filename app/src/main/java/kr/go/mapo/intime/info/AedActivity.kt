@@ -13,7 +13,6 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_aed.*
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.ActivityAedBinding
 
