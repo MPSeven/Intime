@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.naver.maps.map.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kr.go.mapo.intime.databinding.ActivityMainBinding
 import kr.go.mapo.intime.info.InfoFragment
 import kr.go.mapo.intime.map.MapFragment
 import kr.go.mapo.intime.setting.SettingActivity
@@ -19,6 +18,7 @@ import kr.go.mapo.intime.sos.SosFragment
 
 class MainActivity : AppCompatActivity(){
 
+    val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
     private val infoFragment = InfoFragment()
     private val mapFragment = MapFragment()
     private val sosFragment = SosFragment()
@@ -26,15 +26,13 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-//        frag manager 만들어서 이부분 다 바꾸기
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         bottomNavigationView.menu.getItem(1).isChecked = true
         replaceFragment(mapFragment)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setTitle("INTIME")
+        binding.toolbar.title = "INTIME"
     }
 
 
@@ -69,32 +67,22 @@ class MainActivity : AppCompatActivity(){
                 R.id.menu_sos -> {
 
                     replaceFragment(SosFragment())
-                    toolbar.apply {
-                        setTitle("SOS")
-                        setTitleMargin(600, 18, 0, 19)
-                        setTitleTextAppearance(context, R.style.Body1)
-                    }
+                    binding.toolbar.title = ""
+                    binding.toolbarMain.text ="SOS"
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_map -> {
 
                     replaceFragment(MapFragment())
-                    toolbar.apply {
-                        setTitle("INTIME")
-                        setTitleMargin(24, 41, 269,0)
-                        setTitleTextAppearance(context, R.style.Head3)
-                    }
-
+                    binding.toolbarMain.text = ""
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_info -> {
 
                     replaceFragment(InfoFragment())
-                    toolbar.apply {
-                        setTitle("정보")
-                        setTitleMargin(600, 18, 0, 19)
-                        setTitleTextAppearance(context, R.style.Body1)
-                    }
+                    binding.toolbar.title = ""
+                    binding.toolbarMain.text ="정보"
+
                     return@OnNavigationItemSelectedListener true
                 }
             }
