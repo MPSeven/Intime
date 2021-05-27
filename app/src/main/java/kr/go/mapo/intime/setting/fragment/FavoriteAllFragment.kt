@@ -6,24 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.*
-import kr.go.mapo.intime.R
-import kr.go.mapo.intime.databinding.FragmentFavoriteAedBinding
 import kr.go.mapo.intime.databinding.FragmentFavoriteAllBinding
 import kr.go.mapo.intime.setting.FavoriteAedAdapter
 import kr.go.mapo.intime.setting.FavoriteShelterAdapter
-import kr.go.mapo.intime.setting.ItemCountEvent
 import kr.go.mapo.intime.setting.database.DataBaseProvider
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
-import java.lang.reflect.Array.getInt
 import kotlin.coroutines.CoroutineContext
 
 class FavoriteAllFragment : Fragment(), CoroutineScope {
@@ -80,6 +69,9 @@ class FavoriteAllFragment : Fragment(), CoroutineScope {
 
             withContext(Dispatchers.Main) {
                 favoriteAedAdapterAll.submitList(repository)
+                if (repository?.isEmpty() == true) {
+                    binding.favoriteAedTitleAll.isVisible = false
+                }
             }
         }
     }
@@ -92,6 +84,9 @@ class FavoriteAllFragment : Fragment(), CoroutineScope {
 
             withContext(Dispatchers.Main) {
                 favoriteShelterAdapterAll.submitList(repository)
+                if (repository?.isEmpty() == true) {
+                    binding.favoriteShelterTitleAll.isVisible = false
+                }
             }
         }
     }

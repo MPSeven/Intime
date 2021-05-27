@@ -41,6 +41,8 @@ class FavoriteShelterAdapter : ListAdapter<Shelter, FavoriteShelterAdapter.ItemV
             Log.d("ItemViewHolder", "$shelter")
 
             binding.favoriteShelterPlaceTextView.text = shelter.placeName
+            binding.favoriteShelterAddress.text = shelter.address
+            binding.favoriteShelterAddressDetail.text = shelter.shelterCategory
 
             binding.favoriteShelterBookmarkButton.setOnClickListener {
                 deleteShelter(shelter)
