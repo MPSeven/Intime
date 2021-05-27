@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/info_aed_top"
@@ -132,8 +133,8 @@
                 <LinearLayout
                     android:id="@+id/info_iv_aed_desc_number"
                     android:layout_width="24dp"
-                    android:layout_height="1118dp"
-                    android:adjustViewBounds="true"
+                    android:layout_height="1120dp"
+                    android:orientation="vertical"
                     android:contentDescription="@string/info_iv_aed_desc_number">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -214,6 +215,7 @@
                         android:text="@string/info_tv_aed_pad_desc"
                         android:textAppearance="@style/Body1_26"
                         android:textColor="@color/red"
+                        android:lineSpacingExtra="6sp"
                         />
                     <Space
                         android:layout_width="match_parent"
@@ -224,6 +226,7 @@
                         android:layout_height="52dp"
                         android:text="@string/info_tv_aed_step2"
                         android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"
                         />
                     <Space
                         android:layout_width="match_parent"
@@ -242,7 +245,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="78dp"
                         android:text="@string/info_tv_aed_step2warning1"
-                        android:textAppearance="@style/Body1_26"/>
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="24dp"/>
@@ -251,7 +255,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="52dp"
                         android:text="@string/info_tv_aed_step2warning2"
-                        android:textAppearance="@style/Body1_26"/>
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="24dp"/>
@@ -260,7 +265,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="78dp"
                         android:text="@string/info_tv_aed_step2warning3"
-                        android:textAppearance="@style/Body1_26"/>
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="24dp"/>
@@ -269,7 +275,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="52dp"
                         android:text="@string/info_tv_aed_step2warning4"
-                        android:textAppearance="@style/Body1_26"/>
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="82dp"/>
@@ -278,7 +285,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="22dp"
                         android:text="@string/info_tv_aed_step3_header"
-                        android:textAppearance="@style/Head3" />
+                        android:textAppearance="@style/Head3"
+                        android:lineSpacingExtra="6sp"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="14dp"/>
@@ -296,7 +304,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="78dp"
                         android:text="@string/info_tv_aed_step3"
-                        android:textAppearance="@style/Body1_26"/>
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
                     <Space
                         android:layout_width="match_parent"
                         android:layout_height="30dp"/>
@@ -317,6 +326,7 @@
                         android:text="@string/info_tv_aed_step3reminder"
                         android:textAppearance="@style/Body1_26"
                         android:textColor="@color/red"
+                        android:lineSpacingExtra="6sp"
                         />
                     <Space
                         android:layout_width="match_parent"
@@ -328,8 +338,8 @@
             <TextView
                 android:id="@+id/info_iv_copyright"
                 android:contentDescription="@string/info_iv_copyright"
-                android:layout_width="341dp"
-                android:layout_height="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/info_iv_copyright"
                 android:layout_gravity="center_horizontal" />
             <Space

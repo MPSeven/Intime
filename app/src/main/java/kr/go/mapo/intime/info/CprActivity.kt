@@ -37,7 +37,7 @@ class CprActivity: AppCompatActivity () {
         viewPager.adapter= adapter
         val tabLayout = findViewById<TabLayout>(R.id.cpr_tabLayout)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            viewPager.setCurrentItem(tab.position, true)
+            //viewPager.setCurrentItem(tab.position, false)
             tab.text = tabTextList[position]
         }.attach()
     }

@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity(){
                     replaceFragment(SosFragment())
                     binding.toolbar.title = ""
                     binding.toolbarMain.text ="SOS"
+                    binding.toolbarMain.setTextAppearance(R.style.Body1)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_map -> {
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity(){
                     replaceFragment(InfoFragment())
                     binding.toolbar.title = ""
                     binding.toolbarMain.text ="정보"
+                    binding.toolbarMain.setTextAppearance(R.style.Body1)
 
                     return@OnNavigationItemSelectedListener true
                 }
