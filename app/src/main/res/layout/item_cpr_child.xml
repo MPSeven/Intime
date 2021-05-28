@@ -25,21 +25,21 @@
                 <LinearLayout
                     android:id="@+id/info_iv_cpr_child_numbering"
                     android:layout_width="24dp"
-                    android:layout_height="2208dp"
+                    android:layout_height="2218dp"
                     android:orientation="vertical">
 
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="485dp"
+                        android:layout_marginBottom="487dp"
                         android:contentDescription="@string/ellipseOne"
                         android:src="@drawable/ic_ellipse_1" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="595dp"
+                        android:layout_marginBottom="597dp"
                         android:contentDescription="@string/ellipseTwo"
                         android:src="@drawable/ic_ellipse_2" />
 
@@ -60,6 +60,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="0dp"
                         android:contentDescription="@string/ellipseFive"
                         android:src="@drawable/ic_ellipse_5" />
                 </LinearLayout>
@@ -100,7 +101,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_single_space"
                         android:text="@string/info_tv_cpr_child_step1_1"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -112,7 +114,8 @@
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_tv_cpr_child_step1_2"
                         android:textAppearance="@style/Body1"
-                        android:textColor="@color/red" />
+                        android:textColor="@color/red"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -123,7 +126,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_tv_cpr_child_step1_3"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -168,7 +172,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:text="@string/info_cpr_child_step2_1"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -179,7 +184,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_cpr_child_step2_2"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -190,7 +196,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_cpr_child_step2_3"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -201,7 +208,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="78dp"
                         android:text="@string/info_cpr_child_step2_4"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -234,7 +242,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:text="@string/info_cpr_child_step3_1"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -245,7 +254,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_cpr_child_step3_2"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -256,7 +266,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_cpr_child_step3_3"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -267,7 +278,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_cpr_child_step3_4"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
 
                     <Space
@@ -301,7 +313,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="104dp"
                         android:text="@string/info_tv_cpr_child_step4_1"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -313,7 +326,8 @@
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_tv_cpr_child_step4_2"
                         android:textAppearance="@style/Body1_26"
-                        android:textColor="@color/red" />
+                        android:textColor="@color/red"
+                        android:lineSpacingExtra="6sp"/>
 
                     <Space
                         android:layout_width="match_parent"
@@ -346,7 +360,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/b1_double_line"
                         android:text="@string/info_tv_cpr_child_step5"
-                        android:textAppearance="@style/Body1_26" />
+                        android:textAppearance="@style/Body1_26"
+                        android:lineSpacingExtra="6sp"/>
 
 
                 </LinearLayout>

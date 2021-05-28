@@ -1,16 +1,21 @@
 package kr.go.mapo.intime.info.checklist
 
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentAddChecklistDialogBinding
 import kr.go.mapo.intime.info.checklist.database.ChecklistDatabase
 import kr.go.mapo.intime.info.checklist.model.Checklist
+import java.lang.ClassCastException
 
 class AddChecklistDialogFragment() : DialogFragment() {
     private lateinit var binding: FragmentAddChecklistDialogBinding
@@ -45,7 +50,6 @@ class AddChecklistDialogFragment() : DialogFragment() {
         binding.chX.setOnClickListener {
             dismiss()
         }
-
         return binding.root
     }
 
@@ -57,5 +61,13 @@ class AddChecklistDialogFragment() : DialogFragment() {
         dialog?.window?.setGravity(Gravity.BOTTOM)
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        val parentFragment: Fragment? = parentFragment
+
+        if(parentFragment is DialogInterface.OnDismissListener) {
+            (parentFragment as DialogInterface.OnDismissListener).onDismiss(dialog)
+        }
+    }
 
 }
