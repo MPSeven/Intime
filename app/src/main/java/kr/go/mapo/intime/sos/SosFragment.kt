@@ -57,11 +57,11 @@ class SosFragment : Fragment() {
         val permissionListener = object : PermissionListener {
             override fun onPermissionGranted() {
                 sendSms()
-                binding.gpsAddress.setText(getAddress())
+                binding.gpsAddress.text = getAddress()
             }
             override fun onPermissionDenied(deniedPermissions: ArrayList<String>?) {
-                binding.gpsAddress.setText("위치 접근 권한이 필요합니다.")
-                binding.txtSms.setText("위치 접근 권한이 필요합니다.")
+                binding.gpsAddress.text = "위치 접근 권한이 필요합니다."
+                binding.txtSms.text = "위치 접근 권한이 필요합니다."
                 binding.btn119.setOnClickListener {
                     Toast.makeText(requireContext(), "SMS 발신권한이 없습니다", Toast.LENGTH_SHORT).show()
                 }
@@ -88,7 +88,7 @@ class SosFragment : Fragment() {
     }
 
 
-    private fun getLatLng(): Location{
+    private fun getLatLng(): Location?{
 
         var lm: LocationManager? = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         var currentLatLng: Location? = null
@@ -105,13 +105,13 @@ class SosFragment : Fragment() {
         }else {
             tedPermission()
         }
-        return currentLatLng!!
+        return currentLatLng
     }
 
 
     private fun getAddress(): String? {
 
-        var userLocation: Location = getLatLng()
+        var userLocation: Location? = getLatLng()
         var userAddress: String? = null
 
         if (userLocation != null) {
@@ -145,7 +145,6 @@ class SosFragment : Fragment() {
         val tBold = StyleSpan(Typeface.BOLD)
         spannableString.setSpan(tBold, 28, spannableString.length, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
         binding.txtSms.text = spannableString
-        binding.txtSms.setText(spannableString)
 
         db = ContactsDatabase.getInstance(requireContext())
         var phoneNum = db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()
@@ -153,7 +152,7 @@ class SosFragment : Fragment() {
         val smsManager = SmsManager.getDefault()
 
         binding.btn119.setOnClickListener {
-            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?") {
+            val dialog = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?") {
                 when (it) {
                     0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
                     1 -> {
@@ -162,11 +161,11 @@ class SosFragment : Fragment() {
                     }
                 }
             }
-            dialog.show(getChildFragmentManager(), dialog.tag)
+            dialog.show(childFragmentManager, dialog.tag)
         }
 
         binding.btn112.setOnClickListener {
-            val dialog: CommonDialogFragment = CommonDialogFragment("알림", "112에 긴급 문자를 보내시겠습니까?",) {
+            val dialog = CommonDialogFragment("알림", "112에 긴급 문자를 보내시겠습니까?",) {
                 when (it) {
                     0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
                     1 -> {
@@ -175,7 +174,7 @@ class SosFragment : Fragment() {
                     }
                 }
             }
-            dialog.show(getChildFragmentManager(), dialog.tag)
+            dialog.show(childFragmentManager, dialog.tag)
         }
 
         binding.btnFav.setOnClickListener{
@@ -183,7 +182,7 @@ class SosFragment : Fragment() {
             if (db?.contactsDao()?.countSms(check = true) == 0){
                 Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다\n등록 후 사용해주세요", Toast.LENGTH_LONG).show()
             } else{
-                val dialog: CommonDialogFragment = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
+                val dialog = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
                     when (it) {
                         0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
                         1 -> {
@@ -192,7 +191,7 @@ class SosFragment : Fragment() {
                         }
                     }
                 }
-                dialog.show(getChildFragmentManager(), dialog.tag)
+                dialog.show(childFragmentManager, dialog.tag)
             }
         }
     }
