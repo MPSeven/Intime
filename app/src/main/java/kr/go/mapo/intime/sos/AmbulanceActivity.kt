@@ -2,6 +2,7 @@ package kr.go.mapo.intime.sos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.go.mapo.intime.R
@@ -12,6 +13,8 @@ class AmbulanceActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityAmbulanceBinding.inflate(layoutInflater) }
     private lateinit var recyclerview: RecyclerView
+    private var type = "전체"
+    private lateinit var spinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,7 @@ class AmbulanceActivity : AppCompatActivity() {
             this.layoutManager = LinearLayoutManager(binding.root.context,
                 LinearLayoutManager.VERTICAL,false)
         }
+//        setSpinner()
 
         binding.ambBack.setOnClickListener{
             onBackPressed()
@@ -65,29 +69,29 @@ class AmbulanceActivity : AppCompatActivity() {
     }
 
 
-    /*
-        여기 to do
-        클릭->넘버피커 다이얼로그 띄움 -> 로케이션 선택 ->앰뷸런스리스트 분기처리
-
-        */
-
-//    private fun callLocationPicker(view: ViewGroup) {
-//        val inflater: LayoutInflater = this.layoutInflater
-//        val dialog: DialogLocationPickerBinding =
-//            DialogLocationPickerBinding.inflate(inflater, view, false)
+//    private fun setSpinner() {
+//        val spinner = binding.ambSpinner
+//        ArrayAdapter.createFromResource(
+//            this, R.array.location, android.R.layout.simple_spinner_item
+//        ).also { adapter ->
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            spinner?.adapter = adapter
+//        }
 //
-////        val locationPicker: NumberPicker = dialog.picker.apply {
-////            minValue = 0
-////            maxValue = 25
-////            wrapSelectorWheel = false
-////            setOnValueChangedListener { _, _, newVal -> }
-////        }
-//        val dialogBuilder: AlertDialog.Builder =
-//            AlertDialog.Builder(this).apply {
-//                setView(dialog.root)
+//        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
 //
 //            }
-//        val alertLocationPickerDialog: AlertDialog = dialogBuilder.create()
-//        alertLocationPickerDialog.show()
+//
+//            override fun onItemSelected(
+//                parent: AdapterView<*>?,
+//                view: View?,
+//                position: Int,
+//                id: Long
+//            ) {
+//                type = spinner?.selectedItem.toString()
+//            }
+//        }
 //    }
+
 }
