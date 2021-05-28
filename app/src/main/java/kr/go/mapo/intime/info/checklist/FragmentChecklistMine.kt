@@ -1,7 +1,10 @@
 package kr.go.mapo.intime.info.checklist
 
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +15,7 @@ import kr.go.mapo.intime.databinding.FragmentChecklistMineBinding
 import kr.go.mapo.intime.info.checklist.database.ChecklistDatabase
 import kr.go.mapo.intime.info.checklist.model.Checklist
 
-class FragmentChecklistMine : Fragment() {
+class FragmentChecklistMine : Fragment(), DialogInterface.OnDismissListener {
 
     private var _binding: FragmentChecklistMineBinding? = null
     private val binding get() = _binding!!
@@ -33,10 +36,13 @@ class FragmentChecklistMine : Fragment() {
         binding.chMineBtn.setOnClickListener {
             val dialog: AddChecklistDialogFragment = AddChecklistDialogFragment()
             dialog.show(childFragmentManager, dialog.tag)
+
 //            val intent = Intent(context, AddChecklist::class.java)
 //            startActivity(intent)
 
         }
+
+
 
         return root
     }
@@ -66,4 +72,9 @@ class FragmentChecklistMine : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        listSet()
+    }
+
 }
