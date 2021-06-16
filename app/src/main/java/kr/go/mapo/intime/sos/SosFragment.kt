@@ -1,14 +1,12 @@
 package kr.go.mapo.intime.sos
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.text.SpannableString
@@ -19,12 +17,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.setting.database.ContactsDatabase
-import java.io.IOException
 import java.util.*
 
 class SosFragment : Fragment() {
@@ -41,6 +40,7 @@ class SosFragment : Fragment() {
         val root = binding.root
 
         tedPermission()
+        getLatLng()
 
         binding.btnAmb.setOnClickListener {
             activity?.let{
@@ -56,8 +56,7 @@ class SosFragment : Fragment() {
     private fun tedPermission() {
         val permissionListener = object : PermissionListener {
             override fun onPermissionGranted() {
-                sendSms()
-                binding.gpsAddress.text = getAddress()
+//                sendSms()
             }
             override fun onPermissionDenied(deniedPermissions: ArrayList<String>?) {
                 binding.gpsAddress.text = "위치 접근 권한이 필요합니다."
@@ -88,113 +87,95 @@ class SosFragment : Fragment() {
     }
 
 
-    private fun getLatLng(): Location?{
-
-        var lm: LocationManager? = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        var currentLatLng: Location? = null
+    private fun getLatLng() {
 
         val hasFineLocationPermission = ContextCompat.checkSelfPermission(requireContext(),
             Manifest.permission.ACCESS_FINE_LOCATION)
         val hasCoarseLocationPermission = ContextCompat.checkSelfPermission(requireContext(),
             Manifest.permission.ACCESS_COARSE_LOCATION)
 
+        var latitude: Double
+        var longitude: Double
+        val mGeocoder = Geocoder(context, Locale.KOREAN)
+        var currentAddress: List<Address>?
+        var address: String
+
         if(hasFineLocationPermission == PackageManager.PERMISSION_GRANTED ||
-        hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED){
-            val locatioNProvider = LocationManager.GPS_PROVIDER
-            currentLatLng = lm?.getLastKnownLocation(locatioNProvider)
-        }else {
-            tedPermission()
-        }
-        return currentLatLng
-    }
+            hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED){
+
+            var fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location ->
+                if(location == null){
+                    address = "gps 연결이 불안정합니다."
+                } else {
+                    latitude = location.latitude
+                    longitude = location.longitude
+                    currentAddress = mGeocoder.getFromLocation(latitude, longitude, 1)
+                    address = (currentAddress as MutableList<Address>).get(0).getAddressLine(0).substring(5)
+                    binding.gpsAddress.text = address
 
 
-    private fun getAddress(): String? {
+                    var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ address
+                    val spannableString = SpannableString(smsContents)
+                    val tBold = StyleSpan(Typeface.BOLD)
+                    spannableString.setSpan(tBold, 28, spannableString.length, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
+                    binding.txtSms.text = spannableString
 
-        var userLocation: Location? = getLatLng()
-        var userAddress: String? = null
+                    db = ContactsDatabase.getInstance(requireContext())
+                    var phoneNum = db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()
 
-        if (userLocation != null) {
-            var latitude = userLocation.latitude
-            var longitude = userLocation.longitude
+                    val smsManager = SmsManager.getDefault()
 
-            var mGeoCoder = Geocoder(requireContext(), Locale.KOREAN)
-            var currentAddress: List<Address>? = null
-            try {
-                currentAddress = mGeoCoder.getFromLocation(
-                    latitude!!, longitude!!, 1
-                )
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            if (currentAddress != null) {
-                userAddress = currentAddress[0].getAddressLine(0).substring(5)
-            }
-        } else {
-            userAddress = "gps 연결을 확인해주세요"
-        }
-
-        return userAddress
-    }
-
-
-    private fun sendSms() {
-
-        var smsContents = "[긴급문자]\n위급상황 시에 발신되는 긴급 문자입니다.\n"+ getAddress()
-        val spannableString = SpannableString(smsContents)
-        val tBold = StyleSpan(Typeface.BOLD)
-        spannableString.setSpan(tBold, 28, spannableString.length, SpannableString.SPAN_EXCLUSIVE_INCLUSIVE)
-        binding.txtSms.text = spannableString
-
-        db = ContactsDatabase.getInstance(requireContext())
-        var phoneNum = db?.contactsDao()?.selectSms(check = true)?.phoneNumber.toString()
-
-        val smsManager = SmsManager.getDefault()
-
-        binding.btn119.setOnClickListener {
-            val dialog = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?") {
-                when (it) {
-                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
-                    1 -> {
-                        smsManager.sendTextMessage("119", null, smsContents, null, null)
-                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                    binding.btn119.setOnClickListener {
+                        val dialog = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?") {
+                            when (it) {
+                                0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                                1 -> {
+                                    smsManager.sendTextMessage("119", null, smsContents, null, null)
+                                    Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        }
+                        dialog.show(childFragmentManager, dialog.tag)
                     }
-                }
-            }
-            dialog.show(childFragmentManager, dialog.tag)
-        }
 
-        binding.btn112.setOnClickListener {
-            val dialog = CommonDialogFragment("알림", "112에 긴급 문자를 보내시겠습니까?",) {
-                when (it) {
-                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
-                    1 -> {
-                        smsManager.sendTextMessage("112", null, smsContents, null, null)
-                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                    binding.btn112.setOnClickListener {
+                        val dialog = CommonDialogFragment("알림", "112에 긴급 문자를 보내시겠습니까?",) {
+                            when (it) {
+                                0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                                1 -> {
+                                    smsManager.sendTextMessage("112", null, smsContents, null, null)
+                                    Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        }
+                        dialog.show(childFragmentManager, dialog.tag)
                     }
-                }
-            }
-            dialog.show(childFragmentManager, dialog.tag)
-        }
 
-        binding.btnFav.setOnClickListener{
+                    binding.btnFav.setOnClickListener{
 
-            if (db?.contactsDao()?.countSms(check = true) == 0){
-                Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다\n등록 후 사용해주세요", Toast.LENGTH_LONG).show()
-            } else{
-                val dialog = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
-                    when (it) {
-                        0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
-                        1 -> {
-                            smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
-                            Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                        if (db?.contactsDao()?.countSms(check = true) == 0){
+                            Toast.makeText(requireContext(), "등록된 비상연락처가 없습니다\n등록 후 사용해주세요", Toast.LENGTH_LONG).show()
+                        } else{
+                            val dialog = CommonDialogFragment("알림", "비상연락처에 긴급 문자를 보내시겠습니까?",) {
+                                when (it) {
+                                    0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
+                                    1 -> {
+                                        smsManager.sendTextMessage(phoneNum, null, smsContents, null, null)
+                                        Toast.makeText(requireContext(), "전송완료", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            }
+                            dialog.show(childFragmentManager, dialog.tag)
                         }
                     }
                 }
-                dialog.show(childFragmentManager, dialog.tag)
             }
+        } else {
+            tedPermission()
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -33,9 +33,7 @@ class AmbulanceActivity : AppCompatActivity() {
         binding.ambBack.setOnClickListener{
             onBackPressed()
         }
-//        binding.amdLoc.setOnClickListener {
-//            callLocationPicker(binding.root)
-//        }
+
     }
 
     private fun ambData() : MutableList<Ambulance>{
