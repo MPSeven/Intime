@@ -1,9 +1,7 @@
 package kr.go.mapo.intime.info.checklist
 
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -15,12 +13,10 @@ import kr.go.mapo.intime.R
 import kr.go.mapo.intime.databinding.FragmentAddChecklistDialogBinding
 import kr.go.mapo.intime.info.checklist.database.ChecklistDatabase
 import kr.go.mapo.intime.info.checklist.model.Checklist
-import java.lang.ClassCastException
 
 class AddChecklistDialogFragment() : DialogFragment() {
     private lateinit var binding: FragmentAddChecklistDialogBinding
     private var db: ChecklistDatabase? = null
-    private var chkList = mutableListOf<Checklist>()
     private lateinit var addTitle: EditText
     private lateinit var addCon: EditText
 

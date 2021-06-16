@@ -1,10 +1,7 @@
 package kr.go.mapo.intime.info.checklist
 
-import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,14 +33,7 @@ class FragmentChecklistMine : Fragment(), DialogInterface.OnDismissListener {
         binding.chMineBtn.setOnClickListener {
             val dialog: AddChecklistDialogFragment = AddChecklistDialogFragment()
             dialog.show(childFragmentManager, dialog.tag)
-
-//            val intent = Intent(context, AddChecklist::class.java)
-//            startActivity(intent)
-
         }
-
-
-
         return root
     }
 
