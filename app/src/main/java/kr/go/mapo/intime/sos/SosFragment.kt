@@ -21,6 +21,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
+import kr.go.mapo.intime.R
 import kr.go.mapo.intime.common.CommonDialogFragment
 import kr.go.mapo.intime.databinding.FragmentSosBinding
 import kr.go.mapo.intime.setting.database.ContactsDatabase
@@ -127,6 +128,8 @@ class SosFragment : Fragment() {
                     val smsManager = SmsManager.getDefault()
 
                     binding.btn119.setOnClickListener {
+                        binding.btn119.setBackgroundResource(R.drawable.sos_btn_sms_to_119_selected)
+                        binding.btn119Text.setTextColor(resources.getColor(R.color.white))
                         val dialog = CommonDialogFragment("알림", "119에 긴급 문자를 보내시겠습니까?") {
                             when (it) {
                                 0 -> Toast.makeText(requireContext(), "전송취소", Toast.LENGTH_LONG).show()
