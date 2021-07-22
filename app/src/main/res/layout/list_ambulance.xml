@@ -38,8 +38,8 @@
 
     <ImageView
         android:id="@+id/amb_ic_ph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="13dp"
         app:srcCompat="@drawable/sos_ic_phone"
@@ -57,16 +57,26 @@
         app:layout_constraintStart_toEndOf="@id/amb_ic_ph"
         app:layout_constraintTop_toBottomOf="@id/amb_company" />
 
-    <ImageButton
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/amb_tel_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="32dp"
-        android:background="#00FFFFFF"
-        android:src="@drawable/sos_btn_tel"
+        android:background="@drawable/sos_btn_tel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/sos_amb_tel" />
+        >
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/sos_ic_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

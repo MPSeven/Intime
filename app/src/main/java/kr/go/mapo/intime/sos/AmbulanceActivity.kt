@@ -2,6 +2,9 @@ package kr.go.mapo.intime.sos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,10 +28,9 @@ class AmbulanceActivity : AppCompatActivity() {
 
         recyclerview.apply {
             this.adapter = adapter
-            this.layoutManager = LinearLayoutManager(binding.root.context,
-                LinearLayoutManager.VERTICAL,false)
+            this.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.VERTICAL,false)
         }
-//        setSpinner()
+        setSpinner()
 
         binding.ambBack.setOnClickListener{
             onBackPressed()
@@ -67,29 +69,29 @@ class AmbulanceActivity : AppCompatActivity() {
     }
 
 
-//    private fun setSpinner() {
-//        val spinner = binding.ambSpinner
-//        ArrayAdapter.createFromResource(
-//            this, R.array.location, android.R.layout.simple_spinner_item
-//        ).also { adapter ->
-//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//            spinner?.adapter = adapter
-//        }
-//
-//        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//
-//            }
-//
-//            override fun onItemSelected(
-//                parent: AdapterView<*>?,
-//                view: View?,
-//                position: Int,
-//                id: Long
-//            ) {
-//                type = spinner?.selectedItem.toString()
-//            }
-//        }
-//    }
+    private fun setSpinner() {
+        val spinner = binding.ambSpinner
+        ArrayAdapter.createFromResource(
+            this, R.array.location, android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner?.adapter = adapter
+        }
+
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                type = spinner?.selectedItem.toString()
+            }
+        }
+    }
 
 }
